@@ -29,3 +29,4 @@ report_overleaf*.pdf
 submission/
 # notebook build helpers (local only)
 notebook/parts/
+logo.jfif
