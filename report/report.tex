@@ -7,7 +7,12 @@
 \usepackage{xcolor}
 \usepackage{enumitem}
 \usepackage{caption}
+\usepackage{array}
+\usepackage{adjustbox}
+\usepackage{microtype}
+\usepackage{xurl}
 \usepackage[colorlinks=true,linkcolor=blue!50!black,urlcolor=blue!60!black,citecolor=blue!50!black]{hyperref}
+\setlength{\emergencystretch}{2em}
 \setlist{itemsep=2pt,topsep=3pt}
 \captionsetup{font=small}
 \newcommand{\repourl}{https://github.com/usama-azam/DLSTG-PA3}
@@ -28,10 +33,9 @@
 {\Large Usama Azam\par}
 {\large Roll No.\ 25280109\par}
 \vspace{1.0cm}
-\begin{tabular}{rl}
-\textbf{GitHub repository:} & \url{\repourl}\\[2pt]
-\textbf{Kaggle notebook (executed run):} & \url{\kaggleurl}\\
-\end{tabular}
+{\textbf{GitHub repository}\\[2pt] \url{\repourl}\par}
+\vspace{0.4cm}
+{\textbf{Kaggle notebook (executed run)}\\[2pt] \small\url{\kaggleurl}\par}
 \vspace{1.2cm}
 
 \begin{minipage}{0.86\linewidth}
@@ -103,12 +107,12 @@ columns follow the same order (the IDs match), and we take $A_{SD}=A[\text{sd},\
 vector used for the traffic columns. Node $k$ of the graph is therefore column $k$ of the traffic tensor.
 
 \begin{center}\small
-\begin{tabular}{lr@{\qquad}lr}
+\begin{tabular}{lr@{\hspace{2.2em}}lr}
 \toprule
-Nodes & 716 & Symmetric? & \textbf{No} (pattern and weights) \\
-Nonzero entries (incl.\ self-loops) & 18\,035 & Pairs $i<j$ with only one direction & 3\,711 \\
-Self-loops ($A_{ii}=1$) & 716 & Weight range (off-diag.) & $[0.010,\,1.000]$ \\
-Directed edges ($i\ne j$) & 17\,319 & Out-degree mean / median / max & 24.2 / 20 / 70 \\
+Nodes & 716 & Symmetric? & \textbf{No} \\
+Nonzero entries (incl.\ self-loops) & 18\,035 & One-direction-only pairs ($i<j$) & 3\,711 \\
+Self-loops ($A_{ii}=1$) & 716 & Off-diagonal weight range & $[0.01,\,1.00]$ \\
+Directed edges ($i\ne j$) & 17\,319 & Out-degree mean/median/max & 24.2/20/70 \\
 Undirected connected pairs & 10\,515 & Off-diagonal density & 3.38\% \\
 \bottomrule
 \end{tabular}
@@ -194,8 +198,9 @@ Inputs and targets are z-scored with a single mean and standard deviation comput
 passed through \texttt{Conv1d(1$\to$d, k=3)}, ReLU, \texttt{Conv1d(d$\to$d, k=3, dilation 2)}, ReLU. The receptive field
 covers all 8 steps and the output has length 2. This is flattened and passed through \texttt{Linear(2d$\to$d)} and ReLU,
 giving $Z\in\mathbb R^{B\times N\times d}$ with $d=32$.
-\item \textbf{Spatial graph convolution:} $\mathrm{GC}(Z)=\mathrm{ReLU}(\hat A Z W_g)$, computed as
-\texttt{einsum("nm,bmd->bnd", A, Z@W)}, so the graph product acts on the node dimension independently for each batch item.
+\item \textbf{Spatial graph convolution:} $\mathrm{GC}(Z)=\mathrm{ReLU}(\hat A Z W_g)$. It is computed with
+\texttt{torch.einsum} (subscripts \texttt{nm,bmd->bnd}), so the graph product acts on the node dimension
+independently for each batch item.
 We stack two such layers, each with a residual connection: $H^{(l+1)}=H^{(l)}+\mathrm{ReLU}(\hat A H^{(l)}W^{(l)})$, $H^{(0)}=Z$.
 The residual means the graph model contains the temporal-only model as a special case, which keeps the comparison fair.
 It also keeps a node's own signal when an adaptive $\hat A$ puts little weight on the diagonal.
@@ -283,22 +288,31 @@ adaptive graph (difference $<0.2\%$). It is marginally better at the 45 and 60-m
 (sensor, time) targets. Training time is the wall-clock time of the full training loop (including per-epoch validation)
 on one Tesla T4.}
 \label{tab:main}
-\begin{tabular}{llrrrrrrr}
+\setlength{\tabcolsep}{4.5pt}
+\begin{adjustbox}{max width=\linewidth}
+\begin{tabular}{llrrrrrr}
 \toprule
-Model & Adjacency & Val MAE & Val RMSE & \textbf{Test MAE} & \textbf{Test RMSE} & Training time & Epochs (best) & s/epoch \\
+ & & \multicolumn{2}{c}{Validation} & \multicolumn{2}{c}{\textbf{Test}} & Training & Epochs \\
+\cmidrule(lr){3-4}\cmidrule(lr){5-6}
+Model & Adjacency & MAE & RMSE & \textbf{MAE} & \textbf{RMSE} & time & (best) \\
 \midrule
-Temporal-only & None     & 55.72 & 89.61 & 64.23 & 100.95 & 842\,s (14.0\,min) & 47 (39) & 17.9\\
-STGNN         & Fixed    & 50.06 & 80.63 & 58.88 & 92.66  & 978\,s (16.3\,min) & 49 (41) & 20.0\\
-STGNN         & Adaptive & \textbf{42.14} & \textbf{68.10} & \textbf{51.34} & \textbf{81.17} & 1063\,s (17.7\,min) & 50 (49) & 21.3\\
-STGNN         & Hybrid   & 42.33 & 68.75 & 51.43 & 81.39  & 1067\,s (17.8\,min) & 50 (42) & 21.3\\
+Temporal-only & None     & 55.72 & 89.61 & 64.23 & 100.95 & 842\,s & 47 (39)\\
+STGNN         & Fixed    & 50.06 & 80.63 & 58.88 & 92.66  & 978\,s & 49 (41)\\
+STGNN         & Adaptive & \textbf{42.14} & \textbf{68.10} & \textbf{51.34} & \textbf{81.17} & 1063\,s & 50 (49)\\
+STGNN         & Hybrid   & 42.33 & 68.75 & 51.43 & 81.39  & 1067\,s & 50 (42)\\
 \midrule
-\multicolumn{2}{l}{\emph{Reference: last value}} & & & 87.14 & 132.99 & -- & -- & --\\
-\multicolumn{2}{l}{\emph{Reference: 2020 time-of-week mean}} & & & 134.27 & 188.18 & -- & -- & --\\
+\multicolumn{4}{l}{\emph{Reference: last value}} & 87.14 & 132.99 & -- & --\\
+\multicolumn{4}{l}{\emph{Reference: 2020 time-of-week mean}} & 134.27 & 188.18 & -- & --\\
 \bottomrule
 \end{tabular}
+\end{adjustbox}
+
+\vspace{2pt}
+{\footnotesize Seconds per epoch: 17.9 (temporal-only), 20.0 (fixed), 21.3 (adaptive), 21.3 (hybrid).}
 
 \vspace{6pt}
-\begin{tabular}{lrrrr@{\qquad}rrrr}
+\begin{adjustbox}{max width=\linewidth}
+\begin{tabular}{lrrrr@{\hspace{1.5em}}rrrr}
 \toprule
  & \multicolumn{4}{c}{Test MAE at horizon} & \multicolumn{4}{c}{Test RMSE at horizon}\\
 Adjacency & 15 min & 30 min & 45 min & 60 min & 15 min & 30 min & 45 min & 60 min\\
@@ -309,6 +323,7 @@ Adaptive & \textbf{39.68} & \textbf{48.34} & 55.39 & 61.97 & \textbf{62.02} & \t
 Hybrid   & 39.93 & 48.60 & \textbf{55.25} & \textbf{61.93} & 62.33 & 76.78 & 86.80 & \textbf{95.81}\\
 \bottomrule
 \end{tabular}
+\end{adjustbox}
 \end{table}
 
 \begin{figure}[H]
@@ -350,9 +365,12 @@ baseline.
 \centering\small
 \caption{Learned versus physical connectivity (adaptive model; ``top-$m$'' means each node's $m$ largest off-diagonal weights).}
 \label{tab:graph}
+\setlength{\tabcolsep}{4.5pt}
+\begin{adjustbox}{max width=\linewidth}
 \begin{tabular}{lrrrrrr}
 \toprule
-Edge set & \# edges & \% road edge & \% within 2 hops & median hops & median km & mean 2020 corr.\\
+ & & \% road & \% within & median & median & mean 2020\\
+Edge set & \# edges & edge & 2 hops & hops & km & corr.\\
 \midrule
 Road-graph edges            & 17\,319 & 100.0 & 100.0 & 1 & 2.4  & 0.855\\
 Learned top-1 per node      & 716     & 7.4   & 17.0  & 6 & 19.3 & \textbf{0.903}\\
@@ -362,6 +380,7 @@ Hybrid (adaptive part) top-1 & 716    & 6.8   & 17.9  & 6 & 19.0 & 0.906\\
 Random pairs                & 19\,970 & 4.1   & 9.8   & 7 & 23.1 & 0.842\\
 \bottomrule
 \end{tabular}
+\end{adjustbox}
 \end{table}
 
 \begin{figure}[H]
@@ -432,24 +451,37 @@ state, as in dynamic-graph STGNNs), separate forward and backward diffusion, and
 % ---------------------------------------------------------------------------
 \section{Question 7 -- Reproducibility}
 \paragraph{Code.} Everything is in one notebook, \texttt{notebook/dlstg\_pa3.ipynb} (generated from the jupytext source
-\texttt{notebook/dlstg\_pa3.py}). The repository (\url{\repourl}) also contains the executed notebook with all outputs,
-\texttt{outputs/} (figures, \texttt{results.json}, \texttt{results\_table.csv}, graph-analysis CSVs, learned adjacency matrices,
-model weights, run log) and \texttt{outputs.zip}. The README gives step-by-step instructions to rerun on Kaggle (via the
+\texttt{notebook/dlstg\_pa3.py}). The repository (\url{\repourl}) also contains:
+\begin{itemize}
+\item the executed notebook with all outputs (\texttt{notebook/dlstg\_pa3\_executed.ipynb});
+\item the \texttt{outputs/} folder: figures, metrics (\texttt{results.json}, \texttt{results\_table.csv}), graph-analysis CSVs,
+learned adjacency matrices, model weights and the run log;
+\item \texttt{outputs.zip}, an archive of the same folder.
+\end{itemize} The README gives step-by-step instructions to rerun on Kaggle (via the
 Kaggle API or the web UI) or locally. If the dataset is not found, the notebook runs a small synthetic smoke test of the full
 pipeline.
 
 \paragraph{Hyper-parameters (identical for all four models).}
 \begin{center}\small
-\begin{tabular}{ll@{\qquad}ll}
+\begin{tabular}{>{\raggedright\arraybackslash}p{0.30\linewidth}>{\raggedright\arraybackslash}p{0.62\linewidth}}
 \toprule
-Input / output steps & 8 / 4 (15 min) & Hidden dim $d$ & 32\\
-Temporal encoder & Conv1d $k$=3, Conv1d $k$=3 dil.\ 2, Linear & Graph-conv layers & 2 (residual)\\
-Head & Linear(32,32)--ReLU--Linear(32,4) & Embedding dim $d_e$ / top-$k$ & 10 / 20\\
-Optimiser & Adam, lr $10^{-3}$, no weight decay & Hybrid $\alpha$ & learned, init 0.5\\
-Batch size & 64 & Loss & masked MAE (normalised)\\
-Max epochs / early stopping & 50 / patience 8 on val MAE & Gradient clipping & 5.0\\
-Random seed & \textbf{42} (Python, NumPy, PyTorch, CUDA) & Determinism & cuDNN deterministic, \texttt{CUBLAS\_WORKSPACE\_CONFIG}\\
-Fixed $\hat A$ & $D^{-1}\tilde A$ (directed random walk) & Normalisation & z-score, 2020 observed values\\
+Hyper-parameter & Value\\
+\midrule
+Input / output steps & 8 / 4 (15-minute steps)\\
+Temporal encoder & Conv1d ($k$=3), Conv1d ($k$=3, dilation 2), Linear; hidden dim $d=32$\\
+Graph convolution & 2 residual layers, $H \leftarrow H+\mathrm{ReLU}(\hat A H W)$\\
+Forecast head & Linear(32,32), ReLU, Linear(32,4)\\
+Fixed $\hat A$ & $D^{-1}\tilde A$ (directed random-walk normalisation)\\
+Adaptive graph & embedding dim $d_e=10$, top-$k=20$ before row softmax\\
+Hybrid $\alpha$ & learned, $\alpha=\sigma(a)$, initialised at 0.5\\
+Loss & masked MAE on z-scored values\\
+Optimiser & Adam, learning rate $10^{-3}$, no weight decay\\
+Batch size & 64\\
+Epochs & at most 50; early stopping with patience 8 on validation MAE\\
+Gradient clipping & 5.0 (global norm)\\
+Normalisation & z-score with mean/std of observed 2020 values\\
+Random seed & \textbf{42} (Python, NumPy, PyTorch, CUDA)\\
+Determinism & cuDNN deterministic mode; \texttt{CUBLAS\_WORKSPACE\_CONFIG=:4096:8}\\
 \bottomrule
 \end{tabular}
 \end{center}
@@ -477,7 +509,7 @@ In line with the course AI policy, this section records how generative AI was us
 access to my local assignment folder, my Kaggle API credentials and the GitHub CLI.
 
 \paragraph{Prompt (verbatim).}
-\begin{quote}\small\ttfamily
+\begin{quote}\small\ttfamily\raggedright
 i have to do DLSTG\_PA3 instructions are in DLSTG\_PA3.pdf I want you to create a notebook and then use kaggle api to direcly run
 it on kaggle and then do save and run and when the run is complete download the jupternotebook and the outputs zip file and
 write the report also create a github respository and push everything on it with clean Readme to reproduce things if you have
