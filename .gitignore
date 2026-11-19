@@ -25,3 +25,5 @@ results*.zip
 report/build.log
 report/texsys.aux
 report_overleaf.zip
+report_overleaf*.pdf
+submission/
