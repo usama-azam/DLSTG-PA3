@@ -5,4 +5,8 @@ matplotlib>=3.8
 h5py>=3.10
 torch>=2.2
 psutil
-jupytext>=1.16   # only needed to regenerate the .ipynb from notebook/dlstg_pa3.py
+kaggle>=1.6        # dataset download / pushing the notebook to Kaggle
+jupyter            # to execute the notebook locally (nbconvert + ipykernel)
+nbconvert
+ipykernel
+jupytext>=1.16     # only needed to regenerate the .ipynb from notebook/dlstg_pa3.py

@@ -5,7 +5,7 @@ ca_rn_adj.npy
 # assignment handout (course material)
 DL4STG_PA3.pdf
 # raw Kaggle download folder (contents are copied into outputs/)
-kaggle_run/
+kaggle_run*/
 # LaTeX build artefacts
 report/*.aux
 report/*.log
@@ -27,3 +27,5 @@ report/texsys.aux
 report_overleaf.zip
 report_overleaf*.pdf
 submission/
+# notebook build helpers (local only)
+notebook/parts/

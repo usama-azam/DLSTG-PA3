@@ -1,0 +1,895 @@
+13:45:08 gpu1 device cuda Tesla T4
+13:45:34 gpu1 [fixed:42] ep  1 train 82.957 val 59.177/96.587 lr 1.0e-03 25.4s
+13:45:54 gpu1 [fixed:42] ep  2 train 57.976 val 58.995/95.187 lr 1.0e-03 20.0s
+13:46:15 gpu1 [fixed:42] ep  3 train 56.989 val 57.459/93.190 lr 1.0e-03 20.6s
+13:46:36 gpu1 [fixed:42] ep  4 train 56.306 val 57.051/91.914 lr 1.0e-03 21.2s
+13:46:57 gpu1 [fixed:42] ep  5 train 55.603 val 56.789/91.656 lr 1.0e-03 21.0s
+13:47:18 gpu1 [fixed:42] ep  6 train 54.946 val 55.408/89.657 lr 1.0e-03 20.8s
+13:47:39 gpu1 [fixed:42] ep  7 train 54.276 val 54.705/88.479 lr 1.0e-03 20.9s
+13:48:00 gpu1 [fixed:42] ep  8 train 53.958 val 56.144/90.468 lr 1.0e-03 21.1s
+13:48:21 gpu1 [fixed:42] ep  9 train 53.630 val 54.042/87.521 lr 1.0e-03 21.2s
+13:48:42 gpu1 [fixed:42] ep 10 train 53.147 val 54.159/87.239 lr 1.0e-03 21.1s
+13:49:03 gpu1 [fixed:42] ep 11 train 52.792 val 53.513/86.444 lr 1.0e-03 21.1s
+13:49:24 gpu1 [fixed:42] ep 12 train 52.682 val 53.298/86.219 lr 1.0e-03 21.1s
+13:49:45 gpu1 [fixed:42] ep 13 train 52.349 val 52.789/85.091 lr 1.0e-03 21.1s
+13:50:07 gpu1 [fixed:42] ep 14 train 52.155 val 52.672/84.840 lr 1.0e-03 21.2s
+13:50:28 gpu1 [fixed:42] ep 15 train 52.132 val 52.948/85.480 lr 1.0e-03 21.2s
+13:50:49 gpu1 [fixed:42] ep 16 train 51.706 val 52.394/84.292 lr 1.0e-03 21.1s
+13:51:10 gpu1 [fixed:42] ep 17 train 51.507 val 52.633/84.417 lr 1.0e-03 21.1s
+13:51:31 gpu1 [fixed:42] ep 18 train 51.470 val 51.989/83.771 lr 1.0e-03 21.2s
+13:51:52 gpu1 [fixed:42] ep 19 train 51.175 val 51.779/83.369 lr 1.0e-03 21.1s
+13:52:13 gpu1 [fixed:42] ep 20 train 51.007 val 51.947/84.084 lr 1.0e-03 21.1s
+13:52:34 gpu1 [fixed:42] ep 21 train 51.064 val 51.960/83.678 lr 1.0e-03 21.1s
+13:52:56 gpu1 [fixed:42] ep 22 train 51.021 val 51.584/82.648 lr 1.0e-03 21.1s
+13:53:17 gpu1 [fixed:42] ep 23 train 50.711 val 52.220/84.391 lr 1.0e-03 21.2s
+13:53:38 gpu1 [fixed:42] ep 24 train 50.516 val 51.472/82.909 lr 1.0e-03 21.2s
+13:53:59 gpu1 [fixed:42] ep 25 train 50.363 val 53.371/83.921 lr 1.0e-03 21.1s
+13:54:20 gpu1 [fixed:42] ep 26 train 50.309 val 50.992/82.115 lr 1.0e-03 21.2s
+13:54:41 gpu1 [fixed:42] ep 27 train 50.346 val 50.920/81.908 lr 1.0e-03 21.2s
+13:55:03 gpu1 [fixed:42] ep 28 train 50.212 val 51.265/82.235 lr 1.0e-03 21.1s
+13:55:24 gpu1 [fixed:42] ep 29 train 49.993 val 50.642/81.465 lr 1.0e-03 21.1s
+13:55:45 gpu1 [fixed:42] ep 30 train 50.040 val 51.218/82.012 lr 1.0e-03 21.1s
+13:56:06 gpu1 [fixed:42] ep 31 train 49.924 val 50.902/81.518 lr 1.0e-03 21.1s
+13:56:27 gpu1 [fixed:42] ep 32 train 49.871 val 51.087/81.425 lr 1.0e-03 21.2s
+13:56:48 gpu1 [fixed:42] ep 33 train 50.023 val 50.284/81.087 lr 1.0e-03 21.1s
+13:57:09 gpu1 [fixed:42] ep 34 train 49.813 val 50.211/80.725 lr 1.0e-03 21.1s
+13:57:30 gpu1 [fixed:42] ep 35 train 49.725 val 50.291/80.677 lr 1.0e-03 21.1s
+13:57:52 gpu1 [fixed:42] ep 36 train 49.658 val 50.681/81.134 lr 1.0e-03 21.1s
+13:58:13 gpu1 [fixed:42] ep 37 train 49.472 val 50.525/81.007 lr 1.0e-03 21.2s
+13:58:34 gpu1 [fixed:42] ep 38 train 49.608 val 50.844/81.376 lr 5.0e-04 21.1s
+13:58:55 gpu1 [fixed:42] ep 39 train 49.076 val 49.926/80.412 lr 5.0e-04 21.1s
+13:59:16 gpu1 [fixed:42] ep 40 train 49.193 val 49.897/80.130 lr 5.0e-04 21.1s
+13:59:37 gpu1 [fixed:42] ep 41 train 49.089 val 49.953/80.331 lr 5.0e-04 21.1s
+13:59:58 gpu1 [fixed:42] ep 42 train 49.068 val 50.318/80.879 lr 5.0e-04 21.1s
+14:00:19 gpu1 [fixed:42] ep 43 train 49.081 val 50.301/80.435 lr 5.0e-04 21.2s
+14:00:40 gpu1 [fixed:42] ep 44 train 48.978 val 50.235/80.854 lr 2.5e-04 21.1s
+14:01:01 gpu1 [fixed:42] ep 45 train 48.805 val 49.648/79.779 lr 2.5e-04 21.1s
+14:01:23 gpu1 [fixed:42] ep 46 train 48.752 val 49.529/79.713 lr 2.5e-04 21.1s
+14:01:44 gpu1 [fixed:42] ep 47 train 48.780 val 49.572/79.843 lr 2.5e-04 21.2s
+14:02:05 gpu1 [fixed:42] ep 48 train 48.746 val 49.526/79.632 lr 2.5e-04 21.1s
+14:02:26 gpu1 [fixed:42] ep 49 train 48.728 val 49.516/79.648 lr 2.5e-04 21.1s
+14:02:47 gpu1 [fixed:42] ep 50 train 48.754 val 49.478/79.707 lr 2.5e-04 21.1s
+14:03:08 gpu1 [fixed:42] ep 51 train 48.696 val 49.530/79.552 lr 2.5e-04 21.1s
+14:03:29 gpu1 [fixed:42] ep 52 train 48.728 val 49.384/79.380 lr 2.5e-04 21.0s
+14:03:50 gpu1 [fixed:42] ep 53 train 48.680 val 49.450/79.571 lr 2.5e-04 21.1s
+14:04:11 gpu1 [fixed:42] ep 54 train 48.669 val 49.569/79.880 lr 2.5e-04 21.1s
+14:04:32 gpu1 [fixed:42] ep 55 train 48.671 val 49.624/79.838 lr 2.5e-04 21.1s
+14:04:53 gpu1 [fixed:42] ep 56 train 48.643 val 49.773/79.946 lr 1.3e-04 21.1s
+14:05:15 gpu1 [fixed:42] ep 57 train 48.509 val 49.632/79.782 lr 1.3e-04 21.0s
+14:05:36 gpu1 [fixed:42] ep 58 train 48.539 val 49.316/79.354 lr 1.3e-04 21.1s
+14:05:57 gpu1 [fixed:42] ep 59 train 48.494 val 49.410/79.669 lr 1.3e-04 21.1s
+14:06:18 gpu1 [fixed:42] ep 60 train 48.529 val 49.437/79.588 lr 1.3e-04 21.1s
+14:06:39 gpu1 [fixed:42] ep 61 train 48.487 val 49.615/79.430 lr 1.3e-04 21.1s
+14:07:00 gpu1 [fixed:42] ep 62 train 48.500 val 49.347/79.377 lr 6.3e-05 21.1s
+14:07:21 gpu1 [fixed:42] ep 63 train 48.424 val 49.314/79.473 lr 6.3e-05 21.1s
+14:07:42 gpu1 [fixed:42] ep 64 train 48.411 val 49.434/79.699 lr 6.3e-05 21.1s
+14:08:03 gpu1 [fixed:42] ep 65 train 48.419 val 49.276/79.225 lr 6.3e-05 21.1s
+14:08:24 gpu1 [fixed:42] ep 66 train 48.417 val 49.356/79.448 lr 6.3e-05 21.1s
+14:08:45 gpu1 [fixed:42] ep 67 train 48.417 val 49.290/79.407 lr 6.3e-05 21.1s
+14:09:06 gpu1 [fixed:42] ep 68 train 48.407 val 49.279/79.367 lr 6.3e-05 21.1s
+14:09:27 gpu1 [fixed:42] ep 69 train 48.397 val 49.262/79.317 lr 6.3e-05 21.1s
+14:09:48 gpu1 [fixed:42] ep 70 train 48.396 val 49.357/79.460 lr 6.3e-05 21.1s
+14:10:10 gpu1 [fixed:42] ep 71 train 48.403 val 49.333/79.440 lr 6.3e-05 21.2s
+14:10:31 gpu1 [fixed:42] ep 72 train 48.380 val 49.216/79.226 lr 6.3e-05 21.1s
+14:10:52 gpu1 [fixed:42] ep 73 train 48.391 val 49.192/79.204 lr 6.3e-05 21.1s
+14:11:13 gpu1 [fixed:42] ep 74 train 48.378 val 49.236/79.298 lr 6.3e-05 21.1s
+14:11:34 gpu1 [fixed:42] ep 75 train 48.390 val 49.214/79.193 lr 6.3e-05 21.1s
+14:11:55 gpu1 [fixed:42] ep 76 train 48.385 val 49.279/79.292 lr 6.3e-05 21.1s
+14:12:16 gpu1 [fixed:42] ep 77 train 48.361 val 49.199/79.162 lr 3.1e-05 21.1s
+14:12:37 gpu1 [fixed:42] ep 78 train 48.338 val 49.224/79.302 lr 3.1e-05 21.1s
+14:12:58 gpu1 [fixed:42] ep 79 train 48.332 val 49.150/79.131 lr 3.1e-05 21.1s
+14:13:20 gpu1 [fixed:42] ep 80 train 48.335 val 49.204/79.255 lr 3.1e-05 21.2s
+14:13:22 gpu1 DONE fixed:42 test MAE 58.160 RMSE 91.714 time 1691s epochs 80 (best 79)
+/kaggle/working/stgnn_lib.py:235: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at /pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:836.)
+  rec["alpha"] = float(model.adj.alpha)
+14:13:45 gpu1 [hybrid:42] ep  1 train 82.054 val 57.160/93.284 lr 1.0e-03 22.9s alpha 0.481
+14:14:08 gpu1 [hybrid:42] ep  2 train 54.568 val 54.489/88.811 lr 1.0e-03 22.7s alpha 0.369
+14:14:30 gpu1 [hybrid:42] ep  3 train 51.981 val 52.167/84.896 lr 1.0e-03 22.7s alpha 0.281
+14:14:53 gpu1 [hybrid:42] ep  4 train 50.632 val 52.116/83.502 lr 1.0e-03 22.8s alpha 0.221
+14:15:16 gpu1 [hybrid:42] ep  5 train 49.187 val 50.496/80.796 lr 1.0e-03 22.8s alpha 0.180
+14:15:39 gpu1 [hybrid:42] ep  6 train 48.239 val 50.167/80.977 lr 1.0e-03 22.8s alpha 0.152
+14:16:02 gpu1 [hybrid:42] ep  7 train 47.529 val 47.640/77.687 lr 1.0e-03 22.8s alpha 0.132
+14:16:24 gpu1 [hybrid:42] ep  8 train 47.377 val 47.584/77.456 lr 1.0e-03 22.7s alpha 0.115
+14:16:47 gpu1 [hybrid:42] ep  9 train 46.524 val 47.012/76.562 lr 1.0e-03 22.7s alpha 0.103
+14:17:10 gpu1 [hybrid:42] ep 10 train 46.640 val 48.291/77.121 lr 1.0e-03 22.7s alpha 0.092
+14:17:33 gpu1 [hybrid:42] ep 11 train 45.932 val 47.126/75.817 lr 1.0e-03 22.7s alpha 0.085
+14:17:55 gpu1 [hybrid:42] ep 12 train 45.869 val 46.100/74.819 lr 1.0e-03 22.7s alpha 0.079
+14:18:18 gpu1 [hybrid:42] ep 13 train 45.559 val 46.144/74.881 lr 1.0e-03 22.7s alpha 0.074
+14:18:41 gpu1 [hybrid:42] ep 14 train 45.434 val 45.831/74.199 lr 1.0e-03 22.7s alpha 0.069
+14:19:03 gpu1 [hybrid:42] ep 15 train 45.066 val 46.329/74.930 lr 1.0e-03 22.7s alpha 0.066
+14:19:26 gpu1 [hybrid:42] ep 16 train 44.931 val 45.646/74.043 lr 1.0e-03 22.7s alpha 0.063
+14:19:49 gpu1 [hybrid:42] ep 17 train 44.697 val 45.363/73.337 lr 1.0e-03 22.8s alpha 0.061
+14:20:12 gpu1 [hybrid:42] ep 18 train 44.576 val 45.832/74.446 lr 1.0e-03 22.7s alpha 0.059
+14:20:34 gpu1 [hybrid:42] ep 19 train 44.554 val 45.389/73.731 lr 1.0e-03 22.5s alpha 0.057
+14:20:57 gpu1 [hybrid:42] ep 20 train 44.125 val 44.860/72.771 lr 1.0e-03 22.8s alpha 0.056
+14:21:20 gpu1 [hybrid:42] ep 21 train 44.152 val 47.491/75.120 lr 1.0e-03 22.8s alpha 0.055
+14:21:42 gpu1 [hybrid:42] ep 22 train 44.016 val 44.675/72.197 lr 1.0e-03 22.6s alpha 0.053
+14:22:05 gpu1 [hybrid:42] ep 23 train 44.021 val 45.967/74.592 lr 1.0e-03 22.6s alpha 0.052
+14:22:28 gpu1 [hybrid:42] ep 24 train 43.729 val 44.277/71.861 lr 1.0e-03 22.6s alpha 0.051
+14:22:50 gpu1 [hybrid:42] ep 25 train 43.635 val 44.565/71.781 lr 1.0e-03 22.6s alpha 0.050
+14:23:13 gpu1 [hybrid:42] ep 26 train 43.569 val 44.874/71.913 lr 1.0e-03 22.7s alpha 0.049
+14:23:36 gpu1 [hybrid:42] ep 27 train 43.614 val 44.296/71.264 lr 1.0e-03 22.7s alpha 0.048
+14:23:58 gpu1 [hybrid:42] ep 28 train 43.331 val 45.350/72.732 lr 5.0e-04 22.7s alpha 0.048
+14:24:21 gpu1 [hybrid:42] ep 29 train 42.716 val 43.544/70.750 lr 5.0e-04 22.7s alpha 0.047
+14:24:44 gpu1 [hybrid:42] ep 30 train 42.814 val 43.602/70.758 lr 5.0e-04 22.8s alpha 0.047
+14:25:06 gpu1 [hybrid:42] ep 31 train 42.680 val 43.694/70.641 lr 5.0e-04 22.7s alpha 0.047
+14:25:29 gpu1 [hybrid:42] ep 32 train 42.658 val 43.874/70.816 lr 5.0e-04 22.6s alpha 0.047
+14:25:52 gpu1 [hybrid:42] ep 33 train 42.603 val 43.463/70.527 lr 5.0e-04 22.8s alpha 0.047
+14:26:15 gpu1 [hybrid:42] ep 34 train 42.600 val 43.311/70.239 lr 5.0e-04 22.8s alpha 0.047
+14:26:37 gpu1 [hybrid:42] ep 35 train 42.470 val 43.519/70.546 lr 5.0e-04 22.6s alpha 0.047
+14:27:00 gpu1 [hybrid:42] ep 36 train 42.469 val 43.259/70.032 lr 5.0e-04 22.6s alpha 0.047
+14:27:23 gpu1 [hybrid:42] ep 37 train 42.342 val 43.280/70.179 lr 5.0e-04 22.7s alpha 0.046
+14:27:45 gpu1 [hybrid:42] ep 38 train 42.282 val 43.848/70.402 lr 5.0e-04 22.8s alpha 0.047
+14:28:08 gpu1 [hybrid:42] ep 39 train 42.286 val 43.310/70.187 lr 5.0e-04 22.6s alpha 0.047
+14:28:31 gpu1 [hybrid:42] ep 40 train 42.304 val 43.386/69.958 lr 2.5e-04 22.7s alpha 0.046
+14:28:53 gpu1 [hybrid:42] ep 41 train 41.906 val 43.197/69.978 lr 2.5e-04 22.7s alpha 0.047
+14:29:16 gpu1 [hybrid:42] ep 42 train 41.909 val 43.033/69.793 lr 2.5e-04 22.6s alpha 0.047
+14:29:39 gpu1 [hybrid:42] ep 43 train 41.909 val 43.078/69.604 lr 2.5e-04 22.7s alpha 0.047
+14:30:01 gpu1 [hybrid:42] ep 44 train 41.866 val 42.878/69.410 lr 2.5e-04 22.7s alpha 0.047
+14:30:24 gpu1 [hybrid:42] ep 45 train 41.844 val 42.908/69.351 lr 2.5e-04 22.8s alpha 0.047
+14:30:47 gpu1 [hybrid:42] ep 46 train 41.787 val 43.380/70.452 lr 2.5e-04 22.6s alpha 0.047
+14:31:09 gpu1 [hybrid:42] ep 47 train 41.839 val 42.970/69.659 lr 2.5e-04 22.6s alpha 0.047
+14:31:32 gpu1 [hybrid:42] ep 48 train 41.726 val 43.224/70.220 lr 1.3e-04 22.9s alpha 0.047
+14:31:55 gpu1 [hybrid:42] ep 49 train 41.565 val 42.694/69.208 lr 1.3e-04 22.8s alpha 0.047
+14:32:18 gpu1 [hybrid:42] ep 50 train 41.577 val 42.602/68.995 lr 1.3e-04 22.6s alpha 0.048
+14:32:40 gpu1 [hybrid:42] ep 51 train 41.563 val 42.638/69.197 lr 1.3e-04 22.6s alpha 0.048
+14:33:03 gpu1 [hybrid:42] ep 52 train 41.584 val 42.619/69.120 lr 1.3e-04 22.8s alpha 0.048
+14:33:26 gpu1 [hybrid:42] ep 53 train 41.530 val 42.668/69.107 lr 1.3e-04 22.9s alpha 0.048
+14:33:48 gpu1 [hybrid:42] ep 54 train 41.528 val 42.558/68.834 lr 1.3e-04 22.6s alpha 0.048
+14:34:11 gpu1 [hybrid:42] ep 55 train 41.513 val 42.652/68.955 lr 1.3e-04 22.5s alpha 0.048
+14:34:34 gpu1 [hybrid:42] ep 56 train 41.487 val 42.947/69.580 lr 1.3e-04 22.9s alpha 0.048
+14:34:57 gpu1 [hybrid:42] ep 57 train 41.466 val 42.579/68.943 lr 1.3e-04 22.8s alpha 0.048
+14:35:19 gpu1 [hybrid:42] ep 58 train 41.481 val 42.580/68.906 lr 6.3e-05 22.6s alpha 0.049
+14:35:42 gpu1 [hybrid:42] ep 59 train 41.382 val 42.494/68.812 lr 6.3e-05 22.6s alpha 0.049
+14:36:05 gpu1 [hybrid:42] ep 60 train 41.390 val 42.520/68.767 lr 6.3e-05 22.8s alpha 0.049
+14:36:27 gpu1 [hybrid:42] ep 61 train 41.366 val 42.579/68.712 lr 6.3e-05 22.7s alpha 0.049
+14:36:50 gpu1 [hybrid:42] ep 62 train 41.356 val 42.462/68.691 lr 6.3e-05 22.7s alpha 0.049
+14:37:13 gpu1 [hybrid:42] ep 63 train 41.353 val 42.498/68.697 lr 6.3e-05 22.6s alpha 0.049
+14:37:35 gpu1 [hybrid:42] ep 64 train 41.331 val 42.606/68.936 lr 6.3e-05 22.6s alpha 0.049
+14:37:58 gpu1 [hybrid:42] ep 65 train 41.341 val 42.361/68.618 lr 6.3e-05 22.7s alpha 0.049
+14:38:21 gpu1 [hybrid:42] ep 66 train 41.322 val 42.540/68.808 lr 6.3e-05 22.6s alpha 0.049
+14:38:43 gpu1 [hybrid:42] ep 67 train 41.329 val 42.448/68.683 lr 6.3e-05 22.7s alpha 0.049
+14:39:06 gpu1 [hybrid:42] ep 68 train 41.312 val 42.349/68.536 lr 6.3e-05 22.9s alpha 0.049
+14:39:29 gpu1 [hybrid:42] ep 69 train 41.298 val 42.414/68.695 lr 6.3e-05 22.7s alpha 0.049
+14:39:51 gpu1 [hybrid:42] ep 70 train 41.296 val 42.562/69.004 lr 6.3e-05 22.6s alpha 0.050
+14:40:14 gpu1 [hybrid:42] ep 71 train 41.298 val 42.424/68.687 lr 6.3e-05 22.6s alpha 0.050
+14:40:37 gpu1 [hybrid:42] ep 72 train 41.292 val 42.413/68.617 lr 3.1e-05 22.6s alpha 0.050
+14:40:59 gpu1 [hybrid:42] ep 73 train 41.234 val 42.376/68.604 lr 3.1e-05 22.7s alpha 0.050
+14:41:22 gpu1 [hybrid:42] ep 74 train 41.229 val 42.396/68.651 lr 3.1e-05 22.7s alpha 0.050
+14:41:45 gpu1 [hybrid:42] ep 75 train 41.233 val 42.347/68.517 lr 3.1e-05 22.6s alpha 0.050
+14:42:07 gpu1 [hybrid:42] ep 76 train 41.236 val 42.429/68.626 lr 1.6e-05 22.7s alpha 0.050
+14:42:30 gpu1 [hybrid:42] ep 77 train 41.200 val 42.349/68.521 lr 1.6e-05 22.7s alpha 0.050
+14:42:53 gpu1 [hybrid:42] ep 78 train 41.197 val 42.349/68.559 lr 1.6e-05 22.7s alpha 0.050
+14:43:15 gpu1 [hybrid:42] ep 79 train 41.198 val 42.305/68.526 lr 1.6e-05 22.7s alpha 0.050
+14:43:38 gpu1 [hybrid:42] ep 80 train 41.198 val 42.362/68.651 lr 1.6e-05 22.7s alpha 0.050
+14:43:41 gpu1 DONE hybrid:42 test MAE 51.610 RMSE 81.547 time 1816s epochs 80 (best 79)
+14:44:02 gpu1 [fixed_bi:42] ep  1 train 82.947 val 59.301/96.883 lr 1.0e-03 21.0s
+14:44:23 gpu1 [fixed_bi:42] ep  2 train 57.980 val 59.112/95.411 lr 1.0e-03 21.1s
+14:44:44 gpu1 [fixed_bi:42] ep  3 train 56.769 val 57.262/92.936 lr 1.0e-03 21.1s
+14:45:05 gpu1 [fixed_bi:42] ep  4 train 56.013 val 56.952/91.653 lr 1.0e-03 21.1s
+14:45:26 gpu1 [fixed_bi:42] ep  5 train 55.277 val 56.688/91.485 lr 1.0e-03 21.1s
+14:45:47 gpu1 [fixed_bi:42] ep  6 train 54.707 val 55.316/89.733 lr 1.0e-03 21.1s
+14:46:08 gpu1 [fixed_bi:42] ep  7 train 54.136 val 54.670/88.743 lr 1.0e-03 21.1s
+14:46:29 gpu1 [fixed_bi:42] ep  8 train 53.906 val 56.183/90.998 lr 1.0e-03 21.1s
+14:46:51 gpu1 [fixed_bi:42] ep  9 train 53.503 val 54.209/87.866 lr 1.0e-03 21.1s
+14:47:12 gpu1 [fixed_bi:42] ep 10 train 53.037 val 54.118/87.509 lr 1.0e-03 21.1s
+14:47:33 gpu1 [fixed_bi:42] ep 11 train 52.732 val 53.891/87.246 lr 1.0e-03 21.1s
+14:47:54 gpu1 [fixed_bi:42] ep 12 train 52.608 val 53.327/86.512 lr 1.0e-03 21.1s
+14:48:15 gpu1 [fixed_bi:42] ep 13 train 52.257 val 52.930/85.424 lr 1.0e-03 21.1s
+14:48:36 gpu1 [fixed_bi:42] ep 14 train 52.105 val 53.001/85.631 lr 1.0e-03 21.1s
+14:48:57 gpu1 [fixed_bi:42] ep 15 train 52.039 val 53.763/87.172 lr 1.0e-03 21.1s
+14:49:18 gpu1 [fixed_bi:42] ep 16 train 51.663 val 52.469/84.777 lr 1.0e-03 21.1s
+14:49:39 gpu1 [fixed_bi:42] ep 17 train 51.449 val 52.745/85.001 lr 1.0e-03 21.1s
+14:50:00 gpu1 [fixed_bi:42] ep 18 train 51.437 val 52.077/84.129 lr 1.0e-03 21.1s
+14:50:21 gpu1 [fixed_bi:42] ep 19 train 51.147 val 51.914/84.008 lr 1.0e-03 21.1s
+14:50:43 gpu1 [fixed_bi:42] ep 20 train 50.991 val 51.857/84.066 lr 1.0e-03 21.2s
+14:51:04 gpu1 [fixed_bi:42] ep 21 train 51.088 val 51.698/83.423 lr 1.0e-03 21.1s
+14:51:25 gpu1 [fixed_bi:42] ep 22 train 51.054 val 51.769/83.169 lr 1.0e-03 21.1s
+14:51:46 gpu1 [fixed_bi:42] ep 23 train 50.722 val 52.799/85.441 lr 1.0e-03 21.1s
+14:52:07 gpu1 [fixed_bi:42] ep 24 train 50.583 val 51.101/82.660 lr 1.0e-03 21.1s
+14:52:28 gpu1 [fixed_bi:42] ep 25 train 50.366 val 52.916/84.018 lr 1.0e-03 21.2s
+14:52:49 gpu1 [fixed_bi:42] ep 26 train 50.369 val 50.953/82.329 lr 1.0e-03 21.1s
+14:53:10 gpu1 [fixed_bi:42] ep 27 train 50.360 val 51.743/83.372 lr 1.0e-03 21.1s
+14:53:31 gpu1 [fixed_bi:42] ep 28 train 50.243 val 51.576/83.046 lr 1.0e-03 21.1s
+14:53:53 gpu1 [fixed_bi:42] ep 29 train 49.994 val 50.698/81.880 lr 1.0e-03 21.2s
+14:54:14 gpu1 [fixed_bi:42] ep 30 train 50.077 val 51.239/82.151 lr 1.0e-03 21.1s
+14:54:35 gpu1 [fixed_bi:42] ep 31 train 49.868 val 50.676/81.689 lr 1.0e-03 21.1s
+14:54:56 gpu1 [fixed_bi:42] ep 32 train 49.851 val 51.122/81.936 lr 1.0e-03 21.1s
+14:55:17 gpu1 [fixed_bi:42] ep 33 train 49.979 val 50.332/81.490 lr 1.0e-03 21.1s
+14:55:38 gpu1 [fixed_bi:42] ep 34 train 49.698 val 50.150/81.086 lr 1.0e-03 21.2s
+14:55:59 gpu1 [fixed_bi:42] ep 35 train 49.608 val 50.257/81.019 lr 1.0e-03 21.1s
+14:56:20 gpu1 [fixed_bi:42] ep 36 train 49.534 val 50.506/81.284 lr 1.0e-03 21.0s
+14:56:42 gpu1 [fixed_bi:42] ep 37 train 49.359 val 50.599/81.494 lr 1.0e-03 21.2s
+14:57:03 gpu1 [fixed_bi:42] ep 38 train 49.481 val 51.493/82.624 lr 5.0e-04 21.2s
+14:57:24 gpu1 [fixed_bi:42] ep 39 train 48.930 val 49.860/80.515 lr 5.0e-04 21.1s
+14:57:45 gpu1 [fixed_bi:42] ep 40 train 49.012 val 49.879/80.332 lr 5.0e-04 21.1s
+14:58:06 gpu1 [fixed_bi:42] ep 41 train 48.913 val 49.866/80.484 lr 5.0e-04 21.0s
+14:58:27 gpu1 [fixed_bi:42] ep 42 train 48.926 val 50.423/81.258 lr 5.0e-04 21.1s
+14:58:48 gpu1 [fixed_bi:42] ep 43 train 48.885 val 49.980/80.438 lr 2.5e-04 21.3s
+14:59:09 gpu1 [fixed_bi:42] ep 44 train 48.631 val 49.445/79.750 lr 2.5e-04 21.2s
+14:59:30 gpu1 [fixed_bi:42] ep 45 train 48.632 val 49.549/79.829 lr 2.5e-04 21.1s
+14:59:52 gpu1 [fixed_bi:42] ep 46 train 48.571 val 49.490/79.925 lr 2.5e-04 21.1s
+15:00:13 gpu1 [fixed_bi:42] ep 47 train 48.609 val 49.521/79.924 lr 2.5e-04 21.1s
+15:00:34 gpu1 [fixed_bi:42] ep 48 train 48.581 val 49.479/79.837 lr 1.3e-04 21.1s
+15:00:55 gpu1 [fixed_bi:42] ep 49 train 48.423 val 49.633/80.051 lr 1.3e-04 21.1s
+15:01:16 gpu1 [fixed_bi:42] ep 50 train 48.443 val 49.290/79.634 lr 1.3e-04 21.2s
+15:01:37 gpu1 [fixed_bi:42] ep 51 train 48.415 val 49.319/79.547 lr 1.3e-04 21.2s
+15:01:58 gpu1 [fixed_bi:42] ep 52 train 48.425 val 49.301/79.552 lr 1.3e-04 21.1s
+15:02:19 gpu1 [fixed_bi:42] ep 53 train 48.424 val 49.357/79.612 lr 1.3e-04 21.0s
+15:02:41 gpu1 [fixed_bi:42] ep 54 train 48.388 val 49.385/79.742 lr 6.3e-05 21.1s
+15:03:02 gpu1 [fixed_bi:42] ep 55 train 48.324 val 49.235/79.413 lr 6.3e-05 21.2s
+15:03:23 gpu1 [fixed_bi:42] ep 56 train 48.320 val 49.262/79.506 lr 6.3e-05 21.1s
+15:03:44 gpu1 [fixed_bi:42] ep 57 train 48.308 val 49.172/79.388 lr 6.3e-05 21.1s
+15:04:05 gpu1 [fixed_bi:42] ep 58 train 48.328 val 49.187/79.371 lr 6.3e-05 21.1s
+15:04:26 gpu1 [fixed_bi:42] ep 59 train 48.307 val 49.245/79.582 lr 6.3e-05 21.1s
+15:04:47 gpu1 [fixed_bi:42] ep 60 train 48.314 val 49.318/79.690 lr 6.3e-05 21.1s
+15:05:08 gpu1 [fixed_bi:42] ep 61 train 48.286 val 49.252/79.444 lr 3.1e-05 21.1s
+15:05:29 gpu1 [fixed_bi:42] ep 62 train 48.260 val 49.243/79.516 lr 3.1e-05 21.1s
+15:05:51 gpu1 [fixed_bi:42] ep 63 train 48.256 val 49.276/79.600 lr 3.1e-05 21.1s
+15:06:12 gpu1 [fixed_bi:42] ep 64 train 48.249 val 49.293/79.667 lr 3.1e-05 21.1s
+15:06:33 gpu1 [fixed_bi:42] ep 65 train 48.250 val 49.205/79.350 lr 1.6e-05 21.1s
+15:06:54 gpu1 [fixed_bi:42] ep 66 train 48.228 val 49.188/79.412 lr 1.6e-05 21.1s
+15:07:15 gpu1 [fixed_bi:42] ep 67 train 48.233 val 49.140/79.349 lr 1.6e-05 21.2s
+15:07:36 gpu1 [fixed_bi:42] ep 68 train 48.230 val 49.192/79.458 lr 1.6e-05 21.1s
+15:07:57 gpu1 [fixed_bi:42] ep 69 train 48.226 val 49.173/79.395 lr 1.6e-05 21.1s
+15:08:18 gpu1 [fixed_bi:42] ep 70 train 48.223 val 49.196/79.422 lr 1.6e-05 21.1s
+15:08:40 gpu1 [fixed_bi:42] ep 71 train 48.227 val 49.162/79.406 lr 1.0e-05 21.1s
+15:09:01 gpu1 [fixed_bi:42] ep 72 train 48.212 val 49.170/79.399 lr 1.0e-05 21.1s
+15:09:22 gpu1 [fixed_bi:42] ep 73 train 48.214 val 49.131/79.316 lr 1.0e-05 21.1s
+15:09:43 gpu1 [fixed_bi:42] ep 74 train 48.216 val 49.133/79.338 lr 1.0e-05 21.1s
+15:10:04 gpu1 [fixed_bi:42] ep 75 train 48.214 val 49.138/79.315 lr 1.0e-05 21.1s
+15:10:25 gpu1 [fixed_bi:42] ep 76 train 48.211 val 49.176/79.394 lr 1.0e-05 21.1s
+15:10:46 gpu1 [fixed_bi:42] ep 77 train 48.212 val 49.137/79.306 lr 1.0e-05 21.1s
+15:11:07 gpu1 [fixed_bi:42] ep 78 train 48.211 val 49.128/79.324 lr 1.0e-05 21.1s
+15:11:28 gpu1 [fixed_bi:42] ep 79 train 48.210 val 49.132/79.326 lr 1.0e-05 21.1s
+15:11:50 gpu1 [fixed_bi:42] ep 80 train 48.208 val 49.137/79.365 lr 1.0e-05 21.1s
+15:11:52 gpu1 DONE fixed_bi:42 test MAE 57.851 RMSE 91.408 time 1689s epochs 80 (best 78)
+15:12:13 gpu1 [fixed_emb:42] ep  1 train 83.716 val 58.318/94.302 lr 1.0e-03 21.2s
+15:12:35 gpu1 [fixed_emb:42] ep  2 train 56.740 val 56.830/91.863 lr 1.0e-03 21.3s
+15:12:56 gpu1 [fixed_emb:42] ep  3 train 55.154 val 55.550/89.569 lr 1.0e-03 21.3s
+15:13:17 gpu1 [fixed_emb:42] ep  4 train 53.975 val 54.036/87.633 lr 1.0e-03 21.2s
+15:13:38 gpu1 [fixed_emb:42] ep  5 train 53.118 val 54.779/87.650 lr 1.0e-03 21.3s
+15:14:00 gpu1 [fixed_emb:42] ep  6 train 52.331 val 52.815/85.222 lr 1.0e-03 21.2s
+15:14:21 gpu1 [fixed_emb:42] ep  7 train 51.439 val 51.718/84.070 lr 1.0e-03 21.2s
+15:14:42 gpu1 [fixed_emb:42] ep  8 train 51.017 val 52.402/84.819 lr 1.0e-03 21.2s
+15:15:03 gpu1 [fixed_emb:42] ep  9 train 50.497 val 51.263/82.537 lr 1.0e-03 21.2s
+15:15:25 gpu1 [fixed_emb:42] ep 10 train 49.861 val 50.568/81.327 lr 1.0e-03 21.2s
+15:15:46 gpu1 [fixed_emb:42] ep 11 train 49.447 val 50.282/80.716 lr 1.0e-03 21.2s
+15:16:07 gpu1 [fixed_emb:42] ep 12 train 49.046 val 49.332/79.743 lr 1.0e-03 21.2s
+15:16:28 gpu1 [fixed_emb:42] ep 13 train 48.716 val 48.968/78.990 lr 1.0e-03 21.2s
+15:16:49 gpu1 [fixed_emb:42] ep 14 train 48.534 val 49.189/78.749 lr 1.0e-03 21.2s
+15:17:11 gpu1 [fixed_emb:42] ep 15 train 48.281 val 49.118/79.633 lr 1.0e-03 21.2s
+15:17:32 gpu1 [fixed_emb:42] ep 16 train 47.936 val 48.852/78.464 lr 1.0e-03 21.2s
+15:17:53 gpu1 [fixed_emb:42] ep 17 train 47.672 val 48.901/77.792 lr 1.0e-03 21.2s
+15:18:14 gpu1 [fixed_emb:42] ep 18 train 47.702 val 48.158/77.853 lr 1.0e-03 21.2s
+15:18:35 gpu1 [fixed_emb:42] ep 19 train 47.344 val 47.707/76.893 lr 1.0e-03 21.2s
+15:18:56 gpu1 [fixed_emb:42] ep 20 train 47.160 val 47.375/76.533 lr 1.0e-03 21.2s
+15:19:18 gpu1 [fixed_emb:42] ep 21 train 47.207 val 48.653/78.496 lr 1.0e-03 21.2s
+15:19:39 gpu1 [fixed_emb:42] ep 22 train 47.110 val 47.425/76.317 lr 1.0e-03 21.2s
+15:20:00 gpu1 [fixed_emb:42] ep 23 train 46.877 val 47.710/77.238 lr 1.0e-03 21.2s
+15:20:21 gpu1 [fixed_emb:42] ep 24 train 46.665 val 46.979/76.083 lr 1.0e-03 21.2s
+15:20:42 gpu1 [fixed_emb:42] ep 25 train 46.489 val 48.222/76.664 lr 1.0e-03 21.2s
+15:21:04 gpu1 [fixed_emb:42] ep 26 train 46.476 val 47.140/75.887 lr 1.0e-03 21.2s
+15:21:25 gpu1 [fixed_emb:42] ep 27 train 46.464 val 47.059/75.655 lr 1.0e-03 21.2s
+15:21:46 gpu1 [fixed_emb:42] ep 28 train 46.313 val 47.032/75.864 lr 5.0e-04 21.2s
+15:22:07 gpu1 [fixed_emb:42] ep 29 train 45.643 val 46.363/74.922 lr 5.0e-04 21.2s
+15:22:28 gpu1 [fixed_emb:42] ep 30 train 45.652 val 46.157/74.626 lr 5.0e-04 21.2s
+15:22:50 gpu1 [fixed_emb:42] ep 31 train 45.634 val 46.613/75.155 lr 5.0e-04 21.2s
+15:23:11 gpu1 [fixed_emb:42] ep 32 train 45.606 val 46.405/74.933 lr 5.0e-04 21.2s
+15:23:32 gpu1 [fixed_emb:42] ep 33 train 45.558 val 46.093/74.431 lr 5.0e-04 21.2s
+15:23:53 gpu1 [fixed_emb:42] ep 34 train 45.467 val 46.556/74.455 lr 5.0e-04 21.2s
+15:24:14 gpu1 [fixed_emb:42] ep 35 train 45.396 val 46.193/74.537 lr 5.0e-04 21.2s
+15:24:36 gpu1 [fixed_emb:42] ep 36 train 45.401 val 46.110/74.321 lr 5.0e-04 21.2s
+15:24:57 gpu1 [fixed_emb:42] ep 37 train 45.275 val 46.151/74.484 lr 2.5e-04 21.3s
+15:25:18 gpu1 [fixed_emb:42] ep 38 train 45.009 val 46.106/74.187 lr 2.5e-04 21.2s
+15:25:39 gpu1 [fixed_emb:42] ep 39 train 44.991 val 45.899/74.052 lr 2.5e-04 21.2s
+15:26:00 gpu1 [fixed_emb:42] ep 40 train 44.996 val 45.690/73.858 lr 2.5e-04 21.2s
+15:26:22 gpu1 [fixed_emb:42] ep 41 train 44.932 val 45.984/74.381 lr 2.5e-04 21.2s
+15:26:43 gpu1 [fixed_emb:42] ep 42 train 44.904 val 45.885/74.214 lr 2.5e-04 21.2s
+15:27:04 gpu1 [fixed_emb:42] ep 43 train 44.925 val 45.819/74.020 lr 2.5e-04 21.2s
+15:27:25 gpu1 [fixed_emb:42] ep 44 train 44.875 val 45.824/74.191 lr 1.3e-04 21.2s
+15:27:47 gpu1 [fixed_emb:42] ep 45 train 44.715 val 45.591/73.787 lr 1.3e-04 21.3s
+15:28:08 gpu1 [fixed_emb:42] ep 46 train 44.695 val 45.652/73.861 lr 1.3e-04 21.3s
+15:28:29 gpu1 [fixed_emb:42] ep 47 train 44.672 val 45.654/73.782 lr 1.3e-04 21.3s
+15:28:50 gpu1 [fixed_emb:42] ep 48 train 44.674 val 45.590/73.718 lr 1.3e-04 21.3s
+15:29:12 gpu1 [fixed_emb:42] ep 49 train 44.646 val 46.381/74.991 lr 6.3e-05 21.3s
+15:29:33 gpu1 [fixed_emb:42] ep 50 train 44.580 val 45.490/73.616 lr 6.3e-05 21.3s
+15:29:54 gpu1 [fixed_emb:42] ep 51 train 44.566 val 45.675/73.942 lr 6.3e-05 21.3s
+15:30:16 gpu1 [fixed_emb:42] ep 52 train 44.574 val 45.468/73.554 lr 6.3e-05 21.3s
+15:30:37 gpu1 [fixed_emb:42] ep 53 train 44.551 val 45.551/73.678 lr 6.3e-05 21.3s
+15:30:58 gpu1 [fixed_emb:42] ep 54 train 44.542 val 45.548/73.667 lr 6.3e-05 21.3s
+15:31:20 gpu1 [fixed_emb:42] ep 55 train 44.537 val 45.409/73.478 lr 6.3e-05 21.2s
+15:31:41 gpu1 [fixed_emb:42] ep 56 train 44.529 val 45.461/73.604 lr 6.3e-05 21.3s
+15:32:02 gpu1 [fixed_emb:42] ep 57 train 44.509 val 45.446/73.536 lr 6.3e-05 21.3s
+15:32:23 gpu1 [fixed_emb:42] ep 58 train 44.534 val 45.438/73.535 lr 6.3e-05 21.4s
+15:32:45 gpu1 [fixed_emb:42] ep 59 train 44.507 val 45.442/73.565 lr 3.1e-05 21.4s
+15:33:06 gpu1 [fixed_emb:42] ep 60 train 44.465 val 45.453/73.588 lr 3.1e-05 21.3s
+15:33:27 gpu1 [fixed_emb:42] ep 61 train 44.454 val 45.535/73.686 lr 3.1e-05 21.3s
+15:33:49 gpu1 [fixed_emb:42] ep 62 train 44.457 val 45.514/73.657 lr 3.1e-05 21.2s
+15:34:10 gpu1 [fixed_emb:42] ep 63 train 44.454 val 45.497/73.634 lr 1.6e-05 21.2s
+15:34:31 gpu1 [fixed_emb:42] ep 64 train 44.424 val 45.502/73.657 lr 1.6e-05 21.2s
+15:34:52 gpu1 [fixed_emb:42] ep 65 train 44.428 val 45.399/73.492 lr 1.6e-05 21.2s
+15:35:14 gpu1 [fixed_emb:42] ep 66 train 44.422 val 45.439/73.527 lr 1.6e-05 21.2s
+15:35:35 gpu1 [fixed_emb:42] ep 67 train 44.426 val 45.363/73.425 lr 1.6e-05 21.2s
+15:35:56 gpu1 [fixed_emb:42] ep 68 train 44.420 val 45.432/73.549 lr 1.6e-05 21.3s
+15:36:17 gpu1 [fixed_emb:42] ep 69 train 44.417 val 45.448/73.572 lr 1.6e-05 21.3s
+15:36:39 gpu1 [fixed_emb:42] ep 70 train 44.415 val 45.454/73.555 lr 1.6e-05 21.3s
+15:37:00 gpu1 [fixed_emb:42] ep 71 train 44.419 val 45.429/73.520 lr 1.0e-05 21.3s
+15:37:21 gpu1 [fixed_emb:42] ep 72 train 44.401 val 45.437/73.531 lr 1.0e-05 21.3s
+15:37:43 gpu1 [fixed_emb:42] ep 73 train 44.402 val 45.356/73.403 lr 1.0e-05 21.3s
+15:38:04 gpu1 [fixed_emb:42] ep 74 train 44.403 val 45.383/73.468 lr 1.0e-05 21.3s
+15:38:25 gpu1 [fixed_emb:42] ep 75 train 44.403 val 45.381/73.462 lr 1.0e-05 21.3s
+15:38:46 gpu1 [fixed_emb:42] ep 76 train 44.396 val 45.447/73.537 lr 1.0e-05 21.3s
+15:39:08 gpu1 [fixed_emb:42] ep 77 train 44.398 val 45.354/73.366 lr 1.0e-05 21.3s
+15:39:29 gpu1 [fixed_emb:42] ep 78 train 44.395 val 45.335/73.383 lr 1.0e-05 21.3s
+15:39:50 gpu1 [fixed_emb:42] ep 79 train 44.396 val 45.354/73.435 lr 1.0e-05 21.3s
+15:40:12 gpu1 [fixed_emb:42] ep 80 train 44.393 val 45.359/73.413 lr 1.0e-05 21.3s
+15:40:15 gpu1 DONE fixed_emb:42 test MAE 54.209 RMSE 85.399 time 1700s epochs 80 (best 78)
+15:40:36 gpu1 [fixed:43] ep  1 train 82.293 val 59.371/95.175 lr 1.0e-03 21.4s
+15:40:57 gpu1 [fixed:43] ep  2 train 57.724 val 58.762/94.618 lr 1.0e-03 21.3s
+15:41:19 gpu1 [fixed:43] ep  3 train 56.819 val 57.065/92.481 lr 1.0e-03 21.3s
+15:41:40 gpu1 [fixed:43] ep  4 train 55.740 val 56.394/91.203 lr 1.0e-03 21.3s
+15:42:01 gpu1 [fixed:43] ep  5 train 55.121 val 55.980/90.186 lr 1.0e-03 21.3s
+15:42:22 gpu1 [fixed:43] ep  6 train 54.617 val 57.593/92.783 lr 1.0e-03 21.3s
+15:42:44 gpu1 [fixed:43] ep  7 train 54.188 val 55.032/88.764 lr 1.0e-03 21.4s
+15:43:05 gpu1 [fixed:43] ep  8 train 53.680 val 55.144/88.361 lr 1.0e-03 21.4s
+15:43:27 gpu1 [fixed:43] ep  9 train 53.571 val 55.039/87.699 lr 1.0e-03 21.4s
+15:43:48 gpu1 [fixed:43] ep 10 train 53.105 val 54.139/87.125 lr 1.0e-03 21.4s
+15:44:09 gpu1 [fixed:43] ep 11 train 52.995 val 53.808/86.874 lr 1.0e-03 21.3s
+15:44:31 gpu1 [fixed:43] ep 12 train 52.704 val 53.646/86.828 lr 1.0e-03 21.3s
+15:44:52 gpu1 [fixed:43] ep 13 train 52.483 val 55.863/89.344 lr 1.0e-03 21.3s
+15:45:13 gpu1 [fixed:43] ep 14 train 52.490 val 53.305/86.148 lr 1.0e-03 21.3s
+15:45:35 gpu1 [fixed:43] ep 15 train 52.463 val 53.396/85.961 lr 1.0e-03 21.3s
+15:45:56 gpu1 [fixed:43] ep 16 train 52.015 val 53.491/85.898 lr 1.0e-03 21.4s
+15:46:17 gpu1 [fixed:43] ep 17 train 51.802 val 52.635/84.742 lr 1.0e-03 21.4s
+15:46:39 gpu1 [fixed:43] ep 18 train 51.688 val 52.946/85.434 lr 1.0e-03 21.4s
+15:47:00 gpu1 [fixed:43] ep 19 train 51.556 val 52.514/84.420 lr 1.0e-03 21.4s
+15:47:22 gpu1 [fixed:43] ep 20 train 51.471 val 51.895/83.628 lr 1.0e-03 21.4s
+15:47:43 gpu1 [fixed:43] ep 21 train 51.186 val 52.414/84.196 lr 1.0e-03 21.4s
+15:48:04 gpu1 [fixed:43] ep 22 train 50.968 val 53.700/85.604 lr 1.0e-03 21.3s
+15:48:26 gpu1 [fixed:43] ep 23 train 50.906 val 52.686/84.866 lr 1.0e-03 21.3s
+15:48:47 gpu1 [fixed:43] ep 24 train 50.885 val 52.070/83.857 lr 5.0e-04 21.5s
+15:49:08 gpu1 [fixed:43] ep 25 train 50.399 val 51.205/82.490 lr 5.0e-04 21.4s
+15:49:30 gpu1 [fixed:43] ep 26 train 50.262 val 51.489/82.884 lr 5.0e-04 21.3s
+15:49:51 gpu1 [fixed:43] ep 27 train 50.271 val 51.280/82.511 lr 5.0e-04 21.3s
+15:50:12 gpu1 [fixed:43] ep 28 train 50.124 val 51.025/81.706 lr 5.0e-04 21.4s
+15:50:34 gpu1 [fixed:43] ep 29 train 50.158 val 50.855/81.846 lr 5.0e-04 21.4s
+15:50:55 gpu1 [fixed:43] ep 30 train 50.129 val 50.882/81.844 lr 5.0e-04 21.4s
+15:51:17 gpu1 [fixed:43] ep 31 train 50.011 val 51.520/82.331 lr 5.0e-04 21.4s
+15:51:38 gpu1 [fixed:43] ep 32 train 50.035 val 51.229/82.390 lr 5.0e-04 21.3s
+15:51:59 gpu1 [fixed:43] ep 33 train 49.960 val 50.733/81.636 lr 5.0e-04 21.4s
+15:52:21 gpu1 [fixed:43] ep 34 train 49.910 val 51.148/81.590 lr 5.0e-04 21.3s
+15:52:42 gpu1 [fixed:43] ep 35 train 49.896 val 51.016/81.636 lr 5.0e-04 21.4s
+15:53:03 gpu1 [fixed:43] ep 36 train 49.820 val 50.813/81.714 lr 5.0e-04 21.4s
+15:53:25 gpu1 [fixed:43] ep 37 train 49.755 val 50.718/81.506 lr 5.0e-04 21.4s
+15:53:46 gpu1 [fixed:43] ep 38 train 49.818 val 50.807/81.553 lr 5.0e-04 21.3s
+15:54:07 gpu1 [fixed:43] ep 39 train 49.694 val 50.516/81.288 lr 5.0e-04 21.3s
+15:54:29 gpu1 [fixed:43] ep 40 train 49.590 val 50.371/81.086 lr 5.0e-04 21.3s
+15:54:50 gpu1 [fixed:43] ep 41 train 49.531 val 50.396/80.942 lr 5.0e-04 21.3s
+15:55:11 gpu1 [fixed:43] ep 42 train 49.494 val 50.487/81.195 lr 5.0e-04 21.5s
+15:55:33 gpu1 [fixed:43] ep 43 train 49.579 val 51.510/81.195 lr 5.0e-04 21.5s
+15:55:54 gpu1 [fixed:43] ep 44 train 49.489 val 50.304/80.883 lr 5.0e-04 21.3s
+15:56:15 gpu1 [fixed:43] ep 45 train 49.470 val 50.336/80.944 lr 5.0e-04 21.2s
+15:56:37 gpu1 [fixed:43] ep 46 train 49.422 val 50.168/80.656 lr 5.0e-04 21.3s
+15:56:58 gpu1 [fixed:43] ep 47 train 49.441 val 50.942/81.928 lr 5.0e-04 21.4s
+15:57:20 gpu1 [fixed:43] ep 48 train 49.340 val 50.313/81.029 lr 5.0e-04 21.4s
+15:57:41 gpu1 [fixed:43] ep 49 train 49.332 val 50.168/80.385 lr 5.0e-04 21.3s
+15:58:02 gpu1 [fixed:43] ep 50 train 49.324 val 49.942/80.251 lr 5.0e-04 21.3s
+15:58:24 gpu1 [fixed:43] ep 51 train 49.346 val 50.499/81.021 lr 5.0e-04 21.3s
+15:58:45 gpu1 [fixed:43] ep 52 train 49.361 val 49.885/80.264 lr 5.0e-04 21.4s
+15:59:06 gpu1 [fixed:43] ep 53 train 49.294 val 50.331/80.576 lr 5.0e-04 21.3s
+15:59:28 gpu1 [fixed:43] ep 54 train 49.201 val 50.584/80.874 lr 5.0e-04 21.3s
+15:59:49 gpu1 [fixed:43] ep 55 train 49.163 val 50.259/80.541 lr 5.0e-04 21.4s
+16:00:10 gpu1 [fixed:43] ep 56 train 49.236 val 50.256/80.517 lr 2.5e-04 21.4s
+16:00:32 gpu1 [fixed:43] ep 57 train 48.875 val 49.639/79.807 lr 2.5e-04 21.3s
+16:00:53 gpu1 [fixed:43] ep 58 train 48.883 val 49.674/79.893 lr 2.5e-04 21.2s
+16:01:14 gpu1 [fixed:43] ep 59 train 48.869 val 49.728/80.060 lr 2.5e-04 21.3s
+16:01:36 gpu1 [fixed:43] ep 60 train 48.836 val 50.080/80.429 lr 2.5e-04 21.5s
+16:01:57 gpu1 [fixed:43] ep 61 train 48.858 val 49.848/79.918 lr 1.3e-04 21.4s
+16:02:18 gpu1 [fixed:43] ep 62 train 48.684 val 49.528/79.693 lr 1.3e-04 21.2s
+16:02:40 gpu1 [fixed:43] ep 63 train 48.680 val 49.587/79.736 lr 1.3e-04 21.3s
+16:03:01 gpu1 [fixed:43] ep 64 train 48.688 val 49.508/79.653 lr 1.3e-04 21.4s
+16:03:22 gpu1 [fixed:43] ep 65 train 48.686 val 49.631/79.866 lr 1.3e-04 21.4s
+16:03:44 gpu1 [fixed:43] ep 66 train 48.679 val 49.649/79.956 lr 1.3e-04 21.3s
+16:04:05 gpu1 [fixed:43] ep 67 train 48.662 val 49.608/79.738 lr 1.3e-04 21.3s
+16:04:26 gpu1 [fixed:43] ep 68 train 48.647 val 49.751/79.927 lr 6.3e-05 21.4s
+16:04:48 gpu1 [fixed:43] ep 69 train 48.569 val 49.632/79.729 lr 6.3e-05 21.4s
+16:05:09 gpu1 [fixed:43] ep 70 train 48.569 val 49.520/79.554 lr 6.3e-05 21.4s
+16:05:30 gpu1 [fixed:43] ep 71 train 48.576 val 49.519/79.636 lr 6.3e-05 21.4s
+16:05:52 gpu1 [fixed:43] ep 72 train 48.565 val 49.495/79.652 lr 6.3e-05 21.4s
+16:06:13 gpu1 [fixed:43] ep 73 train 48.549 val 49.484/79.570 lr 6.3e-05 21.4s
+16:06:35 gpu1 [fixed:43] ep 74 train 48.563 val 49.503/79.658 lr 6.3e-05 21.4s
+16:06:56 gpu1 [fixed:43] ep 75 train 48.552 val 49.584/79.745 lr 6.3e-05 21.4s
+16:07:17 gpu1 [fixed:43] ep 76 train 48.548 val 49.505/79.677 lr 6.3e-05 21.4s
+16:07:39 gpu1 [fixed:43] ep 77 train 48.545 val 49.578/79.790 lr 3.1e-05 21.3s
+16:08:00 gpu1 [fixed:43] ep 78 train 48.500 val 49.570/79.789 lr 3.1e-05 21.3s
+16:08:21 gpu1 [fixed:43] ep 79 train 48.489 val 49.391/79.419 lr 3.1e-05 21.3s
+16:08:43 gpu1 [fixed:43] ep 80 train 48.498 val 49.494/79.671 lr 3.1e-05 21.3s
+16:08:45 gpu1 DONE fixed:43 test MAE 58.454 RMSE 92.018 time 1708s epochs 80 (best 79)
+16:09:08 gpu1 [hybrid:43] ep  1 train 79.633 val 58.913/92.768 lr 1.0e-03 22.6s alpha 0.490
+16:09:30 gpu1 [hybrid:43] ep  2 train 54.155 val 55.382/87.221 lr 1.0e-03 22.6s alpha 0.383
+16:09:53 gpu1 [hybrid:43] ep  3 train 51.325 val 53.526/84.658 lr 1.0e-03 22.7s alpha 0.287
+16:10:16 gpu1 [hybrid:43] ep  4 train 49.561 val 50.226/81.433 lr 1.0e-03 22.7s alpha 0.224
+16:10:38 gpu1 [hybrid:43] ep  5 train 48.369 val 50.050/80.300 lr 1.0e-03 22.7s alpha 0.184
+16:11:01 gpu1 [hybrid:43] ep  6 train 47.751 val 50.039/81.364 lr 1.0e-03 22.7s alpha 0.156
+16:11:24 gpu1 [hybrid:43] ep  7 train 47.104 val 47.828/77.359 lr 1.0e-03 22.7s alpha 0.136
+16:11:47 gpu1 [hybrid:43] ep  8 train 46.271 val 48.025/77.256 lr 1.0e-03 22.7s alpha 0.121
+16:12:09 gpu1 [hybrid:43] ep  9 train 46.153 val 47.670/76.297 lr 1.0e-03 22.7s alpha 0.108
+16:12:32 gpu1 [hybrid:43] ep 10 train 45.634 val 46.985/75.670 lr 1.0e-03 22.7s alpha 0.099
+16:12:55 gpu1 [hybrid:43] ep 11 train 45.373 val 46.399/74.558 lr 1.0e-03 22.7s alpha 0.092
+16:13:17 gpu1 [hybrid:43] ep 12 train 45.047 val 46.174/74.609 lr 1.0e-03 22.7s alpha 0.086
+16:13:40 gpu1 [hybrid:43] ep 13 train 44.855 val 46.415/74.815 lr 1.0e-03 22.7s alpha 0.082
+16:14:03 gpu1 [hybrid:43] ep 14 train 44.603 val 47.000/74.964 lr 1.0e-03 22.7s alpha 0.078
+16:14:25 gpu1 [hybrid:43] ep 15 train 44.830 val 46.317/74.796 lr 1.0e-03 22.7s alpha 0.075
+16:14:48 gpu1 [hybrid:43] ep 16 train 44.185 val 45.298/73.040 lr 1.0e-03 22.7s alpha 0.073
+16:15:11 gpu1 [hybrid:43] ep 17 train 43.890 val 45.555/73.031 lr 1.0e-03 22.7s alpha 0.071
+16:15:33 gpu1 [hybrid:43] ep 18 train 44.016 val 45.542/73.418 lr 1.0e-03 22.6s alpha 0.069
+16:15:56 gpu1 [hybrid:43] ep 19 train 43.652 val 44.678/72.172 lr 1.0e-03 22.7s alpha 0.068
+16:16:19 gpu1 [hybrid:43] ep 20 train 43.598 val 44.995/72.453 lr 1.0e-03 22.7s alpha 0.066
+16:16:41 gpu1 [hybrid:43] ep 21 train 43.353 val 44.075/71.141 lr 1.0e-03 22.8s alpha 0.065
+16:17:04 gpu1 [hybrid:43] ep 22 train 43.226 val 44.756/72.122 lr 1.0e-03 22.8s alpha 0.064
+16:17:27 gpu1 [hybrid:43] ep 23 train 43.035 val 47.270/76.023 lr 1.0e-03 22.8s alpha 0.063
+16:17:50 gpu1 [hybrid:43] ep 24 train 43.129 val 45.933/73.260 lr 1.0e-03 22.8s alpha 0.062
+16:18:13 gpu1 [hybrid:43] ep 25 train 42.988 val 43.765/70.585 lr 1.0e-03 22.8s alpha 0.061
+16:18:35 gpu1 [hybrid:43] ep 26 train 42.763 val 45.167/71.908 lr 1.0e-03 22.7s alpha 0.061
+16:18:58 gpu1 [hybrid:43] ep 27 train 42.722 val 43.648/70.522 lr 1.0e-03 22.7s alpha 0.060
+16:19:21 gpu1 [hybrid:43] ep 28 train 42.544 val 44.091/70.778 lr 1.0e-03 22.7s alpha 0.059
+16:19:43 gpu1 [hybrid:43] ep 29 train 42.596 val 43.910/70.824 lr 1.0e-03 22.7s alpha 0.058
+16:20:06 gpu1 [hybrid:43] ep 30 train 42.312 val 43.697/70.238 lr 1.0e-03 22.7s alpha 0.058
+16:20:29 gpu1 [hybrid:43] ep 31 train 42.393 val 43.183/69.464 lr 1.0e-03 22.7s alpha 0.057
+16:20:52 gpu1 [hybrid:43] ep 32 train 42.182 val 43.133/69.603 lr 1.0e-03 22.7s alpha 0.057
+16:21:14 gpu1 [hybrid:43] ep 33 train 42.217 val 45.005/72.237 lr 1.0e-03 22.7s alpha 0.056
+16:21:37 gpu1 [hybrid:43] ep 34 train 42.032 val 43.089/69.229 lr 1.0e-03 22.7s alpha 0.055
+16:22:00 gpu1 [hybrid:43] ep 35 train 41.956 val 43.738/70.033 lr 1.0e-03 22.7s alpha 0.055
+16:22:22 gpu1 [hybrid:43] ep 36 train 42.037 val 43.731/70.614 lr 1.0e-03 22.7s alpha 0.054
+16:22:45 gpu1 [hybrid:43] ep 37 train 41.750 val 44.993/72.029 lr 1.0e-03 22.7s alpha 0.054
+16:23:08 gpu1 [hybrid:43] ep 38 train 41.753 val 42.800/68.981 lr 1.0e-03 22.7s alpha 0.053
+16:23:30 gpu1 [hybrid:43] ep 39 train 41.746 val 42.852/69.085 lr 1.0e-03 22.7s alpha 0.053
+16:23:53 gpu1 [hybrid:43] ep 40 train 41.693 val 42.988/68.729 lr 1.0e-03 22.7s alpha 0.052
+16:24:16 gpu1 [hybrid:43] ep 41 train 41.807 val 42.704/68.589 lr 1.0e-03 22.7s alpha 0.052
+16:24:38 gpu1 [hybrid:43] ep 42 train 41.599 val 42.586/68.650 lr 1.0e-03 22.7s alpha 0.051
+16:25:01 gpu1 [hybrid:43] ep 43 train 41.446 val 42.758/68.954 lr 1.0e-03 22.7s alpha 0.051
+16:25:24 gpu1 [hybrid:43] ep 44 train 41.391 val 42.330/68.223 lr 1.0e-03 22.7s alpha 0.051
+16:25:46 gpu1 [hybrid:43] ep 45 train 41.414 val 42.872/68.942 lr 1.0e-03 22.7s alpha 0.050
+16:26:09 gpu1 [hybrid:43] ep 46 train 41.357 val 42.433/68.414 lr 1.0e-03 22.8s alpha 0.050
+16:26:32 gpu1 [hybrid:43] ep 47 train 41.271 val 44.119/70.166 lr 1.0e-03 22.7s alpha 0.050
+16:26:55 gpu1 [hybrid:43] ep 48 train 41.266 val 42.101/67.970 lr 1.0e-03 22.6s alpha 0.050
+16:27:17 gpu1 [hybrid:43] ep 49 train 41.371 val 42.064/67.971 lr 1.0e-03 22.7s alpha 0.049
+16:27:40 gpu1 [hybrid:43] ep 50 train 41.234 val 42.488/68.521 lr 1.0e-03 22.8s alpha 0.049
+16:28:03 gpu1 [hybrid:43] ep 51 train 41.205 val 42.242/68.215 lr 1.0e-03 22.9s alpha 0.049
+16:28:26 gpu1 [hybrid:43] ep 52 train 41.088 val 42.076/67.885 lr 1.0e-03 22.8s alpha 0.049
+16:28:48 gpu1 [hybrid:43] ep 53 train 41.103 val 41.930/67.589 lr 1.0e-03 22.7s alpha 0.048
+16:29:11 gpu1 [hybrid:43] ep 54 train 41.016 val 42.078/67.749 lr 1.0e-03 22.7s alpha 0.048
+16:29:34 gpu1 [hybrid:43] ep 55 train 41.021 val 42.039/67.794 lr 1.0e-03 22.7s alpha 0.048
+16:29:57 gpu1 [hybrid:43] ep 56 train 40.923 val 42.007/67.835 lr 1.0e-03 22.7s alpha 0.048
+16:30:19 gpu1 [hybrid:43] ep 57 train 40.864 val 42.071/68.011 lr 5.0e-04 22.6s alpha 0.048
+16:30:42 gpu1 [hybrid:43] ep 58 train 40.474 val 41.978/67.668 lr 5.0e-04 22.6s alpha 0.048
+16:31:04 gpu1 [hybrid:43] ep 59 train 40.432 val 41.696/67.366 lr 5.0e-04 22.7s alpha 0.048
+16:31:27 gpu1 [hybrid:43] ep 60 train 40.449 val 41.876/67.218 lr 5.0e-04 22.8s alpha 0.048
+16:31:50 gpu1 [hybrid:43] ep 61 train 40.434 val 41.641/67.065 lr 5.0e-04 22.8s alpha 0.049
+16:32:13 gpu1 [hybrid:43] ep 62 train 40.461 val 41.457/66.985 lr 5.0e-04 22.8s alpha 0.049
+16:32:36 gpu1 [hybrid:43] ep 63 train 40.396 val 42.336/68.302 lr 5.0e-04 22.9s alpha 0.049
+16:32:59 gpu1 [hybrid:43] ep 64 train 40.360 val 41.740/67.051 lr 5.0e-04 22.8s alpha 0.049
+16:33:21 gpu1 [hybrid:43] ep 65 train 40.342 val 41.487/67.006 lr 5.0e-04 22.7s alpha 0.049
+16:33:44 gpu1 [hybrid:43] ep 66 train 40.307 val 41.603/67.027 lr 2.5e-04 22.7s alpha 0.049
+16:34:07 gpu1 [hybrid:43] ep 67 train 40.099 val 41.742/67.376 lr 2.5e-04 22.7s alpha 0.050
+16:34:29 gpu1 [hybrid:43] ep 68 train 40.085 val 41.359/66.832 lr 2.5e-04 22.7s alpha 0.050
+16:34:52 gpu1 [hybrid:43] ep 69 train 40.096 val 41.351/66.797 lr 2.5e-04 22.7s alpha 0.050
+16:35:15 gpu1 [hybrid:43] ep 70 train 40.083 val 41.939/67.052 lr 2.5e-04 22.8s alpha 0.050
+16:35:38 gpu1 [hybrid:43] ep 71 train 40.055 val 41.628/67.249 lr 2.5e-04 22.8s alpha 0.050
+16:36:00 gpu1 [hybrid:43] ep 72 train 40.046 val 41.399/66.803 lr 2.5e-04 22.9s alpha 0.051
+16:36:23 gpu1 [hybrid:43] ep 73 train 40.052 val 41.357/66.657 lr 1.3e-04 22.9s alpha 0.051
+16:36:46 gpu1 [hybrid:43] ep 74 train 39.905 val 41.408/66.859 lr 1.3e-04 22.8s alpha 0.051
+16:37:09 gpu1 [hybrid:43] ep 75 train 39.909 val 41.466/66.907 lr 1.3e-04 22.9s alpha 0.051
+16:37:32 gpu1 [hybrid:43] ep 76 train 39.923 val 41.379/66.700 lr 1.3e-04 22.9s alpha 0.051
+16:37:55 gpu1 [hybrid:43] ep 77 train 39.910 val 41.357/66.656 lr 6.3e-05 22.9s alpha 0.051
+16:38:18 gpu1 [hybrid:43] ep 78 train 39.837 val 41.369/66.706 lr 6.3e-05 23.0s alpha 0.051
+16:38:41 gpu1 [hybrid:43] ep 79 train 39.843 val 41.297/66.722 lr 6.3e-05 22.9s alpha 0.051
+16:39:04 gpu1 [hybrid:43] ep 80 train 39.828 val 41.267/66.643 lr 6.3e-05 22.9s alpha 0.052
+16:39:06 gpu1 DONE hybrid:43 test MAE 50.538 RMSE 79.895 time 1818s epochs 80 (best 80)
+16:39:28 gpu1 [fixed_bi:43] ep  1 train 81.896 val 59.012/94.804 lr 1.0e-03 21.4s
+16:39:49 gpu1 [fixed_bi:43] ep  2 train 57.186 val 58.277/93.839 lr 1.0e-03 21.4s
+16:40:10 gpu1 [fixed_bi:43] ep  3 train 55.990 val 56.571/91.893 lr 1.0e-03 21.4s
+16:40:32 gpu1 [fixed_bi:43] ep  4 train 55.054 val 55.828/90.522 lr 1.0e-03 21.4s
+16:40:53 gpu1 [fixed_bi:43] ep  5 train 54.385 val 55.606/89.404 lr 1.0e-03 21.4s
+16:41:15 gpu1 [fixed_bi:43] ep  6 train 53.994 val 57.370/92.182 lr 1.0e-03 21.4s
+16:41:36 gpu1 [fixed_bi:43] ep  7 train 53.521 val 54.327/87.751 lr 1.0e-03 21.4s
+16:41:57 gpu1 [fixed_bi:43] ep  8 train 53.014 val 54.207/87.485 lr 1.0e-03 21.4s
+16:42:19 gpu1 [fixed_bi:43] ep  9 train 53.040 val 54.289/86.786 lr 1.0e-03 21.4s
+16:42:40 gpu1 [fixed_bi:43] ep 10 train 52.571 val 53.763/86.382 lr 1.0e-03 21.4s
+16:43:01 gpu1 [fixed_bi:43] ep 11 train 52.454 val 53.168/86.080 lr 1.0e-03 21.4s
+16:43:23 gpu1 [fixed_bi:43] ep 12 train 52.172 val 52.988/85.833 lr 1.0e-03 21.4s
+16:43:44 gpu1 [fixed_bi:43] ep 13 train 51.965 val 54.987/88.239 lr 1.0e-03 21.4s
+16:44:06 gpu1 [fixed_bi:43] ep 14 train 51.917 val 52.566/84.805 lr 1.0e-03 21.4s
+16:44:27 gpu1 [fixed_bi:43] ep 15 train 51.926 val 52.585/84.681 lr 1.0e-03 21.4s
+16:44:48 gpu1 [fixed_bi:43] ep 16 train 51.456 val 52.980/84.870 lr 1.0e-03 21.4s
+16:45:10 gpu1 [fixed_bi:43] ep 17 train 51.276 val 52.080/83.654 lr 1.0e-03 21.4s
+16:45:31 gpu1 [fixed_bi:43] ep 18 train 51.217 val 52.744/84.945 lr 1.0e-03 21.4s
+16:45:53 gpu1 [fixed_bi:43] ep 19 train 51.021 val 52.178/83.626 lr 1.0e-03 21.4s
+16:46:14 gpu1 [fixed_bi:43] ep 20 train 51.001 val 51.551/82.936 lr 1.0e-03 21.4s
+16:46:35 gpu1 [fixed_bi:43] ep 21 train 50.738 val 51.675/83.115 lr 1.0e-03 21.4s
+16:46:57 gpu1 [fixed_bi:43] ep 22 train 50.481 val 53.078/85.011 lr 1.0e-03 21.4s
+16:47:18 gpu1 [fixed_bi:43] ep 23 train 50.353 val 52.035/83.879 lr 1.0e-03 21.4s
+16:47:40 gpu1 [fixed_bi:43] ep 24 train 50.368 val 51.697/83.100 lr 5.0e-04 21.4s
+16:48:01 gpu1 [fixed_bi:43] ep 25 train 49.895 val 50.570/81.437 lr 5.0e-04 21.4s
+16:48:22 gpu1 [fixed_bi:43] ep 26 train 49.733 val 50.873/81.871 lr 5.0e-04 21.5s
+16:48:44 gpu1 [fixed_bi:43] ep 27 train 49.758 val 50.629/81.643 lr 5.0e-04 21.5s
+16:49:05 gpu1 [fixed_bi:43] ep 28 train 49.606 val 50.509/80.938 lr 5.0e-04 21.5s
+16:49:27 gpu1 [fixed_bi:43] ep 29 train 49.635 val 50.462/81.200 lr 5.0e-04 21.5s
+16:49:48 gpu1 [fixed_bi:43] ep 30 train 49.573 val 50.374/81.134 lr 5.0e-04 21.5s
+16:50:10 gpu1 [fixed_bi:43] ep 31 train 49.470 val 51.246/81.892 lr 5.0e-04 21.5s
+16:50:31 gpu1 [fixed_bi:43] ep 32 train 49.481 val 50.832/81.767 lr 5.0e-04 21.5s
+16:50:53 gpu1 [fixed_bi:43] ep 33 train 49.411 val 50.249/80.980 lr 5.0e-04 21.5s
+16:51:14 gpu1 [fixed_bi:43] ep 34 train 49.366 val 50.474/80.656 lr 5.0e-04 21.5s
+16:51:36 gpu1 [fixed_bi:43] ep 35 train 49.343 val 50.590/80.967 lr 5.0e-04 21.5s
+16:51:57 gpu1 [fixed_bi:43] ep 36 train 49.255 val 50.333/81.007 lr 5.0e-04 21.5s
+16:52:19 gpu1 [fixed_bi:43] ep 37 train 49.216 val 50.252/80.790 lr 2.5e-04 21.5s
+16:52:40 gpu1 [fixed_bi:43] ep 38 train 48.979 val 50.193/80.615 lr 2.5e-04 21.5s
+16:53:02 gpu1 [fixed_bi:43] ep 39 train 48.955 val 49.867/80.191 lr 2.5e-04 21.5s
+16:53:23 gpu1 [fixed_bi:43] ep 40 train 48.916 val 49.841/80.337 lr 2.5e-04 21.5s
+16:53:45 gpu1 [fixed_bi:43] ep 41 train 48.862 val 50.025/80.410 lr 2.5e-04 21.5s
+16:54:06 gpu1 [fixed_bi:43] ep 42 train 48.842 val 49.753/80.125 lr 2.5e-04 21.5s
+16:54:28 gpu1 [fixed_bi:43] ep 43 train 48.848 val 49.953/80.019 lr 2.5e-04 21.5s
+16:54:49 gpu1 [fixed_bi:43] ep 44 train 48.808 val 49.915/80.150 lr 2.5e-04 21.5s
+16:55:11 gpu1 [fixed_bi:43] ep 45 train 48.849 val 49.847/80.227 lr 2.5e-04 21.4s
+16:55:32 gpu1 [fixed_bi:43] ep 46 train 48.768 val 49.706/80.050 lr 2.5e-04 21.4s
+16:55:54 gpu1 [fixed_bi:43] ep 47 train 48.753 val 50.038/80.422 lr 2.5e-04 21.5s
+16:56:15 gpu1 [fixed_bi:43] ep 48 train 48.736 val 49.667/80.033 lr 2.5e-04 21.5s
+16:56:36 gpu1 [fixed_bi:43] ep 49 train 48.717 val 49.753/80.036 lr 2.5e-04 21.4s
+16:56:58 gpu1 [fixed_bi:43] ep 50 train 48.699 val 49.605/79.730 lr 2.5e-04 21.4s
+16:57:19 gpu1 [fixed_bi:43] ep 51 train 48.685 val 49.368/79.482 lr 2.5e-04 21.4s
+16:57:41 gpu1 [fixed_bi:43] ep 52 train 48.690 val 49.404/79.614 lr 2.5e-04 21.4s
+16:58:02 gpu1 [fixed_bi:43] ep 53 train 48.659 val 49.450/79.496 lr 2.5e-04 21.4s
+16:58:23 gpu1 [fixed_bi:43] ep 54 train 48.633 val 49.764/79.788 lr 2.5e-04 21.4s
+16:58:45 gpu1 [fixed_bi:43] ep 55 train 48.613 val 49.449/79.596 lr 1.3e-04 21.4s
+16:59:06 gpu1 [fixed_bi:43] ep 56 train 48.457 val 49.364/79.478 lr 1.3e-04 21.4s
+16:59:28 gpu1 [fixed_bi:43] ep 57 train 48.462 val 49.313/79.363 lr 1.3e-04 21.4s
+16:59:49 gpu1 [fixed_bi:43] ep 58 train 48.446 val 49.456/79.655 lr 1.3e-04 21.4s
+17:00:10 gpu1 [fixed_bi:43] ep 59 train 48.474 val 49.558/79.675 lr 1.3e-04 21.4s
+17:00:32 gpu1 [fixed_bi:43] ep 60 train 48.429 val 49.601/79.824 lr 1.3e-04 21.4s
+17:00:53 gpu1 [fixed_bi:43] ep 61 train 48.409 val 49.328/79.391 lr 6.3e-05 21.4s
+17:01:14 gpu1 [fixed_bi:43] ep 62 train 48.339 val 49.269/79.371 lr 6.3e-05 21.4s
+17:01:36 gpu1 [fixed_bi:43] ep 63 train 48.338 val 49.291/79.413 lr 6.3e-05 21.4s
+17:01:57 gpu1 [fixed_bi:43] ep 64 train 48.337 val 49.323/79.478 lr 6.3e-05 21.4s
+17:02:19 gpu1 [fixed_bi:43] ep 65 train 48.335 val 49.259/79.314 lr 6.3e-05 21.4s
+17:02:40 gpu1 [fixed_bi:43] ep 66 train 48.330 val 49.273/79.368 lr 6.3e-05 21.4s
+17:03:01 gpu1 [fixed_bi:43] ep 67 train 48.321 val 49.366/79.478 lr 6.3e-05 21.4s
+17:03:23 gpu1 [fixed_bi:43] ep 68 train 48.318 val 49.303/79.358 lr 6.3e-05 21.4s
+17:03:44 gpu1 [fixed_bi:43] ep 69 train 48.307 val 49.462/79.445 lr 3.1e-05 21.4s
+17:04:05 gpu1 [fixed_bi:43] ep 70 train 48.267 val 49.213/79.179 lr 3.1e-05 21.4s
+17:04:27 gpu1 [fixed_bi:43] ep 71 train 48.269 val 49.220/79.233 lr 3.1e-05 21.4s
+17:04:48 gpu1 [fixed_bi:43] ep 72 train 48.260 val 49.228/79.327 lr 3.1e-05 21.5s
+17:05:10 gpu1 [fixed_bi:43] ep 73 train 48.257 val 49.238/79.283 lr 3.1e-05 21.5s
+17:05:31 gpu1 [fixed_bi:43] ep 74 train 48.257 val 49.270/79.353 lr 1.6e-05 21.5s
+17:05:53 gpu1 [fixed_bi:43] ep 75 train 48.232 val 49.222/79.293 lr 1.6e-05 21.5s
+17:06:14 gpu1 [fixed_bi:43] ep 76 train 48.232 val 49.196/79.271 lr 1.6e-05 21.4s
+17:06:36 gpu1 [fixed_bi:43] ep 77 train 48.230 val 49.229/79.301 lr 1.6e-05 21.4s
+17:06:57 gpu1 [fixed_bi:43] ep 78 train 48.231 val 49.253/79.369 lr 1.6e-05 21.4s
+17:07:18 gpu1 [fixed_bi:43] ep 79 train 48.225 val 49.173/79.173 lr 1.6e-05 21.4s
+17:07:40 gpu1 [fixed_bi:43] ep 80 train 48.226 val 49.243/79.350 lr 1.6e-05 21.3s
+17:07:42 gpu1 DONE fixed_bi:43 test MAE 57.924 RMSE 91.413 time 1713s epochs 80 (best 79)
+17:08:04 gpu1 [fixed_emb:43] ep  1 train 85.796 val 59.650/93.744 lr 1.0e-03 21.4s
+17:08:25 gpu1 [fixed_emb:43] ep  2 train 55.840 val 56.236/90.429 lr 1.0e-03 21.5s
+17:08:47 gpu1 [fixed_emb:43] ep  3 train 54.378 val 54.647/88.268 lr 1.0e-03 21.5s
+17:09:08 gpu1 [fixed_emb:43] ep  4 train 53.016 val 53.168/86.009 lr 1.0e-03 21.5s
+17:09:30 gpu1 [fixed_emb:43] ep  5 train 51.912 val 52.558/84.399 lr 1.0e-03 21.5s
+17:09:51 gpu1 [fixed_emb:43] ep  6 train 51.214 val 52.666/85.230 lr 1.0e-03 21.5s
+17:10:13 gpu1 [fixed_emb:43] ep  7 train 50.379 val 50.717/81.688 lr 1.0e-03 21.5s
+17:10:34 gpu1 [fixed_emb:43] ep  8 train 49.712 val 50.670/81.629 lr 1.0e-03 21.5s
+17:10:56 gpu1 [fixed_emb:43] ep  9 train 49.474 val 49.799/79.993 lr 1.0e-03 21.5s
+17:11:17 gpu1 [fixed_emb:43] ep 10 train 48.891 val 49.051/79.294 lr 1.0e-03 21.5s
+17:11:39 gpu1 [fixed_emb:43] ep 11 train 48.647 val 48.812/78.848 lr 1.0e-03 21.5s
+17:12:00 gpu1 [fixed_emb:43] ep 12 train 48.298 val 48.640/78.617 lr 1.0e-03 21.5s
+17:12:22 gpu1 [fixed_emb:43] ep 13 train 48.058 val 48.664/78.572 lr 1.0e-03 21.5s
+17:12:43 gpu1 [fixed_emb:43] ep 14 train 48.030 val 48.212/78.088 lr 1.0e-03 21.5s
+17:13:05 gpu1 [fixed_emb:43] ep 15 train 47.929 val 47.691/77.105 lr 1.0e-03 21.5s
+17:13:26 gpu1 [fixed_emb:43] ep 16 train 47.450 val 49.200/78.440 lr 1.0e-03 21.5s
+17:13:48 gpu1 [fixed_emb:43] ep 17 train 47.269 val 47.731/77.018 lr 1.0e-03 21.5s
+17:14:09 gpu1 [fixed_emb:43] ep 18 train 47.126 val 48.153/77.673 lr 1.0e-03 21.5s
+17:14:31 gpu1 [fixed_emb:43] ep 19 train 46.982 val 47.415/75.935 lr 1.0e-03 21.5s
+17:14:52 gpu1 [fixed_emb:43] ep 20 train 46.906 val 46.683/75.400 lr 1.0e-03 21.5s
+17:15:14 gpu1 [fixed_emb:43] ep 21 train 46.681 val 46.747/75.368 lr 1.0e-03 21.5s
+17:15:35 gpu1 [fixed_emb:43] ep 22 train 46.430 val 48.700/78.228 lr 1.0e-03 21.5s
+17:15:57 gpu1 [fixed_emb:43] ep 23 train 46.290 val 47.368/76.519 lr 1.0e-03 21.5s
+17:16:18 gpu1 [fixed_emb:43] ep 24 train 46.333 val 47.481/76.644 lr 5.0e-04 21.6s
+17:16:40 gpu1 [fixed_emb:43] ep 25 train 45.748 val 45.999/74.250 lr 5.0e-04 21.5s
+17:17:01 gpu1 [fixed_emb:43] ep 26 train 45.612 val 46.478/74.970 lr 5.0e-04 21.5s
+17:17:23 gpu1 [fixed_emb:43] ep 27 train 45.624 val 46.237/74.724 lr 5.0e-04 21.5s
+17:17:45 gpu1 [fixed_emb:43] ep 28 train 45.492 val 45.974/73.916 lr 5.0e-04 21.6s
+17:18:06 gpu1 [fixed_emb:43] ep 29 train 45.463 val 45.886/74.222 lr 5.0e-04 21.5s
+17:18:28 gpu1 [fixed_emb:43] ep 30 train 45.457 val 46.029/74.318 lr 5.0e-04 21.5s
+17:18:49 gpu1 [fixed_emb:43] ep 31 train 45.364 val 46.457/74.368 lr 5.0e-04 21.6s
+17:19:11 gpu1 [fixed_emb:43] ep 32 train 45.349 val 46.438/74.800 lr 5.0e-04 21.6s
+17:19:32 gpu1 [fixed_emb:43] ep 33 train 45.305 val 45.920/74.119 lr 2.5e-04 21.5s
+17:19:54 gpu1 [fixed_emb:43] ep 34 train 44.969 val 45.561/73.598 lr 2.5e-04 21.6s
+17:20:15 gpu1 [fixed_emb:43] ep 35 train 44.975 val 45.668/73.738 lr 2.5e-04 21.5s
+17:20:37 gpu1 [fixed_emb:43] ep 36 train 44.907 val 45.543/73.425 lr 2.5e-04 21.5s
+17:20:58 gpu1 [fixed_emb:43] ep 37 train 44.893 val 45.829/74.104 lr 2.5e-04 21.5s
+17:21:20 gpu1 [fixed_emb:43] ep 38 train 44.933 val 45.619/73.590 lr 2.5e-04 21.5s
+17:21:42 gpu1 [fixed_emb:43] ep 39 train 44.851 val 45.355/73.177 lr 2.5e-04 21.5s
+17:22:03 gpu1 [fixed_emb:43] ep 40 train 44.809 val 45.393/73.305 lr 2.5e-04 21.5s
+17:22:25 gpu1 [fixed_emb:43] ep 41 train 44.761 val 45.671/73.595 lr 2.5e-04 21.5s
+17:22:46 gpu1 [fixed_emb:43] ep 42 train 44.726 val 45.246/73.128 lr 2.5e-04 21.5s
+17:23:08 gpu1 [fixed_emb:43] ep 43 train 44.759 val 45.659/73.230 lr 2.5e-04 21.5s
+17:23:29 gpu1 [fixed_emb:43] ep 44 train 44.704 val 45.515/73.202 lr 2.5e-04 21.5s
+17:23:51 gpu1 [fixed_emb:43] ep 45 train 44.735 val 45.671/73.493 lr 2.5e-04 21.5s
+17:24:12 gpu1 [fixed_emb:43] ep 46 train 44.641 val 45.458/73.509 lr 1.3e-04 21.5s
+17:24:34 gpu1 [fixed_emb:43] ep 47 train 44.521 val 45.379/73.336 lr 1.3e-04 21.5s
+17:24:55 gpu1 [fixed_emb:43] ep 48 train 44.516 val 45.166/72.974 lr 1.3e-04 21.5s
+17:25:17 gpu1 [fixed_emb:43] ep 49 train 44.485 val 45.372/73.255 lr 1.3e-04 21.5s
+17:25:38 gpu1 [fixed_emb:43] ep 50 train 44.475 val 45.317/73.047 lr 1.3e-04 21.5s
+17:26:00 gpu1 [fixed_emb:43] ep 51 train 44.486 val 45.109/72.767 lr 1.3e-04 21.5s
+17:26:21 gpu1 [fixed_emb:43] ep 52 train 44.453 val 45.087/72.879 lr 1.3e-04 21.5s
+17:26:43 gpu1 [fixed_emb:43] ep 53 train 44.437 val 45.317/73.075 lr 1.3e-04 21.6s
+17:27:04 gpu1 [fixed_emb:43] ep 54 train 44.440 val 45.235/73.033 lr 1.3e-04 21.6s
+17:27:26 gpu1 [fixed_emb:43] ep 55 train 44.433 val 45.114/72.762 lr 1.3e-04 21.6s
+17:27:48 gpu1 [fixed_emb:43] ep 56 train 44.404 val 45.129/72.913 lr 6.3e-05 21.6s
+17:28:09 gpu1 [fixed_emb:43] ep 57 train 44.315 val 45.019/72.766 lr 6.3e-05 21.6s
+17:28:31 gpu1 [fixed_emb:43] ep 58 train 44.306 val 45.132/72.847 lr 6.3e-05 21.5s
+17:28:52 gpu1 [fixed_emb:43] ep 59 train 44.326 val 45.396/73.160 lr 6.3e-05 21.5s
+17:29:14 gpu1 [fixed_emb:43] ep 60 train 44.302 val 45.201/72.995 lr 6.3e-05 21.5s
+17:29:35 gpu1 [fixed_emb:43] ep 61 train 44.285 val 45.020/72.673 lr 3.1e-05 21.5s
+17:29:57 gpu1 [fixed_emb:43] ep 62 train 44.250 val 45.029/72.747 lr 3.1e-05 21.4s
+17:30:18 gpu1 [fixed_emb:43] ep 63 train 44.248 val 45.099/72.897 lr 3.1e-05 21.4s
+17:30:39 gpu1 [fixed_emb:43] ep 64 train 44.249 val 45.076/72.826 lr 3.1e-05 21.4s
+17:31:01 gpu1 [fixed_emb:43] ep 65 train 44.242 val 44.992/72.658 lr 3.1e-05 21.5s
+17:31:22 gpu1 [fixed_emb:43] ep 66 train 44.233 val 44.989/72.704 lr 3.1e-05 21.5s
+17:31:44 gpu1 [fixed_emb:43] ep 67 train 44.238 val 45.014/72.710 lr 3.1e-05 21.5s
+17:32:05 gpu1 [fixed_emb:43] ep 68 train 44.233 val 45.044/72.746 lr 3.1e-05 21.5s
+17:32:27 gpu1 [fixed_emb:43] ep 69 train 44.224 val 45.011/72.652 lr 1.6e-05 21.5s
+17:32:48 gpu1 [fixed_emb:43] ep 70 train 44.203 val 44.984/72.643 lr 1.6e-05 21.5s
+17:33:10 gpu1 [fixed_emb:43] ep 71 train 44.202 val 44.969/72.656 lr 1.6e-05 21.5s
+17:33:31 gpu1 [fixed_emb:43] ep 72 train 44.195 val 45.023/72.770 lr 1.6e-05 21.5s
+17:33:53 gpu1 [fixed_emb:43] ep 73 train 44.192 val 44.995/72.710 lr 1.6e-05 21.5s
+17:34:14 gpu1 [fixed_emb:43] ep 74 train 44.195 val 45.010/72.656 lr 1.6e-05 21.5s
+17:34:36 gpu1 [fixed_emb:43] ep 75 train 44.191 val 44.988/72.706 lr 1.0e-05 21.5s
+17:34:57 gpu1 [fixed_emb:43] ep 76 train 44.182 val 44.997/72.722 lr 1.0e-05 21.5s
+17:35:19 gpu1 [fixed_emb:43] ep 77 train 44.179 val 45.005/72.726 lr 1.0e-05 21.5s
+17:35:40 gpu1 [fixed_emb:43] ep 78 train 44.182 val 45.011/72.714 lr 1.0e-05 21.5s
+17:36:02 gpu1 [fixed_emb:43] ep 79 train 44.176 val 44.960/72.628 lr 1.0e-05 21.5s
+17:36:23 gpu1 [fixed_emb:43] ep 80 train 44.176 val 45.039/72.794 lr 1.0e-05 21.5s
+17:36:26 gpu1 DONE fixed_emb:43 test MAE 54.007 RMSE 85.071 time 1721s epochs 80 (best 79)
+17:36:49 gpu1 [adaptive:44] ep  1 train 85.836 val 60.784/94.097 lr 1.0e-03 22.7s
+17:37:11 gpu1 [adaptive:44] ep  2 train 54.779 val 53.962/88.316 lr 1.0e-03 22.7s
+17:37:34 gpu1 [adaptive:44] ep  3 train 52.301 val 52.833/85.503 lr 1.0e-03 22.8s
+17:37:57 gpu1 [adaptive:44] ep  4 train 50.643 val 51.248/83.128 lr 1.0e-03 22.9s
+17:38:20 gpu1 [adaptive:44] ep  5 train 49.203 val 50.189/81.443 lr 1.0e-03 22.9s
+17:38:43 gpu1 [adaptive:44] ep  6 train 48.017 val 50.866/82.176 lr 1.0e-03 22.9s
+17:39:06 gpu1 [adaptive:44] ep  7 train 47.618 val 48.815/78.399 lr 1.0e-03 22.9s
+17:39:29 gpu1 [adaptive:44] ep  8 train 46.939 val 47.795/77.236 lr 1.0e-03 22.9s
+17:39:52 gpu1 [adaptive:44] ep  9 train 46.636 val 47.447/76.912 lr 1.0e-03 22.9s
+17:40:14 gpu1 [adaptive:44] ep 10 train 46.100 val 47.941/77.773 lr 1.0e-03 22.8s
+17:40:37 gpu1 [adaptive:44] ep 11 train 45.851 val 47.687/77.242 lr 1.0e-03 22.8s
+17:41:00 gpu1 [adaptive:44] ep 12 train 45.685 val 47.902/76.135 lr 1.0e-03 22.8s
+17:41:23 gpu1 [adaptive:44] ep 13 train 45.363 val 46.766/75.715 lr 1.0e-03 22.8s
+17:41:46 gpu1 [adaptive:44] ep 14 train 44.970 val 46.080/74.830 lr 1.0e-03 22.8s
+17:42:08 gpu1 [adaptive:44] ep 15 train 44.941 val 46.027/74.465 lr 1.0e-03 22.8s
+17:42:31 gpu1 [adaptive:44] ep 16 train 44.556 val 46.317/75.019 lr 1.0e-03 22.7s
+17:42:54 gpu1 [adaptive:44] ep 17 train 44.617 val 45.446/73.088 lr 1.0e-03 22.7s
+17:43:17 gpu1 [adaptive:44] ep 18 train 44.199 val 45.560/73.118 lr 1.0e-03 22.7s
+17:43:39 gpu1 [adaptive:44] ep 19 train 44.094 val 45.338/73.019 lr 1.0e-03 22.7s
+17:44:02 gpu1 [adaptive:44] ep 20 train 43.878 val 44.982/72.606 lr 1.0e-03 22.6s
+17:44:25 gpu1 [adaptive:44] ep 21 train 43.690 val 45.238/72.347 lr 1.0e-03 22.7s
+17:44:48 gpu1 [adaptive:44] ep 22 train 43.659 val 44.401/71.939 lr 1.0e-03 22.9s
+17:45:10 gpu1 [adaptive:44] ep 23 train 43.454 val 45.287/72.329 lr 1.0e-03 22.8s
+17:45:33 gpu1 [adaptive:44] ep 24 train 43.288 val 44.918/71.504 lr 1.0e-03 22.6s
+17:45:56 gpu1 [adaptive:44] ep 25 train 43.421 val 44.154/71.390 lr 1.0e-03 22.7s
+17:46:19 gpu1 [adaptive:44] ep 26 train 43.092 val 44.542/72.036 lr 1.0e-03 22.8s
+17:46:41 gpu1 [adaptive:44] ep 27 train 42.901 val 44.188/71.271 lr 1.0e-03 22.8s
+17:47:04 gpu1 [adaptive:44] ep 28 train 42.785 val 44.814/71.838 lr 1.0e-03 22.7s
+17:47:27 gpu1 [adaptive:44] ep 29 train 42.743 val 44.058/71.311 lr 1.0e-03 22.7s
+17:47:49 gpu1 [adaptive:44] ep 30 train 42.782 val 43.596/70.409 lr 1.0e-03 22.7s
+17:48:12 gpu1 [adaptive:44] ep 31 train 42.656 val 43.558/70.167 lr 1.0e-03 22.7s
+17:48:35 gpu1 [adaptive:44] ep 32 train 42.415 val 43.471/70.036 lr 1.0e-03 22.7s
+17:48:57 gpu1 [adaptive:44] ep 33 train 42.635 val 43.721/70.421 lr 1.0e-03 22.7s
+17:49:20 gpu1 [adaptive:44] ep 34 train 42.343 val 44.953/71.769 lr 1.0e-03 22.7s
+17:49:43 gpu1 [adaptive:44] ep 35 train 42.365 val 43.369/69.874 lr 1.0e-03 22.8s
+17:50:06 gpu1 [adaptive:44] ep 36 train 42.229 val 43.809/69.992 lr 1.0e-03 22.8s
+17:50:29 gpu1 [adaptive:44] ep 37 train 42.211 val 43.668/70.097 lr 1.0e-03 22.8s
+17:50:51 gpu1 [adaptive:44] ep 38 train 42.213 val 43.528/70.086 lr 1.0e-03 22.8s
+17:51:14 gpu1 [adaptive:44] ep 39 train 42.061 val 43.859/70.542 lr 5.0e-04 22.8s
+17:51:37 gpu1 [adaptive:44] ep 40 train 41.541 val 43.006/69.273 lr 5.0e-04 22.8s
+17:52:00 gpu1 [adaptive:44] ep 41 train 41.645 val 43.076/68.921 lr 5.0e-04 22.7s
+17:52:22 gpu1 [adaptive:44] ep 42 train 41.584 val 42.933/69.543 lr 5.0e-04 22.7s
+17:52:45 gpu1 [adaptive:44] ep 43 train 41.498 val 42.507/68.690 lr 5.0e-04 22.7s
+17:53:08 gpu1 [adaptive:44] ep 44 train 41.426 val 42.523/68.637 lr 5.0e-04 22.7s
+17:53:31 gpu1 [adaptive:44] ep 45 train 41.389 val 43.191/69.696 lr 5.0e-04 22.8s
+17:53:53 gpu1 [adaptive:44] ep 46 train 41.420 val 42.389/68.628 lr 5.0e-04 22.8s
+17:54:16 gpu1 [adaptive:44] ep 47 train 41.444 val 42.480/68.654 lr 5.0e-04 22.7s
+17:54:39 gpu1 [adaptive:44] ep 48 train 41.334 val 42.496/68.671 lr 5.0e-04 22.7s
+17:55:02 gpu1 [adaptive:44] ep 49 train 41.301 val 42.898/69.106 lr 5.0e-04 22.7s
+17:55:24 gpu1 [adaptive:44] ep 50 train 41.238 val 42.346/68.417 lr 5.0e-04 22.8s
+17:55:47 gpu1 [adaptive:44] ep 51 train 41.322 val 42.239/68.408 lr 5.0e-04 22.8s
+17:56:10 gpu1 [adaptive:44] ep 52 train 41.284 val 42.632/69.099 lr 5.0e-04 22.7s
+17:56:33 gpu1 [adaptive:44] ep 53 train 41.171 val 42.271/68.307 lr 5.0e-04 22.8s
+17:56:56 gpu1 [adaptive:44] ep 54 train 41.148 val 42.415/68.246 lr 5.0e-04 22.9s
+17:57:19 gpu1 [adaptive:44] ep 55 train 41.149 val 42.357/68.527 lr 2.5e-04 22.9s
+17:57:41 gpu1 [adaptive:44] ep 56 train 40.875 val 42.771/69.112 lr 2.5e-04 22.8s
+17:58:04 gpu1 [adaptive:44] ep 57 train 40.822 val 42.171/68.004 lr 2.5e-04 22.9s
+17:58:27 gpu1 [adaptive:44] ep 58 train 40.862 val 42.177/68.303 lr 2.5e-04 22.8s
+17:58:50 gpu1 [adaptive:44] ep 59 train 40.839 val 42.279/68.356 lr 2.5e-04 22.7s
+17:59:13 gpu1 [adaptive:44] ep 60 train 40.827 val 42.786/69.144 lr 2.5e-04 22.9s
+17:59:36 gpu1 [adaptive:44] ep 61 train 40.823 val 42.387/68.488 lr 1.3e-04 22.9s
+17:59:58 gpu1 [adaptive:44] ep 62 train 40.641 val 41.984/67.970 lr 1.3e-04 22.8s
+18:00:21 gpu1 [adaptive:44] ep 63 train 40.649 val 41.973/67.906 lr 1.3e-04 22.7s
+18:00:44 gpu1 [adaptive:44] ep 64 train 40.644 val 42.056/67.887 lr 1.3e-04 22.7s
+18:01:07 gpu1 [adaptive:44] ep 65 train 40.640 val 42.302/68.473 lr 1.3e-04 23.0s
+18:01:29 gpu1 [adaptive:44] ep 66 train 40.613 val 42.209/67.950 lr 1.3e-04 22.8s
+18:01:52 gpu1 [adaptive:44] ep 67 train 40.627 val 41.987/67.905 lr 6.3e-05 22.6s
+18:02:15 gpu1 [adaptive:44] ep 68 train 40.536 val 41.991/67.890 lr 6.3e-05 22.6s
+18:02:37 gpu1 [adaptive:44] ep 69 train 40.535 val 41.860/67.721 lr 6.3e-05 22.6s
+18:03:00 gpu1 [adaptive:44] ep 70 train 40.530 val 41.915/67.786 lr 6.3e-05 22.7s
+18:03:23 gpu1 [adaptive:44] ep 71 train 40.534 val 41.974/67.861 lr 6.3e-05 22.7s
+18:03:45 gpu1 [adaptive:44] ep 72 train 40.515 val 41.898/67.793 lr 6.3e-05 22.7s
+18:04:08 gpu1 [adaptive:44] ep 73 train 40.515 val 41.875/67.732 lr 3.1e-05 22.7s
+18:04:31 gpu1 [adaptive:44] ep 74 train 40.468 val 41.927/67.828 lr 3.1e-05 22.7s
+18:04:54 gpu1 [adaptive:44] ep 75 train 40.469 val 41.871/67.761 lr 3.1e-05 22.7s
+18:05:16 gpu1 [adaptive:44] ep 76 train 40.468 val 41.882/67.763 lr 3.1e-05 22.7s
+18:05:39 gpu1 [adaptive:44] ep 77 train 40.467 val 41.855/67.690 lr 3.1e-05 22.7s
+18:06:02 gpu1 [adaptive:44] ep 78 train 40.459 val 41.912/67.805 lr 3.1e-05 22.7s
+18:06:24 gpu1 [adaptive:44] ep 79 train 40.469 val 41.873/67.746 lr 3.1e-05 22.7s
+18:06:47 gpu1 [adaptive:44] ep 80 train 40.466 val 41.902/67.819 lr 3.1e-05 22.7s
+18:06:50 gpu1 DONE adaptive:44 test MAE 51.130 RMSE 80.937 time 1821s epochs 80 (best 77)
+18:07:10 gpu1 [fixed_spec:44] ep  1 train 158.608 val 140.822/211.372 lr 1.0e-03 20.1s
+18:07:30 gpu1 [fixed_spec:44] ep  2 train 135.953 val 138.602/210.324 lr 1.0e-03 20.1s
+18:07:50 gpu1 [fixed_spec:44] ep  3 train 135.074 val 138.116/209.601 lr 1.0e-03 20.1s
+18:08:10 gpu1 [fixed_spec:44] ep  4 train 134.282 val 137.140/208.460 lr 1.0e-03 20.2s
+18:08:31 gpu1 [fixed_spec:44] ep  5 train 133.382 val 136.527/207.184 lr 1.0e-03 20.2s
+18:08:51 gpu1 [fixed_spec:44] ep  6 train 131.900 val 136.297/206.811 lr 1.0e-03 20.2s
+18:09:11 gpu1 [fixed_spec:44] ep  7 train 130.268 val 132.582/204.723 lr 1.0e-03 20.2s
+18:09:31 gpu1 [fixed_spec:44] ep  8 train 129.121 val 133.097/205.330 lr 1.0e-03 20.2s
+18:09:51 gpu1 [fixed_spec:44] ep  9 train 128.012 val 130.925/204.529 lr 1.0e-03 20.2s
+18:10:11 gpu1 [fixed_spec:44] ep 10 train 127.353 val 130.290/204.032 lr 1.0e-03 20.2s
+18:10:32 gpu1 [fixed_spec:44] ep 11 train 126.780 val 129.883/204.375 lr 1.0e-03 20.2s
+18:10:52 gpu1 [fixed_spec:44] ep 12 train 126.214 val 130.276/205.259 lr 1.0e-03 20.2s
+18:11:12 gpu1 [fixed_spec:44] ep 13 train 125.630 val 129.202/204.713 lr 1.0e-03 20.2s
+18:11:32 gpu1 [fixed_spec:44] ep 14 train 125.242 val 128.401/203.629 lr 1.0e-03 20.2s
+18:11:52 gpu1 [fixed_spec:44] ep 15 train 124.876 val 130.945/205.459 lr 1.0e-03 20.2s
+18:12:13 gpu1 [fixed_spec:44] ep 16 train 124.595 val 129.629/206.729 lr 1.0e-03 20.2s
+18:12:33 gpu1 [fixed_spec:44] ep 17 train 124.269 val 127.393/203.078 lr 1.0e-03 20.2s
+18:12:53 gpu1 [fixed_spec:44] ep 18 train 123.870 val 127.496/204.402 lr 1.0e-03 20.2s
+18:13:13 gpu1 [fixed_spec:44] ep 19 train 123.586 val 127.245/203.973 lr 1.0e-03 20.2s
+18:13:33 gpu1 [fixed_spec:44] ep 20 train 123.367 val 126.679/203.392 lr 1.0e-03 20.2s
+18:13:54 gpu1 [fixed_spec:44] ep 21 train 123.154 val 126.298/202.633 lr 1.0e-03 20.2s
+18:14:14 gpu1 [fixed_spec:44] ep 22 train 122.881 val 125.936/202.453 lr 1.0e-03 20.2s
+18:14:34 gpu1 [fixed_spec:44] ep 23 train 122.684 val 125.821/202.631 lr 1.0e-03 20.2s
+18:14:54 gpu1 [fixed_spec:44] ep 24 train 122.558 val 125.889/202.052 lr 1.0e-03 20.2s
+18:15:14 gpu1 [fixed_spec:44] ep 25 train 122.425 val 127.212/202.644 lr 1.0e-03 20.2s
+18:15:35 gpu1 [fixed_spec:44] ep 26 train 122.296 val 125.484/202.495 lr 1.0e-03 20.2s
+18:15:55 gpu1 [fixed_spec:44] ep 27 train 122.046 val 125.859/203.365 lr 1.0e-03 20.2s
+18:16:15 gpu1 [fixed_spec:44] ep 28 train 121.955 val 125.074/202.121 lr 1.0e-03 20.2s
+18:16:35 gpu1 [fixed_spec:44] ep 29 train 121.857 val 125.351/203.472 lr 1.0e-03 20.2s
+18:16:55 gpu1 [fixed_spec:44] ep 30 train 121.749 val 125.586/202.997 lr 1.0e-03 20.2s
+18:17:15 gpu1 [fixed_spec:44] ep 31 train 121.680 val 125.184/202.841 lr 1.0e-03 20.2s
+18:17:36 gpu1 [fixed_spec:44] ep 32 train 121.529 val 124.738/201.985 lr 1.0e-03 20.1s
+18:17:56 gpu1 [fixed_spec:44] ep 33 train 121.411 val 124.533/201.583 lr 1.0e-03 20.2s
+18:18:16 gpu1 [fixed_spec:44] ep 34 train 121.314 val 124.776/202.226 lr 1.0e-03 20.2s
+18:18:36 gpu1 [fixed_spec:44] ep 35 train 121.269 val 124.403/202.089 lr 1.0e-03 20.2s
+18:18:56 gpu1 [fixed_spec:44] ep 36 train 121.078 val 125.060/202.987 lr 1.0e-03 20.2s
+18:19:16 gpu1 [fixed_spec:44] ep 37 train 121.085 val 124.623/202.832 lr 1.0e-03 20.2s
+18:19:37 gpu1 [fixed_spec:44] ep 38 train 120.999 val 124.078/201.475 lr 1.0e-03 20.2s
+18:19:57 gpu1 [fixed_spec:44] ep 39 train 120.764 val 124.811/203.234 lr 1.0e-03 20.2s
+18:20:17 gpu1 [fixed_spec:44] ep 40 train 120.658 val 124.482/202.158 lr 1.0e-03 20.2s
+18:20:37 gpu1 [fixed_spec:44] ep 41 train 120.607 val 124.253/202.566 lr 1.0e-03 20.2s
+18:20:58 gpu1 [fixed_spec:44] ep 42 train 120.528 val 123.798/201.447 lr 1.0e-03 20.2s
+18:21:18 gpu1 [fixed_spec:44] ep 43 train 120.431 val 123.700/201.380 lr 1.0e-03 20.3s
+18:21:38 gpu1 [fixed_spec:44] ep 44 train 120.336 val 125.554/203.793 lr 1.0e-03 20.3s
+18:21:58 gpu1 [fixed_spec:44] ep 45 train 120.307 val 123.693/201.193 lr 1.0e-03 20.3s
+18:22:19 gpu1 [fixed_spec:44] ep 46 train 120.178 val 123.629/201.780 lr 1.0e-03 20.3s
+18:22:39 gpu1 [fixed_spec:44] ep 47 train 120.048 val 125.884/205.448 lr 1.0e-03 20.3s
+18:22:59 gpu1 [fixed_spec:44] ep 48 train 119.947 val 123.685/201.995 lr 1.0e-03 20.2s
+18:23:19 gpu1 [fixed_spec:44] ep 49 train 119.889 val 123.436/201.101 lr 1.0e-03 20.3s
+18:23:40 gpu1 [fixed_spec:44] ep 50 train 119.769 val 123.560/201.447 lr 1.0e-03 20.3s
+18:24:00 gpu1 [fixed_spec:44] ep 51 train 119.757 val 124.206/200.833 lr 1.0e-03 20.3s
+18:24:20 gpu1 [fixed_spec:44] ep 52 train 119.603 val 123.053/201.071 lr 1.0e-03 20.3s
+18:24:40 gpu1 [fixed_spec:44] ep 53 train 119.510 val 123.764/202.172 lr 1.0e-03 20.3s
+18:25:01 gpu1 [fixed_spec:44] ep 54 train 119.475 val 122.981/200.962 lr 1.0e-03 20.3s
+18:25:21 gpu1 [fixed_spec:44] ep 55 train 119.384 val 123.334/201.621 lr 1.0e-03 20.3s
+18:25:41 gpu1 [fixed_spec:44] ep 56 train 119.356 val 124.784/204.701 lr 1.0e-03 20.3s
+18:26:02 gpu1 [fixed_spec:44] ep 57 train 119.339 val 122.706/200.439 lr 1.0e-03 20.3s
+18:26:22 gpu1 [fixed_spec:44] ep 58 train 119.160 val 122.614/200.752 lr 1.0e-03 20.3s
+18:26:42 gpu1 [fixed_spec:44] ep 59 train 119.049 val 122.561/200.364 lr 1.0e-03 20.3s
+18:27:02 gpu1 [fixed_spec:44] ep 60 train 119.133 val 122.524/200.261 lr 1.0e-03 20.3s
+18:27:23 gpu1 [fixed_spec:44] ep 61 train 118.941 val 122.758/200.634 lr 1.0e-03 20.3s
+18:27:43 gpu1 [fixed_spec:44] ep 62 train 118.957 val 122.930/200.135 lr 1.0e-03 20.3s
+18:28:03 gpu1 [fixed_spec:44] ep 63 train 118.850 val 122.330/199.880 lr 1.0e-03 20.3s
+18:28:24 gpu1 [fixed_spec:44] ep 64 train 118.906 val 122.419/199.854 lr 1.0e-03 20.3s
+18:28:44 gpu1 [fixed_spec:44] ep 65 train 118.823 val 123.016/201.661 lr 1.0e-03 20.3s
+18:29:04 gpu1 [fixed_spec:44] ep 66 train 118.730 val 122.933/201.258 lr 1.0e-03 20.3s
+18:29:24 gpu1 [fixed_spec:44] ep 67 train 118.690 val 122.208/200.747 lr 1.0e-03 20.3s
+18:29:45 gpu1 [fixed_spec:44] ep 68 train 118.630 val 122.159/199.790 lr 1.0e-03 20.3s
+18:30:05 gpu1 [fixed_spec:44] ep 69 train 118.631 val 122.073/199.935 lr 1.0e-03 20.3s
+18:30:25 gpu1 [fixed_spec:44] ep 70 train 118.667 val 122.039/200.421 lr 1.0e-03 20.2s
+18:30:45 gpu1 [fixed_spec:44] ep 71 train 118.491 val 121.946/200.144 lr 1.0e-03 20.2s
+18:31:06 gpu1 [fixed_spec:44] ep 72 train 118.563 val 121.884/199.694 lr 1.0e-03 20.2s
+18:31:26 gpu1 [fixed_spec:44] ep 73 train 118.460 val 122.376/200.835 lr 1.0e-03 20.2s
+18:31:46 gpu1 [fixed_spec:44] ep 74 train 118.387 val 121.964/200.357 lr 1.0e-03 20.2s
+18:32:06 gpu1 [fixed_spec:44] ep 75 train 118.333 val 121.778/199.934 lr 1.0e-03 20.2s
+18:32:26 gpu1 [fixed_spec:44] ep 76 train 118.401 val 121.950/200.477 lr 1.0e-03 20.3s
+18:32:47 gpu1 [fixed_spec:44] ep 77 train 118.372 val 121.760/199.975 lr 1.0e-03 20.3s
+18:33:07 gpu1 [fixed_spec:44] ep 78 train 118.315 val 122.374/200.407 lr 1.0e-03 20.3s
+18:33:27 gpu1 [fixed_spec:44] ep 79 train 118.278 val 122.573/200.638 lr 1.0e-03 20.3s
+18:33:48 gpu1 [fixed_spec:44] ep 80 train 118.204 val 122.890/200.276 lr 1.0e-03 20.3s
+18:33:50 gpu1 DONE fixed_spec:44 test MAE 137.969 RMSE 218.226 time 1618s epochs 80 (best 77)
+18:34:09 gpu1 [none_emb:44] ep  1 train 83.591 val 65.000/99.721 lr 1.0e-03 19.2s
+18:34:28 gpu1 [none_emb:44] ep  2 train 58.847 val 59.441/96.020 lr 1.0e-03 19.2s
+18:34:47 gpu1 [none_emb:44] ep  3 train 56.888 val 57.313/92.036 lr 1.0e-03 19.2s
+18:35:06 gpu1 [none_emb:44] ep  4 train 55.439 val 56.272/90.538 lr 1.0e-03 19.2s
+18:35:26 gpu1 [none_emb:44] ep  5 train 54.924 val 55.677/89.881 lr 1.0e-03 19.2s
+18:35:45 gpu1 [none_emb:44] ep  6 train 54.519 val 55.357/89.167 lr 1.0e-03 19.2s
+18:36:04 gpu1 [none_emb:44] ep  7 train 54.131 val 55.508/89.752 lr 1.0e-03 19.2s
+18:36:23 gpu1 [none_emb:44] ep  8 train 53.847 val 54.633/87.911 lr 1.0e-03 19.2s
+18:36:42 gpu1 [none_emb:44] ep  9 train 53.438 val 54.227/87.196 lr 1.0e-03 19.3s
+18:37:02 gpu1 [none_emb:44] ep 10 train 53.290 val 53.970/87.143 lr 1.0e-03 19.3s
+18:37:21 gpu1 [none_emb:44] ep 11 train 53.094 val 55.765/88.158 lr 1.0e-03 19.3s
+18:37:40 gpu1 [none_emb:44] ep 12 train 52.961 val 54.419/86.758 lr 1.0e-03 19.3s
+18:38:00 gpu1 [none_emb:44] ep 13 train 52.675 val 53.683/86.680 lr 1.0e-03 19.3s
+18:38:19 gpu1 [none_emb:44] ep 14 train 52.598 val 54.195/87.090 lr 1.0e-03 19.3s
+18:38:38 gpu1 [none_emb:44] ep 15 train 52.645 val 54.238/87.045 lr 1.0e-03 19.3s
+18:38:57 gpu1 [none_emb:44] ep 16 train 52.537 val 54.308/87.323 lr 1.0e-03 19.2s
+18:39:17 gpu1 [none_emb:44] ep 17 train 52.424 val 53.795/86.545 lr 5.0e-04 19.3s
+18:39:36 gpu1 [none_emb:44] ep 18 train 51.903 val 53.320/85.842 lr 5.0e-04 19.2s
+18:39:55 gpu1 [none_emb:44] ep 19 train 51.879 val 52.762/85.418 lr 5.0e-04 19.2s
+18:40:14 gpu1 [none_emb:44] ep 20 train 51.852 val 53.099/85.739 lr 5.0e-04 19.3s
+18:40:34 gpu1 [none_emb:44] ep 21 train 51.756 val 53.460/86.043 lr 5.0e-04 19.2s
+18:40:53 gpu1 [none_emb:44] ep 22 train 51.794 val 53.040/85.546 lr 5.0e-04 19.3s
+18:41:12 gpu1 [none_emb:44] ep 23 train 51.697 val 52.479/84.991 lr 5.0e-04 19.3s
+18:41:31 gpu1 [none_emb:44] ep 24 train 51.634 val 53.166/85.043 lr 5.0e-04 19.3s
+18:41:51 gpu1 [none_emb:44] ep 25 train 51.635 val 52.951/85.671 lr 5.0e-04 19.3s
+18:42:10 gpu1 [none_emb:44] ep 26 train 51.609 val 52.578/85.124 lr 5.0e-04 19.3s
+18:42:29 gpu1 [none_emb:44] ep 27 train 51.592 val 52.732/85.030 lr 2.5e-04 19.3s
+18:42:49 gpu1 [none_emb:44] ep 28 train 51.319 val 52.222/84.609 lr 2.5e-04 19.3s
+18:43:08 gpu1 [none_emb:44] ep 29 train 51.352 val 52.473/84.886 lr 2.5e-04 19.3s
+18:43:27 gpu1 [none_emb:44] ep 30 train 51.288 val 52.437/84.786 lr 2.5e-04 19.3s
+18:43:47 gpu1 [none_emb:44] ep 31 train 51.267 val 52.468/84.848 lr 2.5e-04 19.3s
+18:44:06 gpu1 [none_emb:44] ep 32 train 51.262 val 52.340/84.566 lr 1.3e-04 19.2s
+18:44:25 gpu1 [none_emb:44] ep 33 train 51.151 val 52.165/84.549 lr 1.3e-04 19.2s
+18:44:44 gpu1 [none_emb:44] ep 34 train 51.129 val 52.232/84.638 lr 1.3e-04 19.2s
+18:45:03 gpu1 [none_emb:44] ep 35 train 51.136 val 52.155/84.446 lr 1.3e-04 19.2s
+18:45:23 gpu1 [none_emb:44] ep 36 train 51.120 val 52.134/84.371 lr 1.3e-04 19.3s
+18:45:42 gpu1 [none_emb:44] ep 37 train 51.112 val 52.266/84.625 lr 1.3e-04 19.2s
+18:46:01 gpu1 [none_emb:44] ep 38 train 51.098 val 52.086/84.361 lr 1.3e-04 19.2s
+18:46:20 gpu1 [none_emb:44] ep 39 train 51.070 val 52.210/84.575 lr 1.3e-04 19.3s
+18:46:40 gpu1 [none_emb:44] ep 40 train 51.086 val 52.171/84.478 lr 1.3e-04 19.2s
+18:46:59 gpu1 [none_emb:44] ep 41 train 51.064 val 52.264/84.535 lr 1.3e-04 19.2s
+18:47:18 gpu1 [none_emb:44] ep 42 train 51.074 val 52.145/84.413 lr 6.3e-05 19.2s
+18:47:37 gpu1 [none_emb:44] ep 43 train 50.992 val 52.210/84.519 lr 6.3e-05 19.2s
+18:47:57 gpu1 [none_emb:44] ep 44 train 50.990 val 52.135/84.480 lr 6.3e-05 19.3s
+18:48:16 gpu1 [none_emb:44] ep 45 train 50.990 val 52.059/84.191 lr 6.3e-05 19.2s
+18:48:35 gpu1 [none_emb:44] ep 46 train 50.987 val 52.095/84.392 lr 6.3e-05 19.2s
+18:48:54 gpu1 [none_emb:44] ep 47 train 50.976 val 52.267/84.562 lr 6.3e-05 19.2s
+18:49:13 gpu1 [none_emb:44] ep 48 train 50.984 val 52.049/84.354 lr 6.3e-05 19.2s
+18:49:33 gpu1 [none_emb:44] ep 49 train 50.971 val 51.996/84.213 lr 6.3e-05 19.2s
+18:49:52 gpu1 [none_emb:44] ep 50 train 50.980 val 52.008/84.213 lr 6.3e-05 19.2s
+18:50:11 gpu1 [none_emb:44] ep 51 train 50.972 val 52.028/84.280 lr 6.3e-05 19.2s
+18:50:30 gpu1 [none_emb:44] ep 52 train 50.951 val 51.940/84.138 lr 6.3e-05 19.2s
+18:50:49 gpu1 [none_emb:44] ep 53 train 50.946 val 51.952/84.157 lr 6.3e-05 19.2s
+18:51:09 gpu1 [none_emb:44] ep 54 train 50.942 val 52.026/84.225 lr 6.3e-05 19.2s
+18:51:28 gpu1 [none_emb:44] ep 55 train 50.943 val 51.949/84.158 lr 6.3e-05 19.2s
+18:51:47 gpu1 [none_emb:44] ep 56 train 50.942 val 51.916/84.129 lr 6.3e-05 19.3s
+18:52:06 gpu1 [none_emb:44] ep 57 train 50.942 val 51.949/84.192 lr 6.3e-05 19.3s
+18:52:26 gpu1 [none_emb:44] ep 58 train 50.928 val 51.942/84.164 lr 6.3e-05 19.2s
+18:52:45 gpu1 [none_emb:44] ep 59 train 50.917 val 52.018/84.197 lr 6.3e-05 19.2s
+18:53:04 gpu1 [none_emb:44] ep 60 train 50.915 val 51.896/84.109 lr 6.3e-05 19.3s
+18:53:23 gpu1 [none_emb:44] ep 61 train 50.922 val 52.020/84.187 lr 6.3e-05 19.3s
+18:53:43 gpu1 [none_emb:44] ep 62 train 50.926 val 51.925/84.127 lr 6.3e-05 19.2s
+18:54:02 gpu1 [none_emb:44] ep 63 train 50.915 val 51.957/84.168 lr 6.3e-05 19.2s
+18:54:21 gpu1 [none_emb:44] ep 64 train 50.927 val 52.276/84.542 lr 3.1e-05 19.3s
+18:54:40 gpu1 [none_emb:44] ep 65 train 50.868 val 51.994/84.215 lr 3.1e-05 19.2s
+18:55:00 gpu1 [none_emb:44] ep 66 train 50.866 val 52.059/84.301 lr 3.1e-05 19.2s
+18:55:19 gpu1 [none_emb:44] ep 67 train 50.875 val 51.994/84.193 lr 3.1e-05 19.2s
+18:55:38 gpu1 [none_emb:44] ep 68 train 50.862 val 51.966/84.188 lr 1.6e-05 19.2s
+18:55:57 gpu1 [none_emb:44] ep 69 train 50.851 val 51.911/84.091 lr 1.6e-05 19.2s
+18:56:16 gpu1 [none_emb:44] ep 70 train 50.841 val 51.891/84.075 lr 1.6e-05 19.2s
+18:56:36 gpu1 [none_emb:44] ep 71 train 50.847 val 51.934/84.104 lr 1.6e-05 19.2s
+18:56:55 gpu1 [none_emb:44] ep 72 train 50.845 val 51.907/84.106 lr 1.6e-05 19.3s
+18:57:14 gpu1 [none_emb:44] ep 73 train 50.842 val 51.907/84.104 lr 1.6e-05 19.2s
+18:57:33 gpu1 [none_emb:44] ep 74 train 50.843 val 51.910/84.114 lr 1.0e-05 19.2s
+18:57:53 gpu1 [none_emb:44] ep 75 train 50.832 val 51.891/84.061 lr 1.0e-05 19.3s
+18:58:12 gpu1 [none_emb:44] ep 76 train 50.832 val 51.886/84.062 lr 1.0e-05 19.3s
+18:58:31 gpu1 [none_emb:44] ep 77 train 50.835 val 51.931/84.138 lr 1.0e-05 19.2s
+18:58:50 gpu1 [none_emb:44] ep 78 train 50.832 val 51.912/84.118 lr 1.0e-05 19.3s
+18:59:10 gpu1 [none_emb:44] ep 79 train 50.833 val 51.861/84.015 lr 1.0e-05 19.2s
+18:59:29 gpu1 [none_emb:44] ep 80 train 50.831 val 51.908/84.099 lr 1.0e-05 19.2s
+18:59:31 gpu1 DONE none_emb:44 test MAE 60.483 RMSE 95.538 time 1539s epochs 80 (best 79)

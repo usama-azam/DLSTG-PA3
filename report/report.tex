@@ -17,6 +17,7 @@
 \captionsetup{font=small}
 \newcommand{\repourl}{https://github.com/usama-azam/DLSTG-PA3}
 \newcommand{\kaggleurl}{https://www.kaggle.com/code/usamaazam9/dlstg-pa3-largest-sd-stgnn}
+\newcommand{\sd}[2]{#1{\scriptsize\,$\scriptstyle\pm$\,#2}}
 
 \begin{document}
 % ---------------------------------------------------------------------------
@@ -42,11 +43,14 @@
 \small
 \textbf{Summary.} Questions 1--2 are answered analytically and every claim is checked numerically in the notebook.
 For Questions 3--7 we extract the 716 San Diego sensors of LargeST for 2020--2021, aggregate the 5-minute
-vehicle counts to 15-minute totals, and train a lightweight temporal-convolution + graph-convolution model
-(8 steps in, 4 steps out) under one protocol with four graph choices. On the April--December 2021 test period
-(all values in vehicles per 15 minutes) the test MAE is: temporal-only 64.23, fixed road graph 58.88, learned
-adaptive graph 51.34, hybrid graph 51.43. The learned graph overlaps the road graph only slightly more than random
-pairs do: it links sensors with similar flow profiles rather than nearby sensors.
+vehicle counts to 15-minute totals, remove detector faults, and train a lightweight temporal-convolution +
+graph-convolution model (8 steps in, 4 steps out) under one protocol. Every configuration is trained with
+\textbf{3 seeds}. On the April--December 2021 test period the test MAE (vehicles per 15 min, mean $\pm$ std) is:
+temporal-only 64.40\,$\pm$\,0.14, fixed road graph 58.33\,$\pm$\,0.15, learned adaptive graph
+\textbf{50.94\,$\pm$\,0.36}, hybrid 51.35\,$\pm$\,0.72. Four ablations show that about 60\% of the gain of the
+learned graph over the road graph can be obtained by giving the model per-sensor embeddings alone, and the learned
+graph overlaps the road graph only slightly more than random pairs: it encodes functional similarity, not road
+connectivity.
 \end{minipage}
 \vfill
 {\small Fall 2026 \quad$\cdot$\quad Submitted November 2026}
@@ -60,51 +64,66 @@ pairs do: it links sensors with similar flow profiles rather than nearby sensors
 % ---------------------------------------------------------------------------
 \section{Question 3 -- Dataset preparation and graph construction}
 
-\subsection{Q3(a) Extraction, resampling and missing values}
+\subsection{Q3(a) Extraction, resampling, faults and missing values}
 \paragraph{Source and extraction.} We use the Kaggle copy of LargeST (\texttt{liuxu77/largest}). The files
 \texttt{ca\_his\_raw\_2020.h5} and \texttt{ca\_his\_raw\_2021.h5} are pandas \emph{fixed-format} HDF5 tables
 (timestamps $\times$ 8\,600 California sensors, float64, $\approx$7.2\,GB each). The 716 San Diego sensors
 are the rows of \texttt{ca\_meta.csv} with \texttt{District}$=11$. Rather than load 7\,GB per year, we read
 \texttt{block0\_values} with \texttt{h5py} in blocks of 8\,192 rows and keep only the San Diego columns, matched
-by sensor ID (loading both years takes 67\,s). Each year is reindexed to a complete 5-minute grid (2020:
-105\,408 steps, a leap year; 2021: 105\,120 steps).
+by sensor ID (both years in 50\,s). Each year is reindexed to a complete 5-minute grid (2020: 105\,408 steps, a
+leap year; 2021: 105\,120 steps).
 
-\paragraph{Aggregation 5\,$\to$\,15 min.} LargeST inherits PeMS ``flow'', which is the number of vehicles
-counted during each 5-minute interval, summed over lanes. Because this is an \emph{interval count}, we
-\textbf{sum} three consecutive readings: $X^{15}_t=\sum_{k=0}^{2}X^{5}_{3t+k}$. The unit is therefore
-\emph{vehicles per 15 minutes}. Averaging would instead give vehicles per 5 minutes, which is a factor of 3 smaller.
-If only one or two of the three readings exist, we use $3\times$ their mean, which equals the sum when nothing is
-missing and is otherwise an unbiased estimate. An interval with all three readings missing is marked missing. The
-result is $X\in\mathbb R^{70\,176\times716\times1}$ (2020-01-01 00:00 to 2021-12-31 23:45).
+\paragraph{Aggregation 5\,$\to$\,15 min.} LargeST inherits PeMS ``flow'', the number of vehicles counted during
+each 5-minute interval, summed over lanes. Because this is an \emph{interval count}, we \textbf{sum} three
+consecutive readings: $X^{15}_t=\sum_{k=0}^{2}X^{5}_{3t+k}$, so the unit is \emph{vehicles per 15 minutes}
+(averaging would give vehicles per 5 minutes, a factor of 3 smaller). If only one or two of the three readings
+exist we use $3\times$ their mean, which equals the sum when nothing is missing. An interval with all three readings
+missing is marked missing. The result is $X\in\mathbb R^{70\,176\times716\times1}$ (2020-01-01 00:00 to 2021-12-31 23:45).
 
-\paragraph{Missing values.} 5.07\% of 5-minute readings are NaN (2020: 4.10\%, 2021: 6.03\%); only 0.02\% of
-15-minute intervals are partially observed and 5.06\% are fully missing. Missingness is concentrated in a few
-sensors: the median sensor misses 0.011\%, but 45 sensors miss more than 10\% and 19 sensors report nothing
-at all (Figure~\ref{fig:q3a}, bottom). We handle missing data in two separate ways:
+\paragraph{Zero flows (detector faults).} A 15-minute total of zero vehicles on a freeway mainline is possible for a
+short time at night or during a closure, but a long run of zeros is a stuck or dead detector. 0.14\% of 15-minute
+totals are zero, in 22\,323 runs; 76\% of zero totals fall between 00:00 and 05:00 (Figure~\ref{fig:q3a}, right).
+Runs of \textbf{$\geq$\,4 consecutive zero totals ($\geq$\,1\,h)} are treated as faults and set to missing
+(43\,401 values on 135 sensors); the 26\,250 zeros in shorter runs are kept as genuine.
+
+\paragraph{Missing values.} 5.07\% of 5-minute readings are NaN (2020: 4.10\%, 2021: 6.03\%); 0.02\% of
+15-minute intervals are partially observed, and after fault removal \textbf{5.15\%} are missing. Missingness is
+concentrated in a few sensors: the median sensor misses 0.011\%, but 46 sensors miss more than 10\% and 19 report
+nothing at all. The daily missing rate rises in two permanent steps (about 2.9\%\,$\to$\,3.9\% in spring 2020 and
+$\to$\,6.1\% in October 2020) as detectors go offline (Figure~\ref{fig:q3a}, centre), so the test period is more
+incomplete than the training year. We handle missing data in three ways:
 \begin{enumerate}
-\item \textbf{Targets and metrics.} A mask records which 15-minute values were actually observed. The training
-loss and every reported metric are computed \emph{only on observed targets} (masked MAE/RMSE), so imputed values
-are never treated as ground truth.
-\item \textbf{Model inputs.} Gaps of at most 1\,h (4 steps) are filled by linear interpolation in time (6\,818 values).
-Longer gaps are filled with the sensor's \emph{2020 (training) time-of-week mean profile} (2.54\,M values, mostly the
-dead sensors), falling back to the sensor's training mean or the global training mean. Only training-period
-statistics are used, so no validation or test information leaks into the inputs.
+\item \textbf{Targets and metrics.} A mask records which 15-minute values were actually observed (and plausible). The
+training loss and every reported metric use \emph{only observed targets} (masked MAE/RMSE), so imputed values are never
+treated as ground truth.
+\item \textbf{Model inputs: causal imputation.} Gaps of at most 1\,h (4 steps) are \emph{forward-filled} with the last
+observed value (10\,618 values). Longer gaps are filled with the sensor's \emph{2020 time-of-week mean profile}
+(2.57\,M values, mostly the dead sensors), falling back to the sensor's 2020 mean and then the global 2020 mean. The
+imputation never looks at later readings, so an input can never contain information from the targets it is used to
+predict (linear interpolation across a gap would), and only training-period statistics are used.
+\item \textbf{Reliable message sources.} Sensors with less than 50\% observed 2020 data have essentially no real input
+signal. They remain forecasting targets (masked as above), but they are \textbf{not used as message sources} by any graph:
+\textbf{690 of 716} sensors are reliable; the 26 others (19 of which never report in 2020) are removed as columns
+of the fixed graph (646 of 17\,319 directed road edges) and cannot be selected by the adaptive graph. This prevents a model
+from ``learning'' from imputed constants.
 \end{enumerate}
 
 \begin{figure}[H]
   \centering
   \includegraphics[width=0.93\linewidth]{figures/q3a_three_sensors_week.png}\\
-  \includegraphics[width=0.85\linewidth]{figures/q3a_missing.png}
+  \includegraphics[width=\linewidth]{figures/q3a_missing.png}
   \caption{Q3(a). Top: 15-minute flow of three sensors (high, median and low volume; all with $<2\%$ missing)
-  during Mon 3 -- Sun 9 Feb 2020. The weekday morning and evening peaks and the lower, later weekend profile are
-  clearly visible. Bottom: per-sensor missing rate (log scale) and daily missing percentage over 2020--2021.}
+  during Mon 3 -- Sun 9 Feb 2020; weekday morning and evening peaks and the lower, later weekend profile are clearly
+  visible. Bottom: per-sensor missing rate (log count), daily missing percentage over 2020--2021 (x-axis: Jan 2020 to
+  Jan 2022 in 3-month ticks), and the hour of day of zero-flow totals, split into short runs (kept) and runs of $\geq$1\,h
+  (treated as faults).}
   \label{fig:q3a}
 \end{figure}
 
 \subsection{Q3(b) The road-distance graph}
 \texttt{ca\_rn\_adj.npy} (8\,600$\times$8\,600) is indexed in the row order of \texttt{ca\_meta.csv}. The h5
 columns follow the same order (the IDs match), and we take $A_{SD}=A[\text{sd},\text{sd}]$ with the same index
-vector used for the traffic columns. Node $k$ of the graph is therefore column $k$ of the traffic tensor.
+vector used for the traffic columns, so node $k$ of the graph is column $k$ of the traffic tensor.
 
 \begin{center}\small
 \begin{tabular}{lr@{\hspace{2.2em}}lr}
@@ -125,9 +144,8 @@ Three sensors have no edges at all.
 
 \textbf{Meaning of $A_{ij}\neq0$.} Sensor $j$ can be reached from sensor $i$ within a short \emph{road-network}
 distance $d_{ij}$, and the value (between 0 and 1) measures how close they are: 1 means essentially co-located,
-and values near 0.01 mean at the edge of the kernel. It encodes proximity along roads, not straight-line
-distance and not measured traffic correlation. In the GCN, row $i$ of $\hat A$ says which sensors node $i$
-aggregates from and with what weights.
+values near 0.01 mean at the edge of the kernel. It encodes proximity along roads, not straight-line distance and not
+measured traffic correlation. In the GCN, row $i$ of $\hat A$ says which sensors node $i$ aggregates from and with what weights.
 
 \begin{figure}[H]
   \centering
@@ -139,12 +157,13 @@ aggregates from and with what weights.
 \end{figure}
 
 \subsection{Q3(c) One-hop and two-hop neighbourhoods}
-We picked a sensor with the median out-degree: \textbf{index 33, ID 1126411, I-5 North} (32.771$^\circ$N,
+We picked a reliable sensor with the median out-degree: \textbf{index 33, ID 1126411, I-5 North} (32.771$^\circ$N,
 117.207$^\circ$W), close to the I-5/I-8 interchange. Its \textbf{one-hop} neighbourhood $\{j:A_{ij}\ne0,\,j\ne i\}$
 has \textbf{20} sensors: 4 on I-5 N (weights 0.63--0.95, 2020 flow correlation 0.91--0.997), 7 on I-5 S, 6 on I-8 E and
-3 on I-8 W (weights 0.01--0.46). Its \textbf{two-hop} neighbourhood (paths of at most two edges) has \textbf{73} sensors,
-53 of which are reachable \emph{only} in two hops; these include sensors on SR-163 and I-805. Full ID lists are in the
-notebook. Figure~\ref{fig:q3c} shows them on a map.
+3 on I-8 W (weights 0.01--0.46). One of them (1115528, I-8 W) is an unreliable source and is masked as described in
+Q3(a). Its \textbf{two-hop} neighbourhood (paths of at most two edges) has \textbf{73} sensors, 53 of which are reachable
+\emph{only} in two hops; these include sensors on SR-163 and I-805. Full ID lists are in the notebook; Figure~\ref{fig:q3c}
+shows them on a map.
 
 \begin{figure}[H]
   \centering
@@ -155,7 +174,7 @@ notebook. Figure~\ref{fig:q3c} shows them on a map.
 
 \begin{itemize}
 \item \textbf{Why neighbours help.} Vehicles that pass sensor $i$ were recently at its upstream neighbours and will
-soon reach its downstream ones. A shockwave or incident downstream propagates upstream within minutes. Neighbours on
+soon reach its downstream ones, and a shockwave or incident downstream propagates upstream within minutes. Neighbours on
 the same carriageway are therefore leading indicators: in 2020 they correlate with the selected sensor at
 $r=0.91$--$0.997$. Neighbours also provide redundancy when the sensor itself is noisy or missing.
 \item \textbf{One-hop vs two-hop aggregation.} One graph-convolution layer ($\hat AZ$) mixes each node with its
@@ -167,8 +186,8 @@ weakly related (correlations as low as 0.78 on I-805 S).
 layers every node averages an $L$-hop region (with a mean degree of 24 this soon covers the whole network), so
 node representations converge toward one another (\emph{over-smoothing}) and lose the local detail needed to
 forecast a single sensor. Deep GCNs also over-squash information from exponentially many nodes into a fixed-width
-vector, are harder to optimise, and cost more. We use two residual layers: enough for two hops while the residual
-keeps each node's own temporal features.
+vector, are harder to optimise, and cost more. We use two \emph{residual} layers; the ablation in Q5(a) shows how badly a
+model does when a node's own features are not protected by a residual.
 \end{itemize}
 
 % ---------------------------------------------------------------------------
@@ -177,7 +196,7 @@ keeps each node's own temporal features.
 \subsection{Q4(a) Windows, splits and normalisation}
 For each $t$, $X_t=[x_{t-7},\dots,x_t]\in\mathbb R^{8\times716}$ and $Y_t=[x_{t+1},\dots,x_{t+4}]\in\mathbb R^{4\times716}$.
 A window is assigned to a split only if all 12 of its time steps lie inside that split, so no window crosses a split
-boundary.
+boundary (checked by assertions in the notebook).
 \begin{center}\small
 \begin{tabular}{lllr}
 \toprule
@@ -190,91 +209,107 @@ Test & 1 Apr -- 31 Dec 2021 & 2021-04-01 02:00 / 2021-12-31 23:45 & 26\,389\\
 \end{tabular}
 \end{center}
 Inputs and targets are z-scored with a single mean and standard deviation computed from \emph{observed 2020 values only}
-($\mu=607.39$, $\sigma=483.77$ veh/15\,min). Predictions are de-normalised before computing metrics.
+($\mu=607.98$, $\sigma=483.63$ veh/15\,min). Predictions are de-normalised before computing metrics.
 
-\subsection{Q4(b) Architecture}
+\subsection{Q4(b) Architecture and training}
 \begin{itemize}
 \item \textbf{Temporal encoder $f_{\text{temporal}}$} (weights shared by all sensors): each sensor's 8-step series is
 passed through \texttt{Conv1d(1$\to$d, k=3)}, ReLU, \texttt{Conv1d(d$\to$d, k=3, dilation 2)}, ReLU. The receptive field
-covers all 8 steps and the output has length 2. This is flattened and passed through \texttt{Linear(2d$\to$d)} and ReLU,
+covers all 8 steps and the output has length 2; it is flattened and passed through \texttt{Linear(2d$\to$d)} and ReLU,
 giving $Z\in\mathbb R^{B\times N\times d}$ with $d=32$.
-\item \textbf{Spatial graph convolution:} $\mathrm{GC}(Z)=\mathrm{ReLU}(\hat A Z W_g)$. It is computed with
+\item \textbf{Spatial graph convolution:} $\mathrm{GC}(Z)=\mathrm{ReLU}(\hat A Z W_g)$, computed with
 \texttt{torch.einsum} (subscripts \texttt{nm,bmd->bnd}), so the graph product acts on the node dimension
-independently for each batch item.
-We stack two such layers, each with a residual connection: $H^{(l+1)}=H^{(l)}+\mathrm{ReLU}(\hat A H^{(l)}W^{(l)})$, $H^{(0)}=Z$.
-The residual means the graph model contains the temporal-only model as a special case, which keeps the comparison fair.
-It also keeps a node's own signal when an adaptive $\hat A$ puts little weight on the diagonal.
+independently for each batch item. We stack two layers with residual connections,
+$H^{(l+1)}=H^{(l)}+\mathrm{ReLU}(\hat A H^{(l)}W^{(l)})$, $H^{(0)}=Z$. The residual makes the temporal-only model a special
+case of the graph model, and keeps a node's own signal when $\hat A$ puts little weight on the diagonal (the handout form
+without residual is evaluated as an ablation).
 \item \textbf{Forecast head $f_{\text{head}}$:} a per-node MLP \texttt{Linear(d$\to$d)}, ReLU, \texttt{Linear(d$\to$4)}, giving
 $\hat Y\in\mathbb R^{B\times4\times N}$ (direct multi-horizon output).
-\item \textbf{Loss:} masked MAE on normalised values (observed targets only).
+\item \textbf{Training:} masked MAE on normalised values; Adam (lr $10^{-3}$), batch 64, gradient clipping 5;
+\texttt{ReduceLROnPlateau} on validation MAE (factor 0.5, patience 3, min $10^{-5}$); at most 80 epochs with early stopping
+(patience 10) and the best-validation checkpoint restored. \textbf{Every configuration is trained with seeds 42, 43 and 44}
+and we report mean\,$\pm$\,std.
 \end{itemize}
 
 \subsection{Q4(c) Temporal-only baseline}
-The baseline uses the same encoder and head with the graph layers removed ($\hat Y=f_{\text{head}}(Z)$), and it is trained
-with exactly the same protocol. Its results and the comparison are in Table~\ref{tab:main} and Section~\ref{sec:q6}.
-In short, \textbf{explicit spatial modelling helps}. The fixed road graph lowers test MAE from 64.23 to 58.88
-($-8.3\%$) and RMSE from 100.95 to 92.66 ($-8.2\%$). The gain grows with the horizon: at 15\,min it is $-4.3\%$ MAE and at
-60\,min $-10.3\%$. A single sensor's last two hours say little about what will arrive in an hour, whereas upstream and
-downstream sensors carry exactly that information.
+The baseline uses the same encoder and head with the graph layers removed ($\hat Y=f_{\text{head}}(Z)$) and the same
+protocol. \textbf{Explicit spatial modelling helps}: the fixed road graph lowers test MAE from \sd{64.40}{0.14} to
+\sd{58.33}{0.15} ($-9.4\%$) and RMSE from \sd{101.32}{0.20} to \sd{91.93}{0.19} ($-9.3\%$), better in all 3 seeds
+(Table~\ref{tab:main}). The gain grows with the horizon: $-5.3\%$ MAE at 15\,min and $-11.8\%$ at 60\,min. A single sensor's
+last two hours say little about what will arrive in an hour, whereas upstream and downstream sensors carry exactly that
+information.
 
 % ---------------------------------------------------------------------------
 \section{Question 5 -- Fixed versus learnable adjacency}
-All three graph models share the encoder, two residual GC layers, head, data splits, seed (42), optimiser and
-early-stopping rule. Only the graph module differs.
+All graph models share the encoder, two residual GC layers, head, data splits, seeds, optimiser, schedule and
+early-stopping rule; only the graph module differs. In addition to the three required graphs we run four ablations
+(also 3 seeds each), described where they are relevant.
 
 \subsection{Q5(a) Fixed adjacency}
 Because $A_{SD}$ is directed, the symmetric $D^{-1/2}(A+I)D^{-1/2}$ does not apply. We use the \textbf{directed
 random-walk normalisation}
 \[
-  \hat A=D^{-1}\tilde A,\qquad \tilde A=A\text{ with } \tilde A_{ii}=1,\qquad D_{ii}=\textstyle\sum_j\tilde A_{ij}.
+  \hat A=D^{-1}\tilde A,\qquad \tilde A=A\text{ with } \tilde A_{ii}=1 \text{ and unreliable source columns zeroed},\qquad D_{ii}=\textstyle\sum_j\tilde A_{ij}.
 \]
-$A_{SD}$ already contains unit self-loops, so we set the diagonal to 1 instead of adding $I$, to avoid a double
-self-loop. Each row of $\hat A$ sums to 1, so node $i$ takes a weighted \emph{average} of the nodes $j$ that it reaches
-by road, and this works for any directed graph (no node has zero degree thanks to the self-loop). $\hat A$ is
-registered as a non-trainable buffer and stays unchanged throughout training. Results: test MAE 58.88, RMSE 92.66,
-training time 978\,s (Table~\ref{tab:main}).
+$A_{SD}$ already contains unit self-loops, so we set the diagonal to 1 instead of adding $I$ (no double self-loop). Each
+row of $\hat A$ sums to 1, so node $i$ takes a weighted \emph{average} of the nodes $j$ it reaches by road; this works
+for any directed graph, and no row is empty thanks to the self-loop. $\hat A$ is a non-trainable buffer.
+Result: test MAE \sd{58.33}{0.15}, RMSE \sd{91.93}{0.19}, 1692\,s training (Table~\ref{tab:main}).
+
+\textbf{Ablations of the fixed graph} (Table~\ref{tab:abl}):
+\begin{itemize}
+\item \emph{Bidirectional graph} $D^{-1}(\tilde A+\tilde A^\top)$: \sd{57.92}{0.07}, i.e.\ $-0.41$ MAE, better in 3/3 seeds
+but only 0.7\%. Symmetrising mainly adds the 3\,711 one-direction pairs as edges; the direction of the distance kernel is
+not what limits the fixed graph.
+\item \emph{Handout form: one GC layer, no residual}, $\hat Y=f_{\text{head}}(\mathrm{ReLU}(\hat AZW))$: \sd{137.58}{0.33},
+worse even than the last-value reference. This is \emph{underfitting}, not overfitting: the training MAE plateaus around 117.
+Without a residual a sensor sees its own history only through $\hat A_{ii}$, whose median is about 0.14 (measured on the
+normalised road graph before source masking, which removes only 3.7\% of its edges), so its forecast is essentially a distance-weighted average of neighbours that include the opposite
+carriageway and crossing freeways with different volumes and peak directions. This is why our main model uses residual layers.
+\end{itemize}
 
 \subsection{Q5(b) Learnable (adaptive) adjacency}
 Two embedding matrices $E_1,E_2\in\mathbb R^{716\times10}$ ($d_e=10$) are \texttt{nn.Parameter}s initialised from
 $\mathcal N(0,1)$. In every forward pass,
 \[
   S=\mathrm{ReLU}(E_1E_2^\top),\qquad
-  A_{\text{adaptive}}=\mathrm{Softmax}_{\text{row}}\big(\mathrm{TopK}_{k=20}(S)\big),
+  A_{\text{adaptive}}=\mathrm{Softmax}_{\text{row}}\big(\mathrm{TopK}_{k=20}(S+B)\big),
 \]
-where $\mathrm{TopK}$ keeps the 20 largest logits of each row and sets the rest to $-\infty$.
+where $B_{ij}=-\infty$ for unreliable source columns ($j\ne i$) and 0 otherwise, and $\mathrm{TopK}$ keeps the 20 largest
+logits of each row and sets the rest to $-\infty$.
 \begin{itemize}
-\item \textbf{Sparsification is applied \emph{before} the normalisation.} After the softmax, each row is a probability
+\item \textbf{Sparsification is applied \emph{before} the normalisation.} After the softmax each row is a probability
 distribution over exactly its 20 kept neighbours (rows sum to 1, like the fixed $\hat A$). Applying top-$k$ \emph{after} a
 dense softmax would leave rows that no longer sum to 1, with most of the mass thrown away while 716 nodes compete.
 \item \textbf{Gradient flow.} The top-$k$ \emph{selection} is piecewise constant, so no gradient flows through the choice of
-indices. In the backward pass it acts as a fixed mask. Gradients reach $E_1,E_2$ through the softmax and ReLU of the
+indices; in the backward pass it acts as a fixed mask. Gradients reach $E_1,E_2$ through the softmax and ReLU of the
 \emph{kept} logits: $\partial S_{ij}/\partial E_{1,i}=E_{2,j}$ and $\partial S_{ij}/\partial E_{2,j}=E_{1,i}$ when
 $S_{ij}>0$. Non-selected pairs get no gradient at that step, but because every embedding row is updated through its kept
 pairs, the ranking changes during training and new neighbours can enter the top 20. The graph adds 14\,320 parameters
-(22\,932 in total versus 8\,612 for the fixed model). It is learned only from training-window gradients, and the
-validation set is used only for early stopping.
+(22\,932 in total versus 8\,612 for the fixed model). It is learned only from training-window gradients; the validation set
+is used only for the LR schedule and early stopping.
 \end{itemize}
-The learned matrix is shown in Figure~\ref{fig:adj} and analysed in Section~\ref{sec:q6b}. Compared with the fixed graph,
-it lowers test MAE from 58.88 to \textbf{51.34} ($-12.8\%$) and RMSE from 92.66 to 81.17 ($-12.4\%$), at a cost of
-+9\% training time.
+Compared with the fixed graph, the adaptive graph lowers test MAE from \sd{58.33}{0.15} to \textbf{\sd{50.94}{0.36}}
+($-12.7\%$) and RMSE from 91.93 to \sd{80.60}{0.60} ($-12.3\%$), better in all 3 seeds, at +5.8\% training time. The learned
+matrix (Figure~\ref{fig:adj}) is analysed in Section~\ref{sec:q6b}.
 
 \subsection{Q5(c) Hybrid adjacency}
 \[
   A_{\text{hybrid}}=\alpha\,\hat A_{\text{fixed}}+(1-\alpha)\,A_{\text{adaptive}},\qquad \alpha=\sigma(a),\ a\in\mathbb R\ \text{learned},\ \alpha_0=0.5 .
 \]
 Both components are normalised consistently: both are \emph{row-stochastic} ($D^{-1}\tilde A$ and a row softmax), so
-$A_{\text{hybrid}}$ is a convex combination and is row-stochastic too. The adaptive part uses its own embeddings with the
-same top-20 rule. During training $\alpha$ fell from 0.50 to \textbf{0.057}: the model chose to rely mostly on the learned
-graph and keep a small physical prior. The hybrid reaches test MAE 51.43 / RMSE 81.39, essentially the same as the
-adaptive graph (difference $<0.2\%$). It is marginally better at the 45 and 60-minute horizons and marginally worse at
-15 and 30 minutes.
+$A_{\text{hybrid}}$ is a convex combination and is row-stochastic too. The adaptive part has its own embeddings and the
+same top-20 rule and source mask. In \emph{every} seed $\alpha$ fell from 0.50 to about 0.05 (0.050, 0.052, 0.060): the
+model chose to rely almost entirely on the learned graph. The hybrid reaches test MAE \sd{51.35}{0.72} and RMSE
+\sd{81.15}{1.11}, i.e.\ $+0.41\pm0.38$ MAE relative to the adaptive graph (adaptive better in 3/3 seeds, but the
+difference is about one hybrid seed standard deviation). The hybrid also has twice the seed-to-seed spread.
 
 \begin{figure}[H]
   \centering
   \includegraphics[width=\linewidth]{figures/q5_adjacency_fixed_adaptive_hybrid.png}
   \caption{Q5. Fixed $\hat A=D^{-1}\tilde A$ (left), learned top-20 $A_{\text{adaptive}}$ (centre) and hybrid with learned
-  $\alpha=0.06$ (right); log colour scale, zeros blank. The road graph is banded (sensors along a freeway); the learned
-  graph is spread over the whole matrix with a few vertical stripes (``hub'' columns that many sensors read from).}
+  $\alpha=0.05$ (right), seed 42; log colour scale, zeros blank. The road graph is banded (sensors along a freeway); the learned
+  graph is spread over the whole matrix with faint vertical stripes (columns that many sensors read from).}
   \label{fig:adj}
 \end{figure}
 
@@ -284,43 +319,69 @@ adaptive graph (difference $<0.2\%$). It is marginally better at the 45 and 60-m
 \subsection{Q6(a) Forecasting comparison}
 \begin{table}[H]
 \centering\small
-\caption{Main results. Metrics in vehicles per 15 minutes, averaged over the 4 horizons and over all observed
-(sensor, time) targets. Training time is the wall-clock time of the full training loop (including per-epoch validation)
-on one Tesla T4.}
+\caption{Main results, mean\,$\pm$\,std over seeds 42/43/44. Metrics in vehicles per 15 minutes, averaged over the 4
+horizons and all observed (sensor, time) targets. Training time is the wall-clock time of the full training loop (including
+per-epoch validation) on a dedicated Tesla T4.}
 \label{tab:main}
-\setlength{\tabcolsep}{4.5pt}
+\setlength{\tabcolsep}{4pt}
 \begin{adjustbox}{max width=\linewidth}
-\begin{tabular}{llrrrrrr}
+\begin{tabular}{llcccccc}
 \toprule
  & & \multicolumn{2}{c}{Validation} & \multicolumn{2}{c}{\textbf{Test}} & Training & Epochs \\
 \cmidrule(lr){3-4}\cmidrule(lr){5-6}
-Model & Adjacency & MAE & RMSE & \textbf{MAE} & \textbf{RMSE} & time & (best) \\
+Model & Adjacency & MAE & RMSE & \textbf{MAE} & \textbf{RMSE} & time (s) & run (best) \\
 \midrule
-Temporal-only & None     & 55.72 & 89.61 & 64.23 & 100.95 & 842\,s & 47 (39)\\
-STGNN         & Fixed    & 50.06 & 80.63 & 58.88 & 92.66  & 978\,s & 49 (41)\\
-STGNN         & Adaptive & \textbf{42.14} & \textbf{68.10} & \textbf{51.34} & \textbf{81.17} & 1063\,s & 50 (49)\\
-STGNN         & Hybrid   & 42.33 & 68.75 & 51.43 & 81.39  & 1067\,s & 50 (42)\\
+Temporal-only & None     & \sd{55.68}{0.19} & \sd{89.56}{0.30} & \sd{64.40}{0.14} & \sd{101.32}{0.20} & \sd{1407}{151} & 75.3 (71.7)\\
+STGNN         & Fixed    & \sd{49.31}{0.13} & \sd{79.41}{0.28} & \sd{58.33}{0.15} & \sd{91.93}{0.19}  & \sd{1692}{15} & 80 (78.3)\\
+STGNN         & Adaptive & \textbf{\sd{41.65}{0.19}} & \textbf{\sd{67.33}{0.31}} & \textbf{\sd{50.94}{0.36}} & \textbf{\sd{80.60}{0.60}} & \sd{1790}{27} & 80 (78.3)\\
+STGNN         & Hybrid   & \sd{42.22}{0.92} & \sd{68.25}{1.49} & \sd{51.35}{0.72} & \sd{81.15}{1.11}  & \sd{1807}{17} & 80 (79.0)\\
 \midrule
-\multicolumn{4}{l}{\emph{Reference: last value}} & 87.14 & 132.99 & -- & --\\
-\multicolumn{4}{l}{\emph{Reference: 2020 time-of-week mean}} & 134.27 & 188.18 & -- & --\\
+\multicolumn{4}{l}{\emph{Reference: last value}} & 87.19 & 133.03 & -- & --\\
+\multicolumn{4}{l}{\emph{Reference: 2020 time-of-week mean}} & 134.20 & 187.96 & -- & --\\
 \bottomrule
 \end{tabular}
 \end{adjustbox}
 
 \vspace{2pt}
-{\footnotesize Seconds per epoch: 17.9 (temporal-only), 20.0 (fixed), 21.3 (adaptive), 21.3 (hybrid).}
+{\footnotesize Seconds per epoch: 18.7 (temporal-only), 21.2 (fixed), 22.4 (adaptive), 22.6 (hybrid).}
 
 \vspace{6pt}
 \begin{adjustbox}{max width=\linewidth}
-\begin{tabular}{lrrrr@{\hspace{1.5em}}rrrr}
+\begin{tabular}{lcccc@{\hspace{1.5em}}rrrr}
 \toprule
- & \multicolumn{4}{c}{Test MAE at horizon} & \multicolumn{4}{c}{Test RMSE at horizon}\\
+ & \multicolumn{4}{c}{Test MAE at horizon (mean\,$\pm$\,std)} & \multicolumn{4}{c}{Test RMSE at horizon (mean)}\\
 Adjacency & 15 min & 30 min & 45 min & 60 min & 15 min & 30 min & 45 min & 60 min\\
 \midrule
-None     & 44.78 & 58.32 & 70.46 & 83.37 & 69.07 & 90.62 & 108.51 & 126.53\\
-Fixed    & 42.86 & 53.96 & 63.90 & 74.79 & 66.02 & 84.23 & 99.01  & 114.40\\
-Adaptive & \textbf{39.68} & \textbf{48.33} & 55.39 & 61.97 & \textbf{62.02} & \textbf{76.24} & \textbf{86.59} & 95.91\\
-Hybrid   & 39.93 & 48.60 & \textbf{55.25} & \textbf{61.93} & 62.33 & 76.78 & 86.80 & \textbf{95.81}\\
+None     & \sd{44.57}{0.04} & \sd{58.33}{0.11} & \sd{70.87}{0.18} & \sd{83.82}{0.23} & 68.90 & 90.65 & 109.08 & 127.27\\
+Fixed    & \sd{42.20}{0.09} & \sd{53.55}{0.13} & \sd{63.65}{0.23} & \sd{73.93}{0.22} & 65.45 & 83.71 & 98.62  & 113.09\\
+Adaptive & \textbf{\sd{39.57}{0.12}} & \textbf{\sd{48.11}{0.29}} & \textbf{\sd{54.84}{0.49}} & \textbf{\sd{61.26}{0.56}} & \textbf{61.89} & \textbf{75.99} & \textbf{85.97} & \textbf{94.81}\\
+Hybrid   & \sd{39.74}{0.25} & \sd{48.40}{0.68} & \sd{55.37}{0.93} & \sd{61.89}{1.02} & 62.09 & 76.34 & 86.66 & 95.64\\
+\bottomrule
+\end{tabular}
+\end{adjustbox}
+\end{table}
+
+\begin{table}[H]
+\centering\small
+\caption{Ablations and paired comparisons. $\Delta$MAE is the per-seed difference of test MAE (A$-$B), averaged over the 3
+seeds (negative = A better).}
+\label{tab:abl}
+\setlength{\tabcolsep}{4pt}
+\begin{adjustbox}{max width=\linewidth}
+\begin{tabular}{lccccl}
+\toprule
+Configuration (A) & Params & Test MAE & Test RMSE & $\Delta$MAE vs (B) & A better\\
+\midrule
+Fixed, 1 GC layer, no residual (handout form) & 7\,556  & \sd{137.58}{0.33} & \sd{217.23}{0.90} & $+79.25\pm0.34$ vs fixed & 0/3\\
+Fixed, bidirectional $D^{-1}(\tilde A+\tilde A^\top)$ & 8\,612 & \sd{57.92}{0.07} & \sd{91.46}{0.09} & $-0.41\pm0.11$ vs fixed & 3/3\\
+Temporal-only + node embedding (20-d)         & 21\,492 & \sd{60.15}{0.41} & \sd{94.84}{0.71} & $-4.25\pm0.27$ vs none & 3/3\\
+Fixed + node embedding (20-d)                 & 23\,604 & \sd{53.98}{0.25} & \sd{85.02}{0.41} & $-4.36\pm0.37$ vs fixed & 3/3\\
+\midrule
+Fixed vs temporal-only                        &         &                  &                  & $-6.07\pm0.09$ & 3/3\\
+Adaptive vs fixed                             &         &                  &                  & $-7.39\pm0.49$ & 3/3\\
+Adaptive vs fixed + node embedding            &         &                  &                  & $-3.03\pm0.45$ & 3/3\\
+Adaptive vs temporal-only + node embedding    &         &                  &                  & $-9.20\pm0.62$ & 3/3\\
+Hybrid vs adaptive                            &         &                  &                  & $+0.41\pm0.38$ & 0/3\\
 \bottomrule
 \end{tabular}
 \end{adjustbox}
@@ -329,55 +390,72 @@ Hybrid   & 39.93 & 48.60 & \textbf{55.25} & \textbf{61.93} & 62.33 & 76.78 & 86.
 \begin{figure}[H]
   \centering
   \includegraphics[width=\linewidth]{figures/q6a_curves_horizons.png}
-  \caption{Learning curves (train dashed, validation solid) and test error per horizon.}
+  \caption{Left: learning curves of seed 42 (train dashed, validation solid). Centre/right: test MAE and RMSE per horizon,
+  mean\,$\pm$\,std over 3 seeds (error bars are smaller than the markers for most points).}
   \label{fig:curves}
 \end{figure}
 
 \begin{figure}[H]
   \centering
   \includegraphics[width=\linewidth]{figures/q6a_pred_vs_actual.png}
-  \caption{Predicted versus actual flow for three test sensors (I-8 W, SR-163 S, SR-78 W) during Tue 6 -- Thu 8 April 2021,
-  15-minute-ahead (left) and 60-minute-ahead (right).}
+  \caption{Predicted versus actual flow (seed 42) for three test sensors (I-8 W, SR-163 S, SR-52 W) during Tue 6 -- Thu 8
+  April 2021, 15-minute-ahead (left) and 60-minute-ahead (right).}
   \label{fig:pred}
 \end{figure}
 
 \paragraph{Observations.}
-(1) All learned models beat the naive references by a wide margin (last value: 87.1 MAE). (2) The ranking is
-temporal-only $>$ fixed $>$ hybrid $\approx$ adaptive in error, on both validation and test, at every horizon.
-(3) The value of spatial information grows with the horizon: the adaptive graph cuts 60-minute MAE by 25.7\% relative to
-temporal-only, but 15-minute MAE by only 11.4\%. (4) In Figure~\ref{fig:pred}, all models follow the daily profile at
-15\,min. At 60\,min the temporal-only and fixed models overshoot the morning ramp of sensor 500 by 200--300 veh/15\,min
-(they extrapolate the rising trend), while the adaptive and hybrid models stay closer to the true plateau. No model
-anticipates the sharp isolated spikes of sensor 590, which have no precursor in the 2-hour input. (5) Test errors are
-about 15--22\% higher than validation errors for every model. The test period (Apr--Dec 2021) differs from the 2020
-training year: it has more missing data (6.0\% vs 4.1\%) and, plausibly, traffic recovering from 2020 pandemic
-conditions. The gap therefore most likely reflects distribution shift rather than overfitting (it appears for all models,
-including the 6.5\,k-parameter baseline). (6) The adaptive model's best epoch was 49 of the 50-epoch cap,
-so it might improve slightly with more epochs. Because the protocol must be identical for all models, we kept the cap.
+\begin{enumerate}
+\item \textbf{All learned models beat the naive references} by a wide margin; the adaptive model has 41.6\% lower MAE than
+repeating the last value.
+\item \textbf{The ranking is robust.} Temporal-only $>$ temporal-only + embedding $>$ fixed $\approx$ bidirectional $>$
+fixed + embedding $>$ hybrid $\geq$ adaptive (in error). Every adjacent step except hybrid--adaptive holds in all 3 seeds,
+and the seed standard deviations (0.07--0.41 for most models) are an order of magnitude smaller than the gaps.
+\item \textbf{The value of spatial information grows with the horizon:} relative to temporal-only, the adaptive graph cuts
+15-minute MAE by 11.2\% but 60-minute MAE by 26.9\%.
+\item \textbf{Where does the adaptive gain come from?} The adaptive graph gives every sensor its own parameters ($E_1,E_2$),
+which a shared encoder lacks. Adding a 20-d per-sensor embedding to $Z$ (no learned graph) already improves the
+temporal-only model by 4.25 and the fixed model by 4.36 MAE. So about \textbf{59\%} of the fixed$\to$adaptive gap
+(4.36 of 7.39) is obtainable from node identity alone, and the remaining \textbf{3.03 MAE} (3/3 seeds) is attributable to the
+learned neighbour structure. Conversely, the road graph is worth more than identity alone (58.33 vs 60.15) and the two are
+complementary (53.98).
+\item \textbf{Qualitatively} (Figure~\ref{fig:pred}), all models follow the daily profile closely at 15\,min. At 60\,min the
+temporal-only and fixed models are visibly noisier around the peaks, and every model underestimates the sharp morning peaks of
+sensor 233 and misses the isolated mid-day spikes of sensor 590, which have no precursor in the 2-hour input.
+\item \textbf{Validation vs test.} Test errors are 16--22\% higher than validation errors for every model. The test period
+(Apr--Dec 2021) has more missing data (Q3(a)) and different seasons than the Jan--Mar validation window, and 2021 traffic was
+recovering from 2020 pandemic conditions. The gap is somewhat larger for the better models (22\% adaptive vs 16\% temporal-only),
+which suggests that part of what the learned graph exploits is specific to 2020 patterns.
+\item \textbf{Convergence.} With the LR schedule most runs used all 80 epochs and selected a late epoch (76--80), but the learning
+rate had already been halved several times and the best validation MAE of the last 10 epochs improved on the previous best by at
+most 0.37\% (0.15 veh/15\,min) for the main models. Two runs stopped early (temporal-only seed 44, temporal-only+embedding seed 42).
+The cap therefore has a negligible effect and is identical for all models. The only model still improving noticeably is the
+handout-form ablation, whose 79-point gap cannot be closed by more epochs.
+\end{enumerate}
 
 \subsection{Q6(b) Graph structure analysis}\label{sec:q6b}
-We compare the learned top-20 graph of the adaptive model with the road graph using (i) whether an edge exists in $A_{SD}$
-and its hop distance in the (undirected) road graph, (ii) the straight-line (haversine) distance from the sensor coordinates,
-and (iii) the Pearson correlation of the two sensors' \emph{2020} flow series. Uniformly random sensor pairs serve as the null
-baseline.
+We compare each seed's learned top-20 graph with the road graph on \emph{reliable sensors only} (both endpoints with $\geq$50\%
+observed 2020 data, 690 sensors) using (i) whether an edge exists in $A_{SD}$ and its hop distance in the (undirected) road
+graph, (ii) the straight-line (haversine) distance, and (iii) the Pearson correlation of the two sensors' \emph{2020} flow series.
+Random pairs of reliable sensors are the null baseline.
 
 \begin{table}[H]
 \centering\small
-\caption{Learned versus physical connectivity (adaptive model; ``top-$m$'' means each node's $m$ largest off-diagonal weights).}
+\caption{Learned versus physical connectivity (adaptive model, mean\,$\pm$\,std over 3 seeds; ``top-$m$'' means each node's
+$m$ largest off-diagonal weights).}
 \label{tab:graph}
-\setlength{\tabcolsep}{4.5pt}
+\setlength{\tabcolsep}{4pt}
 \begin{adjustbox}{max width=\linewidth}
-\begin{tabular}{lrrrrrr}
+\begin{tabular}{lrcccccc}
 \toprule
- & & \% road & \% within & median & median & mean 2020\\
-Edge set & \# edges & edge & 2 hops & hops & km & corr.\\
+ & & \% road & \% within & \% not & median & median & mean 2020\\
+Edge set & \# edges & edge & 2 hops & connected & hops & km & corr.\\
 \midrule
-Road-graph edges            & 17\,319 & 100.0 & 100.0 & 1 & 2.4  & 0.855\\
-Learned top-1 per node      & 716     & 7.4   & 17.0  & 6 & 19.3 & \textbf{0.903}\\
-Learned top-5 per node      & 3\,580  & 5.8   & 13.8  & 7 & 21.2 & 0.881\\
-Learned all kept (top-20)   & 14\,312 & 4.3   & 10.7  & 7 & 22.9 & 0.852\\
-Hybrid (adaptive part) top-1 & 716    & 6.8   & 17.9  & 6 & 19.0 & 0.906\\
-Random pairs                & 19\,970 & 4.1   & 9.8   & 7 & 23.1 & 0.842\\
+Road-graph edges            & 16\,129 & 100.0 & 100.0 & 0.0 & 1 & 2.4  & 0.855\\
+Learned top-1 per node      & 690     & \sd{7.5}{2.0} & \sd{16.4}{2.1} & \sd{3.7}{0.6} & 6.3 & \sd{19.5}{1.0} & \textbf{\sd{0.89}{0.01}}\\
+Learned top-5 per node      & 3\,450  & \sd{5.6}{0.5} & \sd{13.2}{0.5} & \sd{4.3}{0.9} & 7 & \sd{21.0}{0.2} & \sd{0.87}{0.00}\\
+Learned all kept (top-20)   & $\approx$13\,780 & \sd{4.6}{0.2} & \sd{11.2}{0.1} & \sd{4.1}{0.4} & 7 & \sd{22.6}{0.1} & \sd{0.85}{0.00}\\
+Hybrid (adaptive part) top-1 & 690    & \sd{7.1}{0.4} & \sd{16.6}{1.1} & \sd{3.9}{1.2} & 6.7 & \sd{20.1}{1.7} & \sd{0.90}{0.00}\\
+Random reliable pairs       & 19\,973 & 4.3   & 10.2  & 3.0 & 7 & 22.8 & 0.845\\
 \bottomrule
 \end{tabular}
 \end{adjustbox}
@@ -387,118 +465,125 @@ Random pairs                & 19\,970 & 4.1   & 9.8   & 7 & 23.1 & 0.842\\
   \centering
   \includegraphics[width=\linewidth]{figures/q6b_learned_vs_physical.png}
   \includegraphics[width=0.92\linewidth]{figures/q6b_map_learned_edges.png}
-  \caption{Q6(b). Top: distance distributions, flow-correlation distributions, and road-graph hop distance of learned
+  \caption{Q6(b), seed 42. Top: distance distributions, flow-correlation distributions, and road-graph hop distance of learned
   edges compared with road edges and random pairs. Bottom: road graph (left) versus each sensor's strongest learned neighbour
   (right; blue = also a road edge, red = not).}
   \label{fig:q6b}
 \end{figure}
 
 \begin{enumerate}
-\item \textbf{Are the strongest learned connections in the road graph?} Mostly not. Only 7.4\% of each node's strongest
-learned neighbour is a road-graph edge (in either direction). That is $1.8\times$ the 4.1\% expected by chance, so there is a
-weak enrichment, but more than 90\% of the strongest learned links are not physical edges. Among the 15 largest individual
-weights, 4 are road edges (e.g.\ two co-located I-805 N/S sensors 0.13\,km apart, weight 0.92). The other 11 connect sensors
-2--13 hops apart (median 9), and one pair is not connected in the road graph at all.
-\item \textbf{Are learned connections geographically local?} Only weakly. Road-graph edges have a median length of 2.4\,km.
-The learned top-1 edges have a median of 19.3\,km, close to the 23.1\,km of random pairs, and their distance histogram almost
-matches the random one apart from a small excess below 15\,km. The share within 2 hops is 17\% versus 10\% for random pairs.
-Locality emerges a little but is not what the model optimises for.
-\item \textbf{Does the learned graph capture dependencies absent from the physical graph?} Yes. The learned top-1 neighbours
-have a \emph{higher} mean 2020 flow correlation (0.903) than road neighbours (0.855) or random pairs (0.842), and the Spearman
-correlation between learned weight and flow correlation on kept edges is 0.25. The model links sensors with similar temporal
-profiles (same commuting direction and peak timing on different freeways) even when they are 20+\,km apart: a ``functional''
-graph rather than a physical one. It also forms hub columns (484 of 716 nodes receive weight; the largest column sum is 9.4)
-that act as shared reference profiles for many sensors. Some of the strongest weights point to sensors that had \emph{no}
-observed 2020 data (their 2020 correlation is undefined). For these inputs the model sees a constant imputed series, so the
-weight behaves like a learned bias rather than evidence of a traffic dependency.
+\item \textbf{Are the strongest learned connections in the road graph?} Mostly not. Only \sd{7.5}{2.0}\% of each node's
+strongest learned neighbour is a road edge (either direction), $1.8\times$ the 4.3\% of random pairs: a weak but consistent
+enrichment, with more than 90\% of the strongest links not physical. None of the 15 largest individual weights (seed 42,
+0.40--0.64) is a road edge; they connect sensors 2--19 hops apart (one pair is not connected at all) and 4--69\,km apart,
+often on different freeways (e.g.\ SR-56 E $\to$ SR-78 W).
+\item \textbf{Are learned connections geographically local?} Only weakly. Road edges have a median length of 2.4\,km. The
+learned top-1 edges have a median of 19.5\,km, close to the 22.8\,km of random pairs, and their distance histogram almost matches
+the random one apart from a small excess below 15\,km; 16\% are within 2 hops versus 10\% for random pairs.
+\item \textbf{Does the learned graph capture dependencies absent from the physical graph?} Yes, in the sense of similarity:
+the learned top-1 neighbours have a \emph{higher} mean 2020 flow correlation (0.89) than road neighbours (0.855) or random pairs
+(0.845), and the hop histogram shows that most of them are 4+ hops away. The model links sensors with similar temporal profiles
+(same commuting direction and peak timing on different freeways) even 20+\,km apart: a ``functional'' graph. The link to
+similarity is loose, though (seed 42): the Spearman correlation between learned weight and flow correlation on kept edges is only 0.19,
+and some of the largest weights connect sensors with 2020 correlation of 0.27--0.60. The learned self-weight is almost zero
+(mean 0.001), so the graph is used purely to import \emph{other} sensors' information; the residual carries the node's own.
+Weight is spread over many columns (476 of the 690 eligible sources receive weight; the 10 largest columns carry 9.6\% of all
+weight), without dominant hubs.
+\item \textbf{Is it stable across seeds?} The aggregate statistics above are very stable (small std), and so is the test error
+(\sd{50.94}{0.36}). But the specific edges are not: the Jaccard overlap of each node's top-5 neighbour set between two seeds is
+only 0.014 (chance level 0.004). Very different graphs give the same accuracy, so the learned adjacency is far from identifiable.
 \item \textbf{Why can a learned graph be better or worse than a fixed one?} \emph{Better}: it is optimised directly for the
-forecasting loss. It can (a) connect sensors with similar daily or weekly patterns, which the encoder cannot otherwise
-access because the model has no time-of-day input (neighbours effectively act as a learned temporal context), (b) bypass
-missing or faulty neighbours, and (c) use sharper, task-specific weights instead of distance kernels in which a node averages
-24 neighbours equally. \emph{Worse}: it has many more parameters ($N\times d_e\times2$), needs plenty of data and epochs, can
-latch onto spurious correlations (as with the dead sensors), is not interpretable, and does not transfer to new sensors or a
-changed network. The fixed graph encodes true causal propagation paths, which matter most for non-recurrent events
-such as incidents, and it costs no parameters. With 35\,k training windows of strongly recurrent commuter traffic, the
-data-driven graph wins here.
+forecasting loss. It (a) gives each sensor its own parameters, which, as the embedding ablation shows, explains more than half of
+its advantage; (b) connects sensors with similar daily or weekly patterns, which the encoder cannot otherwise access because the
+model has no time-of-day input; and (c) uses sharp, task-specific weights instead of a distance kernel in which a node averages
+about 24 neighbours. \emph{Worse}: it costs $2Nd_e$ parameters, needs a lot of data and epochs, can latch onto spurious or
+2020-specific correlations (the larger validation--test gap hints at this), is not identifiable or interpretable, and does not
+transfer to new sensors or a changed network. The fixed graph encodes real propagation paths, which matter most for
+non-recurrent events such as incidents, at no parameter cost. With 35\,k training windows of strongly recurrent commuter traffic,
+the data-driven graph wins here.
 \end{enumerate}
 
 \subsection{Q6(c) Critical discussion}
 \begin{itemize}
-\item \textbf{Does lower error imply the learned graph is the true road connectivity?} No. The adaptive graph has the lowest
-error yet only 4--7\% of its edges are road edges, close to chance. Forecasting loss rewards any \emph{predictive} feature, and
-correlation is not connectivity: two commuter routes 30\,km apart can share a peak time without any vehicle travelling between
-them. The adjacency is also not identifiable. Many different $(E_1,E_2)$ and weight matrices $W_g$ give the same
-predictions, and the GC weights, residual and head can compensate for a ``wrong'' graph. Some of the strongest weights
-point to sensors with no training data at all. Learned graphs should be read as dependency or similarity structure, not as
-a map.
+\item \textbf{Does lower error imply the learned graph is the true road connectivity?} No, and our results show it three ways.
+(1) The best model's strongest edges are road edges only 7.5\% of the time, close to chance. (2) Three seeds reach the same error
+with almost disjoint neighbour sets (Jaccard 0.014), so the data do not pin down a single graph. (3) Most of the improvement can be
+obtained with node embeddings and no learned graph at all. Forecasting loss rewards any \emph{predictive} feature, and correlation
+is not connectivity: two commuter routes 30\,km apart can share a peak time without any vehicle travelling between them. The GC
+weights, residual and head can also compensate for a ``wrong'' graph. Learned graphs should be read as dependency or similarity
+structure, not as a map.
 \item \textbf{Why can a hybrid outperform either alone?} The two graphs carry complementary information. The physical graph is a
-reliable prior for local, directional propagation (incidents, queue spill-back, missing-sensor smoothing) and helps early in
-training and for rare events. The adaptive graph adds long-range similarity. A convex combination lets the model use the prior
-where it helps and learn corrections elsewhere, and the prior regularises the embeddings. In our run the learned
-$\alpha=0.057$, so the hybrid nearly reduced to the adaptive graph and performed the same (51.43 vs 51.34 MAE; slightly better
-at 45--60\,min). This suggests that, for this recurrent-flow task and model, most of the spatial gain comes from learned
-similarity. A hybrid would be expected to help more for congestion and speed forecasting, with fewer epochs, or under
+reliable prior for local, directional propagation (incidents, queue spill-back, smoothing over a faulty sensor), helps early in
+training and for rare events, and regularises the embeddings; the adaptive graph adds long-range similarity. A combination can use
+the prior where it helps and learn corrections elsewhere; the embedding ablation confirms that road structure and learned node
+information are complementary (fixed + embedding beats both parts). In our convex mixing, however, $\alpha$ collapsed to $\approx$0.05
+in every seed and the hybrid was 0.41 MAE worse than the adaptive graph with a larger seed spread. A single row-stochastic mixture
+forces the two graphs to share one weight matrix and one ``budget'' of attention per row, so the fixed component mostly dilutes the
+learned one. Giving each graph its own GC weights (summing $\hat A ZW_1+A_{\text{adp}}ZW_2$, as in Graph WaveNet) would let the model
+use both. A hybrid would also be expected to help more for speed/congestion forecasting, for small training sets, or under
 distribution shift.
 \item \textbf{Limitations of a static graph.} Traffic dependencies change during the day and the week. At 3\,a.m.\ sensors are
-nearly independent and free-flowing. During the morning peak, inbound sensors couple strongly and queues propagate upstream
-at shockwave speed, and the dominant direction reverses in the evening. Incidents, lane closures, weather and events
-create short-lived dependencies, and 2020 lockdown patterns differ from 2021. A single matrix, fixed or learned, can only
-capture an average of these regimes, so it over-smooths free-flow periods and under-represents peak-time propagation. Remedies
-include time-varying or input-conditioned adjacency (e.g.\ attention over nodes, graphs that depend on time of day or the current
-state, as in dynamic-graph STGNNs), separate forward and backward diffusion, and adding time-of-day/day-of-week features.
+nearly independent and free-flowing; during the morning peak inbound sensors couple strongly and queues propagate upstream at
+shockwave speed, and the dominant direction reverses in the evening. Incidents, lane closures, weather and events create
+short-lived dependencies, and 2020 lockdown patterns differ from 2021. A single matrix, fixed or learned, can only capture an
+average of these regimes, so it over-smooths free-flow periods and under-represents peak-time propagation. Remedies include
+time-varying or input-conditioned adjacency (attention over nodes, graphs that depend on time of day or on the current state, as in
+dynamic-graph STGNNs), separate forward and backward diffusion, and time-of-day/day-of-week features.
 \end{itemize}
 
 % ---------------------------------------------------------------------------
 \section{Question 7 -- Reproducibility}
-\paragraph{Code.} Everything is in one notebook, \texttt{notebook/dlstg\_pa3.ipynb} (generated from the jupytext source
-\texttt{notebook/dlstg\_pa3.py}). The repository (\url{\repourl}) also contains:
-\begin{itemize}
-\item the executed notebook with all outputs (\texttt{notebook/dlstg\_pa3\_executed.ipynb});
-\item the \texttt{outputs/} folder: figures, metrics (\texttt{results.json}, \texttt{results\_table.csv}), graph-analysis CSVs,
-learned adjacency matrices, model weights and the run log;
-\item \texttt{outputs.zip}, an archive of the same folder.
-\end{itemize} The README gives step-by-step instructions to rerun on Kaggle (via the
-Kaggle API or the web UI) or locally. If the dataset is not found, the notebook runs a small synthetic smoke test of the full
-pipeline.
+\paragraph{Code.} Everything is produced by one notebook, \texttt{notebook/dlstg\_pa3.ipynb} (generated from the jupytext source
+\texttt{notebook/dlstg\_pa3.py}). The notebook writes the model/training library \texttt{stgnn\_lib.py} to the working directory
+and launches it as one worker process per GPU; the same file is in \texttt{notebook/} and \texttt{outputs/}. The repository
+(\url{\repourl}) also contains the executed notebook with all outputs (\texttt{notebook/dlstg\_pa3\_executed.ipynb}), the
+\texttt{outputs/} folder (figures; \texttt{results.json}; \texttt{results\_summary.csv}, \texttt{results\_per\_seed.csv},
+\texttt{paired\_comparisons.csv}; graph-analysis CSVs; per-run histories, learned adjacency matrices, model weights and test
+predictions in \texttt{outputs/runs/}; the full run log), and \texttt{outputs.zip}. The README gives step-by-step instructions to
+rerun on Kaggle (API or web UI) or locally; without the dataset the notebook runs a synthetic smoke test of the full pipeline.
 
-\paragraph{Hyper-parameters (identical for all four models).}
+\paragraph{Hyper-parameters (identical for all configurations).}
 \begin{center}\small
 \begin{tabular}{>{\raggedright\arraybackslash}p{0.30\linewidth}>{\raggedright\arraybackslash}p{0.62\linewidth}}
 \toprule
 Hyper-parameter & Value\\
 \midrule
 Input / output steps & 8 / 4 (15-minute steps)\\
+Data cleaning & zero runs $\geq$1\,h $\to$ missing; sources with $<$50\% observed 2020 data masked\\
+Input imputation & forward fill for gaps $\leq$1\,h, otherwise 2020 time-of-week profile\\
 Temporal encoder & Conv1d ($k$=3), Conv1d ($k$=3, dilation 2), Linear; hidden dim $d=32$\\
 Graph convolution & 2 residual layers, $H \leftarrow H+\mathrm{ReLU}(\hat A H W)$\\
 Forecast head & Linear(32,32), ReLU, Linear(32,4)\\
 Fixed $\hat A$ & $D^{-1}\tilde A$ (directed random-walk normalisation)\\
 Adaptive graph & embedding dim $d_e=10$, top-$k=20$ before row softmax\\
 Hybrid $\alpha$ & learned, $\alpha=\sigma(a)$, initialised at 0.5\\
+Node embedding (ablations) & 20-d per sensor, Linear(20$\to$32) added to $Z$\\
 Loss & masked MAE on z-scored values\\
-Optimiser & Adam, learning rate $10^{-3}$, no weight decay\\
-Batch size & 64\\
-Epochs & at most 50; early stopping with patience 8 on validation MAE\\
+Optimiser & Adam, learning rate $10^{-3}$, no weight decay, batch size 64\\
+LR schedule & ReduceLROnPlateau on val.\ MAE: factor 0.5, patience 3, min $10^{-5}$\\
+Epochs & at most 80; early stopping with patience 10; best-validation checkpoint\\
 Gradient clipping & 5.0 (global norm)\\
 Normalisation & z-score with mean/std of observed 2020 values\\
-Random seed & \textbf{42} (Python, NumPy, PyTorch, CUDA)\\
+Random seeds & \textbf{42, 43, 44} for every configuration (Python, NumPy, PyTorch, CUDA, batch order)\\
 Determinism & cuDNN deterministic mode; \texttt{CUBLAS\_WORKSPACE\_CONFIG=:4096:8}\\
 \bottomrule
 \end{tabular}
 \end{center}
-The parameter counts are 6\,500 (temporal-only), 8\,612 (fixed), 22\,932 (adaptive) and 22\,933 (hybrid). The seed is reset before
-each model is built, so the shared modules start from the same initialisation. The epochs actually run and the best epochs are
-listed in Table~\ref{tab:main}.
+The seed is set immediately before each model is built, so for a given seed all configurations start their shared modules from the
+same initialisation and see the same batch order. Parameter counts are listed in Table~\ref{tab:abl} and in the notebook
+(6\,500 temporal-only, 8\,612 fixed, 22\,932 adaptive, 22\,933 hybrid).
 
-\paragraph{Hardware and timings.} The run was a Kaggle notebook (commit run): \textbf{1$\times$ NVIDIA Tesla T4 (15.6\,GB)}
-(two were attached but only one was used), Intel Xeon @ 2.00\,GHz with 4 vCPUs, 33.7\,GB RAM, Linux 6.18, Python 3.13.16,
-PyTorch 2.11.0+cu130 (CUDA 13.0), NumPy 2.1.3, pandas 2.3.3. Measured times: reading and extracting the two HDF5 years took
-67\,s, and imputation under 1\,s. Training took 842\,s (temporal-only), 978\,s (fixed), 1063\,s (adaptive) and 1067\,s (hybrid),
-i.e.\ 17.9--21.3\,s per epoch. The full notebook ran in about 70 minutes. The model is small enough to train on a CPU, but more
-slowly.
+\paragraph{Hardware and timings.} Kaggle notebook (commit run) with \textbf{2$\times$ NVIDIA Tesla T4 (15.6\,GB)}, Intel Xeon @
+2.00\,GHz with 4 vCPUs, 33.7\,GB RAM, Linux 6.18, Python 3.13.16, PyTorch 2.11.0+cu130 (CUDA 13.0), NumPy 2.1.3, pandas 2.3.3.
+The 24 runs (8 configurations $\times$ 3 seeds) were executed by two worker processes, \textbf{one per GPU}, which claimed runs
+one at a time (13 and 11 runs); each run therefore had a GPU to itself, and the per-epoch times are comparable across models
+(18.7--22.6\,s; Table~\ref{tab:main}). Reading and extracting the two HDF5 years took 50\,s and imputation under 1\,s. Training
+all 24 runs took 342\,min of wall-clock time and the whole notebook about 5.7\,h. The peak resident memory of the notebook process
+was 3.4\,GB.
 
-\paragraph{Leakage checks.} Normalisation statistics, imputation profiles, the learned graphs and every trainable parameter use
-training data only. The validation set is used only for early stopping, and all four models are evaluated on the same test
-windows (April--December 2021) with the same mask.
+\paragraph{Leakage checks.} Normalisation statistics, imputation profiles, the reliable-source mask, the learned graphs and every
+trainable parameter use training data only, and input imputation is causal. The validation set is used only for the LR schedule and
+early stopping, and all models are evaluated on the same test windows (April--December 2021) with the same mask.
 
 % ---------------------------------------------------------------------------
 \appendix
@@ -508,27 +593,44 @@ In line with the course AI policy, this section records how generative AI was us
 \paragraph{Tool.} Claude Code (Anthropic, model Claude Opus 5.5), an agentic coding assistant running in my terminal with
 access to my local assignment folder, my Kaggle API credentials and the GitHub CLI.
 
-\paragraph{Prompt (verbatim).}
+\paragraph{Prompts (verbatim, in order).}
 \begin{quote}\small\ttfamily\raggedright
-i have to do DLSTG\_PA3 instructions are in DLSTG\_PA3.pdf I want you to create a notebook and then use kaggle api to direcly run
-it on kaggle and then do save and run and when the run is complete download the jupternotebook and the outputs zip file and
+1. i have to do DLSTG\_PA3 instructions are in DLSTG\_PA3.pdf I want you to create a notebook and then use kaggle api to direcly
+run it on kaggle and then do save and run and when the run is complete download the jupternotebook and the outputs zip file and
 write the report also create a github respository and push everything on it with clean Readme to reproduce things if you have
-any questions you can ask me
+any questions you can ask me\\[2pt]
+2. my name is Usama Azam, roll number 25280109\\[2pt]
+3. check the kaggle run status\\[2pt]
+4. continue working also the outputs folder and the notebook i have also downlaoded manually and is in the same folder you can
+cross check from it\\[2pt]
+5. i have put the report pdf it have alignment issues text going out of the margin fix those issues and give me the zip file again\\[2pt]
+6. i have put the updated file everything is fixed do final check and push it on github and also create submission\\[2pt]
+7. can you compile the pdf locally?\\[2pt]
+8. assume now you are TA of the course and you have to grade it so do that and provide feedback if there are mistakes major
+flaws or not\\[2pt]
+9. now I want you to look at the major and minor issues and again do the grading and tell me the final result make you that now
+everything is near to perfection
 \end{quote}
-Follow-up answers I gave to the assistant's questions: make the repository public now; use a Kaggle T4 GPU; write the report in
-LaTeX and compile it to PDF; my name and roll number for the title page. I also downloaded the executed notebook and outputs
-manually from Kaggle and asked the assistant to cross-check them against its own downloads (they are byte-identical).
+I also answered the assistant's multiple-choice questions (public repository, Kaggle T4 GPU, LaTeX report compiled to PDF) and
+sent short status requests (``update?'', ``check'').
 
-\paragraph{Output.} The assistant (1) read the assignment PDF; (2) ran a small probe kernel on Kaggle to inspect the HDF5 layout,
-the dataset mount path and the adjacency matrix; (3) wrote the notebook (Q1/Q2 numerical checks, data pipeline, models,
-training and analysis), including a synthetic smoke-test mode, and tested it locally; (4) pushed it to Kaggle via the API on a
-T4 GPU (the first push failed because the notebook lacked kernelspec metadata, and the second run succeeded); (5) downloaded the
-executed notebook and outputs; (6) drafted this report, including the analytical answers to Q1--Q2 and the discussion, from
-the measured outputs; and (7) created the GitHub repository and README.
+\paragraph{Output and iterations.} The assistant (1) read the assignment PDF; (2) ran a probe kernel on Kaggle to inspect the HDF5
+layout, mount path and adjacency matrix; (3) wrote the notebook, including a synthetic smoke-test mode, tested it locally and ran it
+on Kaggle via the API (the first push failed because the notebook lacked kernelspec metadata); (4) downloaded the executed notebook
+and outputs, which I cross-checked against my own manual download; (5) drafted this report, including the analytical answers to
+Q1--Q2 and the discussion, from the measured outputs; and (6) created the GitHub repository and README. In response to prompt 8 it
+then reviewed the submission as a grader. The main criticisms were: a single seed, no treatment of zero-flow faults, non-causal
+interpolation of inputs, dead sensors used as graph neighbours, no ablation separating node identity from graph structure, the
+handout's GC form not tested, shared-GPU timings, and one misstated statistic. In response to prompt 9 it implemented all of these
+(3 seeds, fault removal, causal imputation, source masking, four ablations, LR schedule and longer training, one worker per GPU,
+cross-seed graph analysis) and reran everything. One rerun crashed after the first seed because of a bug in the evaluation code for
+seeds other than the first; it was fixed, the smoke test was extended to all seeds, and the final run reported here completed
+without errors.
 
-\paragraph{Edits and verification.} All numbers in this report are copied from the executed notebook
-(\texttt{outputs/results.json}, \texttt{outputs/graph\_analysis.csv}, \texttt{outputs/kaggle\_run\_log.txt}). Design choices
-(sum aggregation, masked metrics, directed random-walk normalisation, top-$k$ before softmax) are justified in the relevant
-sections. Any manual edits I make to the generated text before submission are listed here: none so far.
+\paragraph{Edits and verification.} All numbers in this report are copied from the executed notebook and its output files
+(\texttt{outputs/results.json}, \texttt{results\_summary.csv}, \texttt{paired\_comparisons.csv}, \texttt{graph\_analysis.csv},
+\texttt{kaggle\_run\_log.txt}). Design choices (sum aggregation, masked metrics, fault handling, directed random-walk
+normalisation, top-$k$ before softmax, residual layers) are justified in the relevant sections. My own manual edits to an earlier
+draft were layout fixes for text running into the margins.
 
 \end{document}
