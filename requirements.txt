@@ -1,0 +1,8 @@
+numpy>=1.26
+pandas>=2.1
+scipy>=1.11
+matplotlib>=3.8
+h5py>=3.10
+torch>=2.2
+psutil
+jupytext>=1.16   # only needed to regenerate the .ipynb from notebook/dlstg_pa3.py

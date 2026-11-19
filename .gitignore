@@ -1,0 +1,26 @@
+# data (download from Kaggle, see README)
+data/
+*.h5
+ca_rn_adj.npy
+# assignment handout (course material)
+DL4STG_PA3.pdf
+# raw Kaggle download folder (contents are copied into outputs/)
+kaggle_run/
+# LaTeX build artefacts
+report/*.aux
+report/*.log
+report/*.out
+report/*.toc
+report/*.fls
+report/*.fdb_latexmk
+report/*.synctex.gz
+# python / OS
+__pycache__/
+.ipynb_checkpoints/
+.DS_Store
+Thumbs.db
+# duplicates of notebook/dlstg_pa3_executed.ipynb and outputs.zip downloaded manually from the Kaggle UI
+dlstg-pa3-largest-sd-stgnn.ipynb
+results*.zip
+report/build.log
+report/texsys.aux

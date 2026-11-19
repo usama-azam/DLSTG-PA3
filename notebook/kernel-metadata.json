@@ -1,0 +1,15 @@
+{
+  "id": "usamaazam9/dlstg-pa3-largest-sd-stgnn",
+  "title": "DLSTG PA3 LargeST-SD STGNN",
+  "code_file": "dlstg_pa3.ipynb",
+  "language": "python",
+  "kernel_type": "notebook",
+  "is_private": true,
+  "enable_gpu": true,
+  "enable_tpu": false,
+  "enable_internet": true,
+  "dataset_sources": ["liuxu77/largest"],
+  "competition_sources": [],
+  "kernel_sources": [],
+  "model_sources": []
+}
